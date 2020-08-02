@@ -50,7 +50,7 @@ func on_button_clicked(tile):
 		if from_tile == null:
 			print("set position: " + str(position.x) + ", " + str(position.y))
 			from_tile = position
-		elif from_tile == position:
+		elif from_tile == position || !is_tile_in_swap_range(position, from_tile):
 			print("unset position: " + str(from_tile.x) + ", " + str(from_tile.y))
 			from_tile = null
 		else:
@@ -61,6 +61,12 @@ func on_button_clicked(tile):
 			tiles[position.x][position.y].set_position(Vector2(position.x * size + margin, position.y * size + margin))
 			tiles[from_tile.x][from_tile.y].set_position(Vector2(from_tile.x * size + margin, from_tile.y * size + margin))
 			from_tile = null
+
+func is_tile_in_swap_range(position1, position2):
+	var x = int(abs(position1.x - position2.x))
+	var y = int(abs(position1.y - position2.y))
+	return x <= 1 && y <= 1 && x + y <= 1 
+
 func get_textures():
 	var dir = Directory.new()
 	dir.open(tile_texture_path)
