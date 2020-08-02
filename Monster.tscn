@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
+[ext_resource path="res://assets/font/font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Monster.gd" type="Script" id=2]
 
 [node name="Monster" type="Node2D"]
@@ -8,11 +9,24 @@ monster = "slime"
 
 [node name="Sprite" type="Sprite" parent="."]
 
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = -18.0
+margin_top = -9.0
+margin_right = -9.0
+margin_bottom = -2.0
+color = Color( 0.290196, 0.0705882, 0.0705882, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Health" type="Label" parent="."]
-margin_left = 6.89165
-margin_top = 7.46169
-margin_right = 22.8917
-margin_bottom = 21.4617
+margin_left = -17.1509
+margin_top = -8.05514
+margin_right = -1.15085
+margin_bottom = 5.94487
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 0.329412, 0.0196078, 0.0196078, 1 )
 text = "20"
 __meta__ = {
 "_edit_use_anchors_": false
