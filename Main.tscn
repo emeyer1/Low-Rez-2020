@@ -9,8 +9,17 @@
 position = Vector2( 32, 32 )
 texture = ExtResource( 1 )
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="ViewportContainer" type="ViewportContainer" parent="."]
+margin_right = 64.0
+margin_bottom = 64.0
+stretch = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="TileGrid" parent="." instance=ExtResource( 2 )]
+[node name="Viewport" type="Viewport" parent="ViewportContainer"]
+size = Vector2( 64, 64 )
+transparent_bg = true
 
-[editable path="TileGrid"]
+[node name="TileGrid" parent="ViewportContainer/Viewport" instance=ExtResource( 2 )]
+margin_right = 41.0
