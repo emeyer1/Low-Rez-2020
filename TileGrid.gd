@@ -61,10 +61,11 @@ func on_button_clicked(tile):
 			tiles[position.x][position.y].set_position(Vector2(position.x * size + margin, position.y * size + margin))
 			tiles[from_tile.x][from_tile.y].set_position(Vector2(from_tile.x * size + margin, from_tile.y * size + margin))
 			from_tile = null
+			
 func is_tile_in_swap_range(position1, position2):
 	var y = int(abs(position1.y - position2.y))
-	return x <= 1 && y <= 1 && x + y <= 1 
 	var x = int(abs(position1.x - position2.x))
+	return x <= 1 && y <= 1 && x + y <= 1 
 
 func get_textures():
 	var dir = Directory.new()
