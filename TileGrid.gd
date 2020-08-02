@@ -61,6 +61,8 @@ func on_button_clicked(tile):
 			tiles[position.x][position.y].set_position(Vector2(position.x * size + margin, position.y * size + margin))
 			tiles[from_tile.x][from_tile.y].set_position(Vector2(from_tile.x * size + margin, from_tile.y * size + margin))
 			from_tile = null
+			
+			
 func get_textures():
 	var dir = Directory.new()
 	dir.open(tile_texture_path)
