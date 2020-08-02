@@ -16,8 +16,12 @@ _global_script_class_icons={
 [application]
 
 config/name="testSwitchdem"
-run/main_scene="res://Main.tscn"
+run/main_scene="res://TileGrid.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+MonsterDB="*res://databases/MonsterDB.gd"
 
 [display]
 

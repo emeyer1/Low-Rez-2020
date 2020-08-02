@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Monster.gd" type="Script" id=2]
+
+[node name="Monster" type="Node2D"]
+script = ExtResource( 2 )
+monster = "slime"
+
+[node name="Sprite" type="Sprite" parent="."]
+
+[node name="Health" type="Label" parent="."]
+margin_left = 6.89165
+margin_top = 7.46169
+margin_right = 22.8917
+margin_bottom = 21.4617
+text = "20"
+__meta__ = {
+"_edit_use_anchors_": false
+}

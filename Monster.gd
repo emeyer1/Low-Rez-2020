@@ -1,6 +1,6 @@
 extends Node2D
 
-onready var monsterDB = get_node(res:/)
+onready var monsterDB = get_node("res://MonsterDB")
 
 
 export var monster = ""
@@ -8,7 +8,9 @@ export var monster = ""
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	var m = MonsterDB.get_monster(monster)
+	$Sprite.texture = load(m["Sprite"])
+	$Health.text = str(m["Health"])
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
