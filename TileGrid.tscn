@@ -5,7 +5,7 @@
 [node name="TileGrid" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 39.0
+margin_left = 41.0
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -18,4 +18,3 @@ color = Color( 0.345098, 0.160784, 0.356863, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="gui_input" from="." to="." method="_on_TileGrid_gui_input"]
