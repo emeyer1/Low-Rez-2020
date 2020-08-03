@@ -8,7 +8,7 @@ var monsters = ["slime","orc"]
 
 
 #Innkeeper Data
-var IKhealth = 21
+var IKhealth = 20
 var turn_count = 0
 var previous_turn = 0
 # Declare member variables here. Examples:
@@ -36,7 +36,7 @@ func _process(delta):
 	
 	
 func initialize_innkeeper():
-	$InnkeeperHealth.text = "Inkpr: " + str(IKhealth)
+	$UI/health_icon/InnkeeperHealth.text = str(IKhealth)
 
 func spawn_monster(value):
 	var Monster = MonsterBase.instance()
@@ -45,7 +45,7 @@ func spawn_monster(value):
 
 func update_IK_health(amount):
 	IKhealth = IKhealth - amount
-	$InnkeeperHealth.text = "Inkpr: " + str(IKhealth)
+	$UI/health_icon/InnkeeperHealth.text = str(IKhealth)
 	is_IK_dead()
 	
 func is_IK_dead():

@@ -3,7 +3,7 @@ extends Node2D
 onready var monsterDB = get_node("/root/MonsterDB")
 
 
-var id = ""
+var id = "slime"
 var Health = 0
 
 # Called when the node enters the scene tree for the first time.

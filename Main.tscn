@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/background/background.png" type="Texture" id=1]
 [ext_resource path="res://TileGrid.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scripts/Main.gd" type="Script" id=3]
 [ext_resource path="res://assets/font/InkeeperLife.tres" type="DynamicFont" id=4]
+[ext_resource path="res://assets/ui/swap_icon.png" type="Texture" id=5]
+[ext_resource path="res://assets/ui/health_icon.png" type="Texture" id=6]
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 3 )
@@ -33,13 +35,52 @@ render_target_update_mode = 3
 [node name="TileGrid" parent="ViewportContainer/Viewport" instance=ExtResource( 2 )]
 margin_right = 41.0
 
-[node name="InnkeeperHealth" type="Label" parent="."]
-margin_left = 1.0
-margin_top = 58.0
-margin_right = 40.0
+[node name="UI" type="Control" parent="."]
+margin_right = 64.0
 margin_bottom = 64.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="swap_icon" type="Sprite" parent="UI"]
+position = Vector2( 36, 60 )
+texture = ExtResource( 5 )
+
+[node name="Label" type="Label" parent="UI/swap_icon"]
+anchor_left = 0.0156032
+anchor_top = 0.113002
+anchor_right = 0.0156032
+anchor_bottom = 0.113002
+margin_left = -7.10922
+margin_top = -2.79102
+margin_right = -3.10922
+margin_bottom = 2.20898
 custom_fonts/font = ExtResource( 4 )
-text = "inkpr: 20"
+custom_colors/font_color = Color( 1, 0.866667, 0, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+text = "2"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="health_icon" type="Sprite" parent="UI"]
+position = Vector2( 5.5, 59 )
+texture = ExtResource( 6 )
+
+[node name="InnkeeperHealth" type="Label" parent="UI/health_icon"]
+margin_left = -5.5
+margin_top = -1.0
+margin_right = 8.5
+margin_bottom = 4.0
+custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_colors/font_color_shadow = Color( 0.25098, 0.141176, 0.141176, 0.572549 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 1
+text = "00"
+align = 1
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
