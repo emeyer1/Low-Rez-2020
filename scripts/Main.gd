@@ -1,5 +1,7 @@
 extends Node2D
 
+signal turn_start
+
 onready var MonsterBase = load("res://Monster.tscn")
 var random = RandomNumberGenerator.new()
 var monsters = ["slime","orc"]
@@ -26,12 +28,6 @@ func _process(delta):
 		#TODO: Get which monsters spawn and then determine a random new one up. Could do a random order to balance?
 		var r = random.randi_range(0,1)
 		spawn_monster(monsters[r])
-		
-	#Damage Monster
-	if Input.is_action_just_pressed("ui_select"):
-		$MonsterSpawn.get_child(0).update_health(3)
-		previous_turn = turn_count
-		turn_count += 1
 	
 	if previous_turn != turn_count:
 		update_IK_health(1)
@@ -56,3 +52,10 @@ func is_IK_dead():
 	if IKhealth <= 0:
 		#Gameover screen goes here
 		print("Inkeeper dead")
+
+
+func _on_TileGrid_turn_ended(activations):
+	$MonsterSpawn.get_child(0).update_health(3)
+	previous_turn = turn_count
+	turn_count += 1
+	emit_signal("turn_start")

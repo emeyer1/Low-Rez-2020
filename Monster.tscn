@@ -1,8 +1,11 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/font/MonsterLife.tres" type="DynamicFont" id=1]
-[ext_resource path="res://Monster.gd" type="Script" id=2]
+[ext_resource path="res://scripts/Monster.gd" type="Script" id=2]
 [ext_resource path="res://assets/sound/KAIIIII.wav" type="AudioStream" id=3]
+
+
+
 
 [sub_resource type="Animation" id=1]
 resource_name = "HealthHover"
