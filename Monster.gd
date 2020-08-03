@@ -11,13 +11,34 @@ func _ready():
 	var m = monsterDB.get_monster(id)
 	$Sprite.texture = load(m["Sprite"])
 	Health = m["Health"]
-	$Health/Label.text = str(Health)
+	set_label()
 
+
+func set_label():
+	#Health
+	$Health/Label.text = str(Health)
+	$Health/AnimationPlayer.play("HealthHover")
+	
 
 func update_health(amount):
 	Health = Health - amount
-	$Health/Label.text = str(Health)
+	$Health/AnimationPlayer.play("TakeDamage")
 	is_dead()
+	#KAIIIBA
+	$Health/AudioStreamPlayer.set_stream(load("res://assets/sound/KAIIIII.wav"))
+	$Health/AudioStreamPlayer.play()
+	#END_KAIIIBA
+	
+	yield($Health/AudioStreamPlayer,"finished")
+	set_label()
+	
+	
+	#KAIIIBA
+	$Health/AudioStreamPlayer.set_stream(load("res://assets/sound/BAAAA.wav"))
+	$Health/AudioStreamPlayer.play()
+	#END_KAIIIBA
+	
+	
 
 func is_dead():
 	if Health <= 0:

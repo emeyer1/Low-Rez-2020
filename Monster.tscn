@@ -1,7 +1,43 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://assets/font/font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://assets/font/MonsterLife.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Monster.gd" type="Script" id=2]
+[ext_resource path="res://assets/sound/KAIIIII.wav" type="AudioStream" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "HealthHover"
+length = 1.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.7, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( -15, -20 ), Vector2( -15, -21 ), Vector2( -15, -20 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "TakeDamage"
+length = 0.5
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Label:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ "20", "69", "30", "42", "10", "3", "10", "5", "12", "17", "1" ]
+}
 
 [node name="Monster" type="Node2D"]
 script = ExtResource( 2 )
@@ -9,26 +45,26 @@ script = ExtResource( 2 )
 [node name="Sprite" type="Sprite" parent="."]
 
 [node name="Health" type="Node2D" parent="."]
-
-[node name="ColorRect" type="ColorRect" parent="Health"]
-margin_left = -18.0
-margin_top = -9.0
-margin_right = -9.0
-margin_bottom = -2.0
-color = Color( 0.247059, 0.0941176, 0.0941176, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+position = Vector2( -15, -21 )
 
 [node name="Label" type="Label" parent="Health"]
-margin_left = -17.0
-margin_top = -8.0
-margin_right = -9.0
-margin_bottom = -2.0
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 5.0
+margin_bottom = 6.0
 custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color = Color( 1, 0, 0, 1 )
-custom_colors/font_outline_modulate = Color( 0.329412, 0.0196078, 0.0196078, 1 )
-text = "20"
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+text = "12"
+align = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Health"]
+anims/HealthHover = SubResource( 1 )
+anims/TakeDamage = SubResource( 2 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Health"]
+stream = ExtResource( 3 )
+volume_db = 10.0
