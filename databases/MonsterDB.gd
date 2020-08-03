@@ -8,6 +8,12 @@ var MONSTERS = {
 		"Sprite":"res://assets/monsters/testMonster.png"
 		},
 
+	"orc":{
+		"Moves":[],
+		"Health":20,
+		"Sprite":"res://assets/monsters/orc.png"
+	},
+	
 	
 	"error":{
 		"Moves":null,

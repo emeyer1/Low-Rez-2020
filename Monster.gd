@@ -3,16 +3,22 @@ extends Node2D
 onready var monsterDB = get_node("/root/MonsterDB")
 
 
-export var monster = ""
-
+var id = ""
+var Health = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var m = monsterDB.get_monster(monster)
+	var m = monsterDB.get_monster(id)
 	$Sprite.texture = load(m["Sprite"])
-	$Health/Label.text = str(m["Health"])
+	Health = m["Health"]
+	$Health/Label.text = str(Health)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func update_health(amount):
+	Health = Health - amount
+	$Health/Label.text = str(Health)
+	is_dead()
+
+func is_dead():
+	if Health <= 0:
+		queue_free()
