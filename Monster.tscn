@@ -48,12 +48,10 @@ script = ExtResource( 2 )
 position = Vector2( -15, -21 )
 
 [node name="Label" type="Label" parent="Health"]
-margin_left = 1.0
-margin_top = 1.0
-margin_right = 5.0
-margin_bottom = 6.0
+margin_right = 8.0
+margin_bottom = 5.0
 custom_fonts/font = ExtResource( 1 )
-custom_colors/font_color = Color( 1, 0, 0, 1 )
+custom_colors/font_color = Color( 0.952941, 0.27451, 0.27451, 1 )
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
 text = "12"
 align = 2
