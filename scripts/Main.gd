@@ -4,7 +4,7 @@ signal turn_start
 
 onready var MonsterBase = load("res://Monster.tscn")
 var random = RandomNumberGenerator.new()
-var monsters = ["slime","orc"]
+var monsters = ["slime","shade","orc"]
 var CurrentMonster
 
 #Innkeeper Data

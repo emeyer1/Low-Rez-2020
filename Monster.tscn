@@ -9,8 +9,7 @@
 [ext_resource path="res://assets/ui/health_bar_progress.png" type="Texture" id=7]
 [ext_resource path="res://assets/monsters/testMonster.png" type="Texture" id=8]
 
-[sub_resource type="Animation" id=1]
-resource_name = "HealthHover"
+[sub_resource type="Animation" id=2]
 length = 1.5
 loop = true
 tracks/0/type = "value"
@@ -26,8 +25,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, -1 ), Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "TakeDamage"
+[sub_resource type="Animation" id=3]
 length = 0.5
 loop = true
 step = 0.05
@@ -102,5 +100,5 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="STATS"]
-anims/HealthHover = SubResource( 1 )
-anims/TakeDamage = SubResource( 2 )
+anims/HealthHover = SubResource( 2 )
+anims/TakeDamage = SubResource( 3 )

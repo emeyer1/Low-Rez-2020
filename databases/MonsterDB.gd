@@ -32,7 +32,7 @@ var MONSTERS = {
 			5:{
 			"Move_Type":"Splat",
 			"Value": 5,
-			"Next_Move":1
+			"Next_Move":0
 			}},
 		"Health":10,
 		"Sprite":"res://assets/monsters/testMonster.png",
@@ -57,21 +57,46 @@ var MONSTERS = {
 			},
 			3:{
 			"Move_Type":"Rage",
-			"Value": 4,
+			"Value": null,
 			"Next_Move":4
 			},
 			4:{
 			"Move_Type":"Damage",
 			"Value": 2,
-			"Next_Move":1
+			"Next_Move":0
 			}},
 		"Health":20,
 		"Sprite":"res://assets/monsters/orc.png"
 	},
+	"shade":{
+	"AttackLoop":{
+		0:{
+		"Move_Type":"Rest",
+		"Value": null,
+		"Next_Move":1
+		},
+		1:{
+		"Move_Type":"Damage",
+		"Value": 7,
+		"Next_Move":2
+		},
+		2:{
+		"Move_Type":"Rest",
+		"Value": null,
+		"Next_Move":3
+		},
+		3:{
+		"Move_Type":"Damage",
+		"Value": 7,
+		"Next_Move":0
+		}},
+	"Health":10,
+	"Sprite":"res://assets/monsters/shade.png"
+	},
 	
 	
 	"error":{
-		"Moves":null,
+		"AttckLoop":null,
 		"Health":null,
 		"Sprite":null,
 		}
@@ -82,7 +107,9 @@ var MONSTER_ATTACKS = {
 	"Block":"res://assets/ui/block_attack_icon.png",
 	"Splat":"res://assets/ui/splat_attack_icon.png",
 	"Rage":"res://assets/ui/rage_attack_icon.png",
-	"Rest":"res://assets/ui/rest_attack_icon.png"
+	"Rest":"res://assets/ui/rest_attack_icon.png",
+	
+	"Error":"res://assets/ui/error.png"
 }
 
 

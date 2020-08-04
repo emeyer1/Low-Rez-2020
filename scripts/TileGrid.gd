@@ -34,15 +34,15 @@ func _ready():
 func get_next_tile():
 	var ret = TextureButton.new()
 	var texture
-	match random.randi_range(0, 1):
+	match random.randi_range(0, 3):
 		0:
 			texture = textures["earthblock"]
 		1:
 			texture = textures["fireblock"]
 		2:
-			texture = textures["fire"]
+			texture = textures["block2"]
 		3:
-			texture = textures["grass"]
+			texture = textures["block2"]
 	ret.set_normal_texture(texture)
 	return ret
 

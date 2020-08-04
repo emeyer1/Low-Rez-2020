@@ -92,3 +92,4 @@ func attack_step(i):
 
 func next_attack():
 	attack_step(next_move_i)
+
