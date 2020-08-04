@@ -1,24 +1,45 @@
 extends Node2D
 
 onready var monsterDB = get_node("/root/MonsterDB")
+onready var attackSprite = $STATS/Attack/attack_icon
+onready var healthBar = $STATS/Health/TextureProgress
+
+onready var monsterAttacks = monsterDB.MONSTER_ATTACKS
+
 var random = RandomNumberGenerator.new()
 
 var id = "slime"
-var Health = 0
+
 var Moves = []
-var next_move
+
+#Move Handling
+var current_move
+var current_move_type
+var current_move_value
+var next_move_i
+
+#Stats
+var Health = 0
+var rage = 0
+var armor = 0
+
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#Initialize the monster
 	var m = monsterDB.get_monster(id)
 	$Sprite.texture = load(m["Sprite"])
-	Moves = m["Attacks"]
+	Moves = m["AttackLoop"]
 	Health = m["Health"]
-	$STATS/Health/TextureProgress.max_value = Health
-	$STATS/Health/TextureProgress.value = Health
+	healthBar.max_value = Health
+	healthBar.value = Health
 	set_label()
-	load_attack()
+	
+	
+	random.randomize()
+	var i = random.randi_range(0,len(Moves)-1)
+	attack_step(i)
 
 
 func set_label():
@@ -53,15 +74,21 @@ func maybe_dead():
 	if Health <= 0:
 		queue_free()
 
-func load_attack():
-	var i = random.randi_range(0,len(Moves)-1)
-	print("randi: ",i)
-	next_move = Moves[i]
-	$STATS/Attack/Label.text = str(next_move)
+func attack_step(i):
+	current_move = Moves[i]
+	#Move value
+	current_move_value = current_move["Value"]
+	if current_move_value:
+		$STATS/Attack/Label.text = str(current_move_value)
+	else:
+		$STATS/Attack/Label.text = str("")
+	#Move Type
+	current_move_type = current_move["Move_Type"]
+	attackSprite.texture = load(monsterAttacks[current_move_type])
+	#print(monsterAttacks)
 
-func attack():
-	random.randomize()
-	print("Monster Dealt: [",next_move,"]")
-	load_attack()
-	return next_move
+	next_move_i = current_move["Next_Move"]
 	
+
+func next_attack():
+	attack_step(next_move_i)

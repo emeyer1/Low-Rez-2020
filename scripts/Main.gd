@@ -64,13 +64,15 @@ func maybe_IK_dead():
 
 
 func _on_TileGrid_turn_ended(activations):
-	$MonsterSpawn.get_child(0).update_health(3)
+	#User deals damage
+	$MonsterSpawn.get_child(0).update_health(4)
 	previous_turn = turn_count
 	turn_count += 1
 	emit_signal("turn_start")
 
 
 func monster_turn():
-	var damage = CurrentMonster.attack()
-	update_IK_health(damage)
+	if CurrentMonster.current_move_type == "Damage":
+		update_IK_health(CurrentMonster.current_move_value)
+	CurrentMonster.next_attack()
 	previous_turn = turn_count
