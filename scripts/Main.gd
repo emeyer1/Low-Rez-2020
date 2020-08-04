@@ -5,21 +5,19 @@ signal turn_start
 onready var MonsterBase = load("res://Monster.tscn")
 var random = RandomNumberGenerator.new()
 var monsters = ["slime","orc"]
-
+var CurrentMonster
 
 #Innkeeper Data
 var IKhealth = 20
 var turn_count = 0
 var previous_turn = 0
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	initialize_innkeeper()
 	spawn_monster("slime")
+	CurrentMonster = $MonsterSpawn.get_child(0)
 
 func _process(delta):
 	#Spawn monster when space is open
@@ -29,10 +27,20 @@ func _process(delta):
 		var r = random.randi_range(0,1)
 		spawn_monster(monsters[r])
 	
+	
+	#Set the swap count remaining
+	$UI/swap_icon/Label.text = str($ViewportContainer/Viewport/TileGrid.moves_remaining)
+
+
+
+	#Once turn ends, monster goes. Right now it just uses a random attack amount from the MonsterDB.
+	#Handle attacks as a dict that are then matched? Damage:3, Blocks: 5, Row:1, Heal:10 etc.
 	if previous_turn != turn_count:
-		update_IK_health(1)
-		previous_turn = turn_count
-	#Monster Damages 
+		monster_turn()
+
+
+
+
 	
 	
 func initialize_innkeeper():
@@ -42,13 +50,14 @@ func spawn_monster(value):
 	var Monster = MonsterBase.instance()
 	Monster.id = value
 	$MonsterSpawn.add_child(Monster)
+	CurrentMonster = $MonsterSpawn.get_child(0)
 
 func update_IK_health(amount):
 	IKhealth = IKhealth - amount
 	$UI/health_icon/InnkeeperHealth.text = str(IKhealth)
-	is_IK_dead()
+	maybe_IK_dead()
 	
-func is_IK_dead():
+func maybe_IK_dead():
 	if IKhealth <= 0:
 		#Gameover screen goes here
 		print("Inkeeper dead")
@@ -59,3 +68,9 @@ func _on_TileGrid_turn_ended(activations):
 	previous_turn = turn_count
 	turn_count += 1
 	emit_signal("turn_start")
+
+
+func monster_turn():
+	var damage = CurrentMonster.attack()
+	update_IK_health(damage)
+	previous_turn = turn_count

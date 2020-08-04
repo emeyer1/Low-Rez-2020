@@ -43,7 +43,7 @@ __meta__ = {
 }
 
 [node name="swap_icon" type="Sprite" parent="UI"]
-position = Vector2( 36, 60 )
+position = Vector2( 21, 60 )
 texture = ExtResource( 5 )
 
 [node name="Label" type="Label" parent="UI/swap_icon"]

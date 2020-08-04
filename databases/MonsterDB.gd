@@ -3,13 +3,13 @@ extends Node
 
 var MONSTERS = {
 	"slime":{
-		"Moves":[],
+		"Attacks":[1,1,1,3,5],
 		"Health":10,
-		"Sprite":"res://assets/monsters/testMonster.png"
+		"Sprite":"res://assets/monsters/testMonster.png",
 		},
 
 	"orc":{
-		"Moves":[],
+		"Attacks":[3,3,7],
 		"Health":20,
 		"Sprite":"res://assets/monsters/orc.png"
 	},
