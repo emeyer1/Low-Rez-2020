@@ -67,6 +67,19 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Control" type="Control" parent="STATS/Attack"]
+margin_left = -20.0
+margin_top = -3.0
+margin_right = -10.0
+margin_bottom = 14.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TooltipPosition" type="Position2D" parent="STATS/Attack"]
+position = Vector2( -9, 0 )
+z_index = 2
+
 [node name="Health" type="Node2D" parent="STATS"]
 
 [node name="Label" type="Label" parent="STATS/Health"]
@@ -102,3 +115,5 @@ __meta__ = {
 [node name="AnimationPlayer" type="AnimationPlayer" parent="STATS"]
 anims/HealthHover = SubResource( 2 )
 anims/TakeDamage = SubResource( 3 )
+[connection signal="mouse_entered" from="STATS/Attack/Control" to="." method="_on_Control_mouse_entered"]
+[connection signal="mouse_exited" from="STATS/Attack/Control" to="." method="_on_Control_mouse_exited"]
