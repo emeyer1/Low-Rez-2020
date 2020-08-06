@@ -9,6 +9,7 @@
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 3 )
+first_monster = "orc"
 
 [node name="Background" type="Sprite" parent="."]
 position = Vector2( 32, 32 )
@@ -46,20 +47,20 @@ __meta__ = {
 }
 
 [node name="swap_icon" type="Sprite" parent="UI"]
-position = Vector2( 21, 60 )
+position = Vector2( 30, 59 )
 texture = ExtResource( 5 )
 
 [node name="Label" type="Label" parent="UI/swap_icon"]
-anchor_left = 0.0156032
-anchor_top = 0.113002
-anchor_right = 0.0156032
-anchor_bottom = 0.113002
+anchor_left = 1.34547
+anchor_top = 0.179102
+anchor_right = 1.34547
+anchor_bottom = 0.179102
 margin_left = -7.10922
 margin_top = -2.79102
 margin_right = -3.10922
 margin_bottom = 2.20898
 custom_fonts/font = ExtResource( 4 )
-custom_colors/font_color = Color( 1, 0.866667, 0, 1 )
+custom_colors/font_color = Color( 0.984314, 0.94902, 0.211765, 1 )
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
 text = "2"
 __meta__ = {
@@ -85,7 +86,7 @@ text = "00"
 align = 1
 valign = 1
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 [connection signal="turn_start" from="." to="ViewportContainer/Viewport/TileGrid" method="_on_Main_turn_start"]
 [connection signal="turn_ended" from="ViewportContainer/Viewport/TileGrid" to="." method="_on_TileGrid_turn_ended"]

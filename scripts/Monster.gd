@@ -33,6 +33,14 @@ var tt_spawned = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	#initialize idle animation
+	
+	$Sprite.hframes = 1
+	#$Sprite.hframes = 8
+	#$SpriteAnPlayer.play("Idle")
+	
+	
+	
 	#Initialize the monster
 	var m = monsterDB.get_monster(id)
 	$Sprite.texture = load(m["Sprite"])
@@ -56,7 +64,7 @@ func _process(delta):
 			#Spawn Tooltip
 			
 			var tt = tooltip.instance()
-			tt.get_node("Label").text = monsterAttacks[current_move_type]["Tooltip"]
+			tt.get_node("Label").text = monsterDB.get_attack(current_move_type)["Tooltip"]
 			$STATS/Attack/TooltipPosition.add_child(tt)
 			tt_spawned = 1
 			
@@ -73,7 +81,7 @@ func _process(delta):
 func set_label():
 	#Health
 	$STATS/Health/Label.text = str(Health)
-	$STATS/AnimationPlayer.play("HealthHover")
+	#$STATS/AnimationPlayer.play("HealthHover")
 	
 
 func update_health(amount):
@@ -112,7 +120,7 @@ func attack_step(i):
 		$STATS/Attack/Label.text = str("")
 	#Move Type
 	current_move_type = current_move["Move_Type"]
-	attackSprite.texture = load(monsterAttacks[current_move_type]["Sprite"])
+	attackSprite.texture = load(monsterDB.get_attack(current_move_type)["Sprite"])
 	#print(monsterAttacks)
 
 	next_move_i = current_move["Next_Move"]

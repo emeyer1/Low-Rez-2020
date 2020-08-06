@@ -7,6 +7,8 @@ var random = RandomNumberGenerator.new()
 var monsters = ["slime","shade","orc"]
 var CurrentMonster
 
+export var first_monster = "slime"
+
 #Innkeeper Data
 var IKhealth = 20
 var turn_count = 0
@@ -16,7 +18,7 @@ var previous_turn = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	initialize_innkeeper()
-	spawn_monster("slime")
+	spawn_monster(first_monster)
 	CurrentMonster = $MonsterSpawn.get_child(0)
 
 func _process(delta):

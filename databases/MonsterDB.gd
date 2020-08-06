@@ -4,101 +4,65 @@ extends Node
 var MONSTERS = {
 	"slime":{
 		"AttackLoop":{
-			0:{
-			"Move_Type":"Block",
-			"Value": null,
-			"Next_Move":1
+			0:{"Move_Type":"Block","Value": null,"Next_Move":1},
+			1:{"Move_Type":"Damage","Value": 1,"Next_Move":2},
+			2:{"Move_Type":"Splat","Value": null,"Next_Move":3},
+			3:{"Move_Type":"Rage","Value": null,"Next_Move":4},
+			4:{"Move_Type":"Damage","Value": 2,"Next_Move":5},
+			5:{"Move_Type":"Splat","Value": null,"Next_Move":0}
 			},
-			1:{
-			"Move_Type":"Damage",
-			"Value": 1,
-			"Next_Move":2
-			},
-			2:{
-			"Move_Type":"Splat",
-			"Value": null,
-			"Next_Move":3
-			},
-			3:{
-			"Move_Type":"Damage",
-			"Value": 3,
-			"Next_Move":4
-			},
-			4:{
-			"Move_Type":"Damage",
-			"Value": 2,
-			"Next_Move":5
-			},
-			5:{
-			"Move_Type":"Splat",
-			"Value": null,
-			"Next_Move":0
-			}},
 		"Health":10,
 		"Sprite":"res://assets/monsters/testMonster.png",
 		},
 
 	"orc":{
 		"AttackLoop":{
-			0:{
-			"Move_Type":"Block",
-			"Value": 5,
-			"Next_Move":1
+			0:{"Move_Type":"Block","Value": 5,"Next_Move":1},
+			1:{"Move_Type":"Damage","Value": 2,"Next_Move":2},
+			2:{"Move_Type":"Block","Value": 3,"Next_Move":3},
+			3:{"Move_Type":"Rage","Value": null,"Next_Move":4},
+			4:{"Move_Type":"Damage","Value": 2,	"Next_Move":0}
 			},
-			1:{
-			"Move_Type":"Damage",
-			"Value": 2,
-			"Next_Move":2
-			},
-			2:{
-			"Move_Type":"Block",
-			"Value": 3,
-			"Next_Move":3
-			},
-			3:{
-			"Move_Type":"Rage",
-			"Value": null,
-			"Next_Move":4
-			},
-			4:{
-			"Move_Type":"Damage",
-			"Value": 2,
-			"Next_Move":0
-			}},
 		"Health":20,
 		"Sprite":"res://assets/monsters/orc.png"
 	},
 	"shade":{
-	"AttackLoop":{
-		0:{
-		"Move_Type":"Rest",
-		"Value": null,
-		"Next_Move":1
-		},
-		1:{
-		"Move_Type":"Damage",
-		"Value": 7,
-		"Next_Move":2
-		},
-		2:{
-		"Move_Type":"Rest",
-		"Value": null,
-		"Next_Move":3
-		},
-		3:{
-		"Move_Type":"Damage",
-		"Value": 6,
-		"Next_Move":0
-		}},
-	"Health":10,
-	"Sprite":"res://assets/monsters/shade.png"
+		"AttackLoop":{
+			0:{"Move_Type":"Rest","Value": null,"Next_Move":1},
+			1:{"Move_Type":"Damage","Value": 7,"Next_Move":2},
+			2:{"Move_Type":"Rest","Value": null,"Next_Move":3},
+			3:{"Move_Type":"Damage","Value": 6,"Next_Move":0}
+			},
+		"Health":10,
+		"Sprite":"res://assets/monsters/shade.png"
+	},
+	"snake":{
+		"AttackLoop":{
+			0:{"Move_Type":"Block","Value": null,"Next_Move":1},
+			1:{"Move_Type":"Damage","Value": 20,"Next_Move":2},
+			2:{"Move_Type":"Block","Value": null,"Next_Move":3},
+			3:{"Move_Type":"Damage","Value": 20,"Next_Move":0}
+			},
+		"Health":99,
+		"Sprite":"res://assets/monsters/snake-sheet.png"
+	},
+	"temp2":{
+		"AttackLoop":{
+			0:{"Move_Type":"Damage","Value": 1,"Next_Move":1},
+			1:{"Move_Type":"Damage","Value": 20,"Next_Move":2},
+			2:{"Move_Type":"Damage","Value": 1,"Next_Move":3},
+			3:{"Move_Type":"Damage","Value": 20,"Next_Move":0}
+			},
+		"Health":25,
+		"Sprite":"res://assets/monsters/temp.png"
 	},
 	
-	
 	"error":{
-		"AttckLoop":null,
-		"Health":null,
-		"Sprite":null,
+		"AttackLoop":{
+			0:{"Move_Type":"?","Value": null,"Next_Move":0}
+			},
+		"Health":99,
+		"Sprite":"res://assets/monsters/error_monsters.png",
 		}
 }
 
@@ -119,3 +83,9 @@ func get_monster(id):
 		return MONSTERS[id]
 	else:
 		return MONSTERS["error"]
+
+func get_attack(id):
+	if id in MONSTER_ATTACKS:
+		return MONSTER_ATTACKS[id]
+	else:
+		return MONSTER_ATTACKS["Error"]
