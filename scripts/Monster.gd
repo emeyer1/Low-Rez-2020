@@ -83,21 +83,21 @@ func set_label():
 
 func update_health(amount):
 	Health = Health - amount
-	$STATS/AnimationPlayer.play("TakeDamage")
+	#$STATS/AnimationPlayer.play("TakeDamage")
 	maybe_dead()
 	
 	#KAIIIBA
-	$STATS/Health/AudioStreamPlayer.set_stream(load("res://assets/sound/KAIIIII.wav"))
-	$STATS/Health/AudioStreamPlayer.play()
+	#$STATS/Health/AudioStreamPlayer.set_stream(load("res://assets/sound/KAIIIII.wav"))
+	#$STATS/Health/AudioStreamPlayer.play()
 	#END_KAIIIBA
 	
-	yield($STATS/Health/AudioStreamPlayer,"finished")
+	#yield($STATS/Health/AudioStreamPlayer,"finished")
 	set_label()
 	
 	
 	#KAIIIBA
-	$STATS/Health/AudioStreamPlayer.set_stream(load("res://assets/sound/BAAAA.wav"))
-	$STATS/Health/AudioStreamPlayer.play()
+	#$STATS/Health/AudioStreamPlayer.set_stream(load("res://assets/sound/BAAAA.wav"))
+	#$STATS/Health/AudioStreamPlayer.play()
 	#END_KAIIIBA
 	
 	$STATS/Health/TextureProgress.value = Health

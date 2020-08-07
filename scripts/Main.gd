@@ -4,7 +4,7 @@ signal turn_start
 
 onready var MonsterBase = load("res://Monster.tscn")
 var random = RandomNumberGenerator.new()
-var monsters = ["slime","shade","orc"]
+var monsterSpawnList = ["slime","slime"]
 var CurrentMonster
 
 export var first_monster = "slime"
@@ -15,21 +15,23 @@ var turn_count = 0
 var previous_turn = 0
 var damage = 0
 var armor = 0
-var new_armor = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	initialize_innkeeper()
-	spawn_monster(first_monster)
+	#spawn_monster(first_monster)
 	CurrentMonster = $MonsterSpawn.get_child(0)
 
 func _process(delta):
 	#Spawn monster when space is open
 	random.randomize()
 	if $MonsterSpawn.get_child_count()<1:
-		#TODO: Get which monsters spawn and then determine a random new one up. Could do a random order to balance?
-		var r = random.randi_range(0,1)
-		spawn_monster(monsters[r])
+		if len(monsterSpawnList)>0:
+			#TODO: Get which monsters spawn and then determine a random new one up. Could do a random order to balance?
+			spawn_monster(monsterSpawnList[0])
+			monsterSpawnList.pop_front()
+		else:
+			print("Level Complete")
 	
 	
 	#Set the swap count remaining
@@ -78,17 +80,22 @@ func maybe_IK_dead():
 
 
 func _on_TileGrid_turn_ended(activations):
-	new_armor = 0
+	
+	#Handle tile type and activation:
 	for i in activations:
 		match i["tileType"]:
 			"fire":
-				damage = i["length"] * 2
+				damage += i["length"] * 1
 			"earth":
-				new_armor = i["length"] * 1
+				var new_armor = i["length"] * 1
+				#INSERT: Animation for max armor
 				armor = min(new_armor + armor,9)
+				
 	#User deals damage
+	print(damage)
 	$MonsterSpawn.get_child(0).update_health(damage)
 	damage = 0
+	update_armor()
 	previous_turn = turn_count
 	turn_count += 1
 	emit_signal("turn_start")
@@ -97,6 +104,6 @@ func _on_TileGrid_turn_ended(activations):
 func monster_turn():
 	if CurrentMonster.current_move_type == "Damage":
 		update_IK_health(CurrentMonster.current_move_value)
-	update_armor()
+	
 	CurrentMonster.next_attack()
 	previous_turn = turn_count
