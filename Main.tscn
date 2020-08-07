@@ -11,6 +11,7 @@
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 3 )
+first_monster = "temsirogfd"
 
 [node name="Background" type="Sprite" parent="."]
 position = Vector2( 32, 32 )

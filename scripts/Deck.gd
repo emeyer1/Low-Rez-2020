@@ -8,11 +8,11 @@ func _ready():
 
 var deck = [
 	{"tileType": "earth",
-		"count": 20},
+		"count": 7},
 	{"tileType": "fire",
-		"count": 20},
+		"count": 7},
 	{"tileType": "empty",
-		"count": 40}
+		"count": 13}
 ]
 
 var inplay = [

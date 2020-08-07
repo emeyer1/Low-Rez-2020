@@ -4,7 +4,7 @@ signal turn_start
 
 onready var MonsterBase = load("res://Monster.tscn")
 var random = RandomNumberGenerator.new()
-var monsterSpawnList = ["slime","slime"]
+var monsterSpawnList = ["temp2","shade"]
 var CurrentMonster
 
 export var first_monster = "slime"
@@ -31,7 +31,7 @@ func _process(delta):
 			spawn_monster(monsterSpawnList[0])
 			monsterSpawnList.pop_front()
 		else:
-			print("Level Complete")
+			print("Level Complete") #Morning
 	
 	
 	#Set the swap count remaining
@@ -60,9 +60,10 @@ func spawn_monster(value):
 	CurrentMonster = $MonsterSpawn.get_child(0)
 
 func update_IK_health(amount):
-	armor = armor - amount
-	amount = max(amount - armor,0)
-	IKhealth = IKhealth - amount
+	var leftover_dmg = max(amount - armor,0)
+	armor = max(armor-amount,0)
+	update_armor()
+	IKhealth = IKhealth - leftover_dmg
 	$UI/health_icon/InnkeeperHealth.text = str(IKhealth)
 	maybe_IK_dead()
 
@@ -102,8 +103,9 @@ func _on_TileGrid_turn_ended(activations):
 
 
 func monster_turn():
-	if CurrentMonster.current_move_type == "Damage":
-		update_IK_health(CurrentMonster.current_move_value)
-	
-	CurrentMonster.next_attack()
-	previous_turn = turn_count
+	if $MonsterSpawn.get_child_count() > 0:
+		if CurrentMonster.current_move_type == "Damage":
+			update_IK_health(CurrentMonster.current_move_value)
+			
+		CurrentMonster.next_attack()
+		previous_turn = turn_count
