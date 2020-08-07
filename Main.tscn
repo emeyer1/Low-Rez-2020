@@ -92,7 +92,6 @@ __meta__ = {
 
 [node name="armor_icon" type="Sprite" parent="UI"]
 position = Vector2( 14, 60 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 8 )
 
 [node name="Label" type="Label" parent="UI/armor_icon"]
