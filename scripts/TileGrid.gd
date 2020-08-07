@@ -12,12 +12,14 @@ var tile_texture_path = "res://assets/tiles/"
 var tile_material = preload("res://assets/materials/selected.tres")
 var textures = {}
 var player_turn = true
-var moves = 2
-var moves_remaining = 2
+export var moves = 2
+var moves_remaining = moves
 
 var from_tile
 
 func _ready():
+	moves_remaining = moves
+	
 	random.randomize()
 	get_textures()
 

@@ -64,7 +64,6 @@ script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 8 )
-hframes = 8
 
 [node name="STATS" type="Node2D" parent="."]
 

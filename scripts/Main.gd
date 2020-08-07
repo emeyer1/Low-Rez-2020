@@ -13,7 +13,9 @@ export var first_monster = "slime"
 var IKhealth = 20
 var turn_count = 0
 var previous_turn = 0
-
+var damage = 0
+var armor = 0
+var new_armor = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -47,6 +49,7 @@ func _process(delta):
 	
 func initialize_innkeeper():
 	$UI/health_icon/InnkeeperHealth.text = str(IKhealth)
+	update_armor()
 
 func spawn_monster(value):
 	var Monster = MonsterBase.instance()
@@ -55,9 +58,18 @@ func spawn_monster(value):
 	CurrentMonster = $MonsterSpawn.get_child(0)
 
 func update_IK_health(amount):
+	armor = armor - amount
+	amount = max(amount - armor,0)
 	IKhealth = IKhealth - amount
 	$UI/health_icon/InnkeeperHealth.text = str(IKhealth)
 	maybe_IK_dead()
+
+func update_armor():
+	if armor <= 0:
+		$UI/armor_icon.visible = false
+	else:
+		$UI/armor_icon.visible = true
+		$UI/armor_icon/Label.text = str(armor)
 	
 func maybe_IK_dead():
 	if IKhealth <= 0:
@@ -66,8 +78,17 @@ func maybe_IK_dead():
 
 
 func _on_TileGrid_turn_ended(activations):
+	new_armor = 0
+	for i in activations:
+		match i["tileType"]:
+			"fireblock":
+				damage = i["length"] * 2
+			"earthblock":
+				new_armor = i["length"] * 1
+				armor = min(new_armor + armor,9)
 	#User deals damage
-	$MonsterSpawn.get_child(0).update_health(4)
+	$MonsterSpawn.get_child(0).update_health(damage)
+	damage = 0
 	previous_turn = turn_count
 	turn_count += 1
 	emit_signal("turn_start")
@@ -76,5 +97,6 @@ func _on_TileGrid_turn_ended(activations):
 func monster_turn():
 	if CurrentMonster.current_move_type == "Damage":
 		update_IK_health(CurrentMonster.current_move_value)
+	update_armor()
 	CurrentMonster.next_attack()
 	previous_turn = turn_count

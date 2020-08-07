@@ -35,11 +35,6 @@ var tt_spawned = 0
 func _ready():
 	#initialize idle animation
 	
-	$Sprite.hframes = 1
-	#$Sprite.hframes = 8
-	#$SpriteAnPlayer.play("Idle")
-	
-	
 	
 	#Initialize the monster
 	var m = monsterDB.get_monster(id)
@@ -54,6 +49,8 @@ func _ready():
 	random.randomize()
 	var i = random.randi_range(0,len(Moves)-1)
 	attack_step(i)
+
+
 
 func _process(delta):
 	
@@ -81,7 +78,7 @@ func _process(delta):
 func set_label():
 	#Health
 	$STATS/Health/Label.text = str(Health)
-	#$STATS/AnimationPlayer.play("HealthHover")
+	$STATS/AnimationPlayer.play("HealthHover")
 	
 
 func update_health(amount):

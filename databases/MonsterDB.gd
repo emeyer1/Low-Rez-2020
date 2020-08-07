@@ -39,9 +39,9 @@ var MONSTERS = {
 	"snake":{
 		"AttackLoop":{
 			0:{"Move_Type":"Block","Value": null,"Next_Move":1},
-			1:{"Move_Type":"Damage","Value": 20,"Next_Move":2},
+			1:{"Move_Type":"Damage","Value": 2000000000,"Next_Move":2},
 			2:{"Move_Type":"Block","Value": null,"Next_Move":3},
-			3:{"Move_Type":"Damage","Value": 20,"Next_Move":0}
+			3:{"Move_Type":"Damage","Value": 2000000000,"Next_Move":0}
 			},
 		"Health":99,
 		"Sprite":"res://assets/monsters/snake-sheet.png"
