@@ -81,9 +81,9 @@ func _on_TileGrid_turn_ended(activations):
 	new_armor = 0
 	for i in activations:
 		match i["tileType"]:
-			"fireblock":
+			"fire":
 				damage = i["length"] * 2
-			"earthblock":
+			"earth":
 				new_armor = i["length"] * 1
 				armor = min(new_armor + armor,9)
 	#User deals damage
