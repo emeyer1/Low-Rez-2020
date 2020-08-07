@@ -22,6 +22,7 @@ config/icon="res://icon.png"
 [autoload]
 
 MonsterDB="*res://databases/MonsterDB.gd"
+Deck="*res://scripts/Deck.gd"
 
 [display]
 

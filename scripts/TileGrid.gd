@@ -2,15 +2,13 @@ extends Control
 
 signal turn_ended(activations)
 
+onready var Deck = get_node("/root/Deck")
+
 var nTiles: Vector2 = Vector2(3, 9)
 var size: int = 7
 var margin: int = 1
 var activation_rows = 2
 var tiles = []
-var random = RandomNumberGenerator.new()
-var tile_texture_path = "res://assets/tiles/"
-var tile_material = preload("res://assets/materials/selected.tres")
-var textures = {}
 var player_turn = true
 export var moves = 2
 var moves_remaining = moves
@@ -19,9 +17,6 @@ var from_tile
 
 func _ready():
 	moves_remaining = moves
-	
-	random.randomize()
-	get_textures()
 
 	for x in range(0, nTiles.x):
 		tiles.append([])
@@ -30,32 +25,18 @@ func _ready():
 			set_tile_position(tiles[x][y], x, y)
 			tiles[x][y].button.set_size(Vector2(size, size))
 			tiles[x][y].button.connect("button_up", self, "on_button_clicked", [tiles[x][y]])
-#			tiles[x][y].set_material(tile_material)
 			add_child(tiles[x][y].button)
 
 func get_next_tile():
 	var ret = { "button" : TextureButton.new()}
-	var texture
-	match random.randi_range(0, 3):
-		0:
-			texture = textures["earthblock"]
-			ret.tileType = "earthblock"
-		1:
-			texture = textures["fireblock"]
-			ret.tileType = "fireblock"
-		2:
-			texture = textures["block2"]
-			ret.tileType = "block2"
-		3:
-			texture = textures["block2"]
-			ret.tileType = "block2"
-	ret.button.set_normal_texture(texture)
+	ret.tileType = Deck.draw_tile()
+	ret.button.set_normal_texture(Deck.get_texture(ret.tileType))
 	return ret
 
 func on_button_clicked(tile):
 	if player_turn:
 		var position = null
-		for x in range(0, tiles.size()):
+		for x in range(0, nTiles.x):
 			var y = tiles[x].find(tile)
 			if y != -1:
 				position = Vector2(x, y)
@@ -86,18 +67,6 @@ func is_tile_in_swap_range(position1, position2):
 	var y = int(abs(position1.y - position2.y))
 	var x = int(abs(position1.x - position2.x))
 	return x <= 1 && y <= 1 && x + y <= 1
-
-func get_textures():
-	var dir = Directory.new()
-	dir.open(tile_texture_path)
-	dir.list_dir_begin()
-	while true:
-		var file_name = dir.get_next()
-		if file_name == "":
-			break
-		elif !file_name.begins_with(".") && !".import" in file_name:
-			textures[file_name.replace(".png", "")] = load(tile_texture_path + file_name)
-	dir.list_dir_end()
 
 func set_tile_position(tile, x, y):
 	tile.button.set_position(Vector2(x * size + margin, y * size + margin))
@@ -141,5 +110,12 @@ func activate_tiles():
 	return activations
 
 func _on_Main_turn_start():
+	for x in range(0, nTiles.x):
+		for y in range(0, nTiles.y):
+			Deck.discard_tile(tiles[x][y].tileType)
+	for x in range(0, nTiles.x):
+		for y in range(0, nTiles.y):
+			tiles[x][y].tileType = Deck.draw_tile()
+			tiles[x][y].button.set_normal_texture(Deck.get_texture(tiles[x][y].tileType))
 	player_turn = true
 	moves_remaining = moves
