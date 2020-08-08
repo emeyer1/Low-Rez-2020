@@ -3,11 +3,10 @@ extends Node2D
 signal turn_start
 
 onready var MonsterBase = load("res://Monster.tscn")
+onready var ShopScreen = load("res://Shop.tscn")
 var random = RandomNumberGenerator.new()
-var monsterSpawnList = ["temp2","shade"]
+var monsterSpawnList = ["spiritCouncil","spirit","spiritCouncil","spiritMage","spiritBoss"]
 var CurrentMonster
-
-export var first_monster = "slime"
 
 #Innkeeper Data
 var IKhealth = 20
@@ -16,22 +15,35 @@ var previous_turn = 0
 var damage = 0
 var armor = 0
 
+#States:
+var state = "NIGHT"
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	initialize_innkeeper()
-	#spawn_monster(first_monster)
 	CurrentMonster = $MonsterSpawn.get_child(0)
 
 func _process(delta):
-	#Spawn monster when space is open
-	random.randomize()
-	if $MonsterSpawn.get_child_count()<1:
-		if len(monsterSpawnList)>0:
-			#TODO: Get which monsters spawn and then determine a random new one up. Could do a random order to balance?
-			spawn_monster(monsterSpawnList[0])
-			monsterSpawnList.pop_front()
-		else:
-			print("Level Complete") #Morning
+
+	if state == "DAY":
+		#Spawn Merchant
+		#Spawn Shop
+		#Shop Scene
+		pass
+	
+	
+	
+	
+	if state == "NIGHT":
+		random.randomize()
+		#Spawn monster when space is open
+		if $MonsterSpawn.get_child_count()<1:
+			if len(monsterSpawnList)>0:
+				#TODO: Get which monsters spawn and then determine a random new one up. Could do a random order to balance?
+				spawn_monster(monsterSpawnList[0])
+				monsterSpawnList.pop_front()
+			else:
+				state = "DAY"
 	
 	
 	#Set the swap count remaining
@@ -41,8 +53,7 @@ func _process(delta):
 
 	#Once turn ends, monster goes. Right now it just uses a random attack amount from the MonsterDB.
 	#Handle attacks as a dict that are then matched? Damage:3, Blocks: 5, Row:1, Heal:10 etc.
-	if previous_turn != turn_count:
-		monster_turn()
+
 
 
 
@@ -86,20 +97,20 @@ func _on_TileGrid_turn_ended(activations):
 	for i in activations:
 		match i["tileType"]:
 			"fire":
-				damage += i["length"] * 1
+				damage += i["length"] * 2
 			"earth":
 				var new_armor = i["length"] * 1
 				#INSERT: Animation for max armor
 				armor = min(new_armor + armor,9)
 				
 	#User deals damage
-	print(damage)
 	$MonsterSpawn.get_child(0).update_health(damage)
 	damage = 0
 	update_armor()
 	previous_turn = turn_count
 	turn_count += 1
 	emit_signal("turn_start")
+	monster_turn()
 
 
 func monster_turn():

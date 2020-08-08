@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Shop.gd" type="Script" id=1]
+[ext_resource path="res://assets/ui/tooltip.png" type="Texture" id=3]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_vertical_guides_": [ 40.0 ]
+}
+
+[node name="tooltip" type="Sprite" parent="."]
+position = Vector2( 20, 32 )
+scale = Vector2( 0.909091, 4 )
+texture = ExtResource( 3 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 1.0
+margin_top = 10.0
+margin_right = 41.0
+margin_bottom = 58.0
+text = "press
+space
+to go"
+__meta__ = {
+"_edit_use_anchors_": false
+}

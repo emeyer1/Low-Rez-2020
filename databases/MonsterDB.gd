@@ -39,22 +39,49 @@ var MONSTERS = {
 	"snake":{
 		"AttackLoop":{
 			0:{"Move_Type":"Block","Value": null,"Next_Move":1},
-			1:{"Move_Type":"Damage","Value": 2000000000,"Next_Move":2},
+			1:{"Move_Type":"Damage","Value": 20,"Next_Move":2},
 			2:{"Move_Type":"Block","Value": null,"Next_Move":3},
-			3:{"Move_Type":"Damage","Value": 2000000000,"Next_Move":0}
+			3:{"Move_Type":"Damage","Value": 20,"Next_Move":0}
 			},
 		"Health":99,
 		"Sprite":"res://assets/monsters/snake-sheet.png"
 	},
-	"temp2":{
+	"spirit":{
 		"AttackLoop":{
 			0:{"Move_Type":"Damage","Value": 1,"Next_Move":1},
-			1:{"Move_Type":"Damage","Value": 20,"Next_Move":2},
+			1:{"Move_Type":"Damage","Value": 3,"Next_Move":2},
 			2:{"Move_Type":"Damage","Value": 1,"Next_Move":3},
-			3:{"Move_Type":"Damage","Value": 20,"Next_Move":0}
+			3:{"Move_Type":"Damage","Value": 3,"Next_Move":0}
+			},
+		"Health":15,
+		"Sprite":"res://assets/monsters/spirit2.png"
+	},
+	"spiritCouncil":{
+		"AttackLoop":{
+			0:{"Move_Type":"Damage","Value": 2,"Next_Move":1},
+			1:{"Move_Type":"Damage","Value": 4,"Next_Move":2},
+			2:{"Move_Type":"Damage","Value": 2,"Next_Move":3},
+			3:{"Move_Type":"Damage","Value": 4,"Next_Move":0}
 			},
 		"Health":25,
-		"Sprite":"res://assets/monsters/temp.png"
+		"Sprite":"res://assets/monsters/spiritbuds.png"
+	},
+	"spiritMage":{
+		"AttackLoop":{
+			0:{"Move_Type":"Rest","Value": null,"Next_Move":0},
+			},
+		"Health":5,
+		"Sprite":"res://assets/monsters/spiritmage.png"
+	},
+	"spiritBoss":{
+		"AttackLoop":{
+			0:{"Move_Type":"Damage","Value": 10,"Next_Move":1},
+			1:{"Move_Type":"Damage","Value": 4,"Next_Move":2},
+			2:{"Move_Type":"Damage","Value": 10,"Next_Move":3},
+			3:{"Move_Type":"Damage","Value": 4,"Next_Move":0}
+			},
+		"Health":40,
+		"Sprite":"res://assets/monsters/spiritBoss.png"
 	},
 	
 	"error":{
