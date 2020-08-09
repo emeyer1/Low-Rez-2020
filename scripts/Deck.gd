@@ -71,6 +71,11 @@ func reshuffle_discard():
 		deck_tile.count += discard_tile.count
 		discard_tile.count = 0
 
+func discard_all():
+	for inplay_tile in inplay:
+		get_tile(discard, inplay_tile.tileType).count += inplay_tile.count
+		inplay_tile.count = 0
+
 func discard_tile(tileType):
 	get_tile(inplay, tileType).count -= 1
 	get_tile(discard, tileType).count += 1
