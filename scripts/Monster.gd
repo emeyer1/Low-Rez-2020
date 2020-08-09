@@ -7,7 +7,7 @@ onready var tooltip = load("res://Tooltip.tscn")
 onready var attackSprite = $STATS/Attack/attack_icon
 onready var healthBar = $STATS/Health/TextureProgress
 
-
+signal monster_dead()
 
 var random = RandomNumberGenerator.new()
 
@@ -105,6 +105,7 @@ func update_health(amount):
 
 func maybe_dead():
 	if Health <= 0:
+		emit_signal("monster_dead")
 		queue_free()
 
 func attack_step(i):

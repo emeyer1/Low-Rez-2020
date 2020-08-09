@@ -5,7 +5,8 @@ signal turn_start
 onready var MonsterBase = load("res://Monster.tscn")
 onready var ShopScreen = load("res://Shop.tscn")
 var random = RandomNumberGenerator.new()
-var monsterSpawnList = ["snake","spirit","spiritCouncil","spiritMage","spiritBoss"]
+#var monsterSpawnList = ["spiritCouncil","spirit","spiritCouncil","spiritMage","spiritBoss"]
+var monsterSpawnList = ["spiritMage"]
 var CurrentMonster
 
 #Innkeeper Data
@@ -21,34 +22,10 @@ var state = "NIGHT"
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	initialize_innkeeper()
+	set_Night()
+
 
 func _process(delta):
-
-	if state == "DAY":
-		#Spawn Merchant
-		$Background/MerchantBase.visible = true
-		$Background/Outside.modulate = "#ffff00"
-		#Spawn Shop
-		#Shop Scene
-		pass
-	
-	
-	
-	
-	if state == "NIGHT":
-		$Background/MerchantBase.visible = false
-		$Background/Outside.modulate = "#000000"
-		random.randomize()
-		#Spawn monster when space is open
-		if $MonsterSpawn.get_child_count()<1:
-			if len(monsterSpawnList)>0:
-				#TODO: Get which monsters spawn and then determine a random new one up. Could do a random order to balance?
-				spawn_monster(monsterSpawnList[0])
-				monsterSpawnList.pop_front()
-			else:
-				state = "DAY"
-	
-	
 	#Set the swap count remaining
 	$UI/swap_icon/Label.text = str($ViewportContainer/Viewport/TileGrid.moves_remaining)
 
@@ -58,9 +35,19 @@ func _process(delta):
 	#Handle attacks as a dict that are then matched? Damage:3, Blocks: 5, Row:1, Heal:10 etc.
 
 
+func set_Day():
+	$Background/MerchantBase.visible = true
+	$Background/Outside.modulate = "#ffff00"
+	#Spawn Shop
+	#Shop Scene
 
-
-
+func set_Night():
+	$Background/MerchantBase.visible = false
+	$Background/Outside.modulate = "#000000"
+	random.randomize()
+	#Spawn monster when space is open
+	spawn_monster(monsterSpawnList[0])
+	monsterSpawnList.pop_front()
 	
 	
 func initialize_innkeeper():
@@ -70,8 +57,17 @@ func initialize_innkeeper():
 func spawn_monster(value):
 	var Monster = MonsterBase.instance()
 	Monster.id = value
+	Monster.connect("monster_dead",self,"monster_died")
 	$MonsterSpawn.add_child(Monster)
 	CurrentMonster = $MonsterSpawn.get_child(0)
+
+func monster_died():
+	if len(monsterSpawnList)>0:
+		#TODO: Get which monsters spawn and then determine a random new one up. Could do a random order to balance?
+		spawn_monster(monsterSpawnList[0])
+		monsterSpawnList.pop_front()
+	else:
+		set_Day()
 
 func update_IK_health(amount):
 	var leftover_dmg = max(amount - armor,0)
