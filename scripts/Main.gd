@@ -5,7 +5,7 @@ signal turn_start
 onready var MonsterBase = load("res://Monster.tscn")
 onready var ShopScreen = load("res://Shop.tscn")
 var random = RandomNumberGenerator.new()
-var monsterSpawnList = ["spiritCouncil","spirit","spiritCouncil","spiritMage","spiritBoss"]
+var monsterSpawnList = ["snake","spirit","spiritCouncil","spiritMage","spiritBoss"]
 var CurrentMonster
 
 #Innkeeper Data
@@ -21,7 +21,6 @@ var state = "NIGHT"
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	initialize_innkeeper()
-	CurrentMonster = $MonsterSpawn.get_child(0)
 
 func _process(delta):
 
@@ -91,9 +90,9 @@ func update_armor():
 	
 func maybe_IK_dead():
 	if IKhealth <= 0:
-		#Gameover screen goes here
-		print("Inkeeper dead")
-
+		get_tree().paused = true
+		var gameOver = load("res://GameOverScreen.tscn").instance()
+		add_child(gameOver)
 
 func _on_TileGrid_turn_ended(activations):
 	
@@ -113,14 +112,18 @@ func _on_TileGrid_turn_ended(activations):
 	update_armor()
 	previous_turn = turn_count
 	turn_count += 1
-	emit_signal("turn_start")
 	monster_turn()
+	
+	emit_signal("turn_start")
+	
 
 
 func monster_turn():
 	if $MonsterSpawn.get_child_count() > 0:
-		if CurrentMonster.current_move_type == "Damage":
-			update_IK_health(CurrentMonster.current_move_value)
+		
+		match CurrentMonster.current_move_type:
+			"Damage":
+				update_IK_health(CurrentMonster.current_move_value)
 			
 		CurrentMonster.next_attack()
 		previous_turn = turn_count
