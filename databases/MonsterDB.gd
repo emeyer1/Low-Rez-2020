@@ -1,5 +1,7 @@
 extends Node
 
+#Random in script for choosing a power level.
+var random = RandomNumberGenerator.new()
 
 var MONSTERS = {
 	"slime":{
@@ -74,7 +76,7 @@ var MONSTERS = {
 	},
 	"spiritMage":{
 		"AttackLoop":{
-			0:{"Move_Type":"Rest","Value": null,"Next_Move":0},
+			0:{"Move_Type":"Damage","Value": 0,"Next_Move":0},
 			},
 		"Health":5,
 		"Sprite":"res://assets/monsters/spiritmage.png",
@@ -112,7 +114,26 @@ var MONSTER_ATTACKS = {
 	"Error":{"Sprite":"res://assets/ui/error.png","Tooltip":"Tooltip not found"}
 }
 
+var LEVEL_LIST = {
+	"spirits":{
+		1:{
+			0:["spiritCouncil","spirit"],
+			1:["spirit","spirit","spirit"]
+			},
+		2:{
+			0:["spirit","spirit","spirit","spiritCouncil"],
+			1:["spiritCouncil","spirit","spiritCouncil","spirit"],
+			},
+		3:{ #Highest power level = Boss
+			0:["spiritMage","spiritBoss"]
+			},
+		#TEST POWER LEVEL
+		0:{0:["spiritMage","spiritMage","spiritMage"]}
+	},
+	"shades":{1:{0:[]}},
+	"error":{1:{0:[]}}
 
+}
 
 func get_monster(id):
 	if id in MONSTERS:
@@ -125,3 +146,12 @@ func get_attack(id):
 		return MONSTER_ATTACKS[id]
 	else:
 		return MONSTER_ATTACKS["Error"]
+		
+func get_level_list(power,theme):
+	if theme in LEVEL_LIST:
+		var list = LEVEL_LIST[theme][power]
+		print(len(list))
+		random.randomize()
+		return list[random.randi_range(0,len(list)-1)]
+	else:
+		return LEVEL_LIST["error"]

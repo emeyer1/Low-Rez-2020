@@ -4,22 +4,22 @@ signal turn_start
 
 onready var MonsterBase = load("res://Monster.tscn")
 onready var ShopScreen = load("res://Shop.tscn")
+
+
 var random = RandomNumberGenerator.new()
 #var monsterSpawnList = ["spiritCouncil","spirit","spiritCouncil","spiritMage","spiritBoss"]
-var monsterSpawnList = ["spiritMage"]
+var monsterSpawnList = []
 var CurrentMonster
+export var power_level = 1
 
 #Innkeeper Data
 var IKhealth = 20
-var IKhealth_max = IKhealth
+var IKhealth_full = IKhealth
 var turn_count = 0
 var previous_turn = 0
 var damage = 0
 var armor = 0
 var IKcurrency = 2
-
-#States:
-var state = "NIGHT"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -30,28 +30,31 @@ func _ready():
 func _process(delta):
 	#Set the swap count remaining
 	$UI/swap_icon/Label.text = str($ViewportContainer/Viewport/TileGrid.moves_remaining)
-
+	print(len(monsterSpawnList))
 
 	#Once turn ends, monster goes. Right now it just uses a random attack amount from the MonsterDB.
 	#Handle attacks as a dict that are then matched? Damage:3, Blocks: 5, Row:1, Heal:10 etc.
 
 
 func set_Day():
-	IKhealth = IKhealth_max
+	IKhealth = IKhealth_full
 	armor = 0
+	update_armor()
 	$Background/MerchantBase.visible = true #TODO: make it an animation entrance. 
 	$Background/Outside.modulate = "#ffff00"
 	#Spawn Shop
 	#Shop Scene
 
 func set_Night():
+	IKhealth_full = IKhealth
 	$Background/MerchantBase.visible = false
 	$Background/Outside.modulate = "#000000"
-	random.randomize()
-	#Spawn monster when space is open
+	
+	
+	monsterSpawnList = MonsterDB.get_level_list(power_level,"spirits")
 	spawn_monster(monsterSpawnList[0])
 	monsterSpawnList.pop_front()
-	
+
 	
 func initialize_innkeeper():
 	$UI/health_icon/InnkeeperHealth.text = str(IKhealth)
@@ -64,15 +67,20 @@ func spawn_monster(value):
 	Monster.connect("monster_dead",self,"monster_died")
 	$MonsterSpawn.add_child(Monster)
 	CurrentMonster = $MonsterSpawn.get_child(0)
+	
 
 func monster_died(currency):
+	$MonsterSpawn.get_child(0).queue_free()
 	IKcurrency = min(currency+IKcurrency,99)
 	$UI/Currency/Label.text = str(IKcurrency)
 	if len(monsterSpawnList)>0:
 		#TODO: Get which monsters spawn and then determine a random new one up. Could do a random order to balance?
 		spawn_monster(monsterSpawnList[0])
 		monsterSpawnList.pop_front()
+		CurrentMonster = $MonsterSpawn.get_child(0)
 	else:
+		CurrentMonster = null
+		power_level += 1
 		set_Day()
 
 func update_IK_health(amount):
@@ -114,18 +122,20 @@ func _on_TileGrid_turn_ended(activations):
 	update_armor()
 	previous_turn = turn_count
 	turn_count += 1
-	monster_turn()
+	
+	if CurrentMonster:
+		monster_turn()
 	
 	emit_signal("turn_start")
 	
 
 
 func monster_turn():
-	if $MonsterSpawn.get_child_count() > 0:
+	CurrentMonster = $MonsterSpawn.get_child(0)
 		
-		match CurrentMonster.current_move_type:
-			"Damage":
-				update_IK_health(CurrentMonster.current_move_value)
-			
-		CurrentMonster.next_attack()
-		previous_turn = turn_count
+	match CurrentMonster.current_move_type:
+		"Damage":
+			update_IK_health(CurrentMonster.current_move_value)
+		
+	CurrentMonster.next_attack()
+	previous_turn = turn_count

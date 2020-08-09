@@ -108,7 +108,6 @@ func update_health(amount):
 func maybe_dead():
 	if Health <= 0:
 		emit_signal("monster_dead",currency)
-		queue_free()
 
 func attack_step(i):
 	current_move = Moves[i]
