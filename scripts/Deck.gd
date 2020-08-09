@@ -34,6 +34,9 @@ var discard = [
 ]
 
 func draw_tile():
+	return draw_tile_helper(false)
+
+func draw_tile_helper(tried):
 	var ret
 	var total_tiles = 0
 	for tile in deck:
@@ -54,9 +57,11 @@ func draw_tile():
 					break
 				else:
 					counted += tile.count
-	else:
+	elif !tried:
 		reshuffle_discard()
-		ret = draw_tile()
+		ret = draw_tile_helper(true)
+	else:
+		print("Error reshuffling cards")
 	return ret
 
 func reshuffle_discard():
