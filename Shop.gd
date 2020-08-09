@@ -27,7 +27,6 @@ func _ready():
 	$UI/Currency.text = str(currency)
 
 func _on_item_selected(shop_item, item_id):
-	print("a")
 	var item = ItemDb.get_item(item_id)
 	if currency >= item["Currency"]:
 		shop_item.disconnect("item_selected", self, "_on_item_selected")

@@ -2,29 +2,23 @@ extends Node
 
 
 var ITEMS = {
-	"sold":{
-		"ItemName": "sold",
-		"Currency": 0,
-		"Sprite":"res://assets/items/3x1test.png",
-		"Tooltip":"idk"
-	},
 	"ring":{
 		"ItemName": "ring",
 		"Currency": 3,
 		"Sprite":"res://assets/items/1x1test.png",
-		"Tooltip":"idk"
+		"Tooltip":"+1 Def"
 	},
 	"sword":{
 		"ItemName": "sword",
 		"Currency": 5,
 		"Sprite":"res://assets/items/1x3test.png",
-		"Tooltip":"+1 Attack"
+		"Tooltip":"+1 Atk"
 	},
 	"flute":{
 		"ItemName": "flute",
 		"Currency": 9,
 		"Sprite":"res://assets/items/2x1test.png",
-		"Tooltip":"Extra move"
+		"Tooltip":"+1 mov"
 	},
 	"error":{
 		"ItemName": "error",

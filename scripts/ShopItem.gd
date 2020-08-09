@@ -9,6 +9,7 @@ func _ready():
 	$Button/ItemSprite.texture = load(item["Sprite"])
 	$Button/ItemName.text = item["ItemName"]
 	$Button/Cost.text = str(item["Currency"])
+	$Button.hint_tooltip = item["Tooltip"]
 
 func _on_Button_button_up():
 	emit_signal("item_selected", self, id)
