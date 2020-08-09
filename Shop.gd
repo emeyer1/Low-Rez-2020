@@ -1,15 +1,39 @@
 extends Node2D
 
-var done = false
+signal update_currency(new_currency)
+onready var ShopItemBase = load("res://ShopItem.tscn")
+var currency = 9
 
 func _ready():
-	pass # Replace with function body.
+#	for shopItemPos in $ShopItems.get_children():
+#		var ShopItem = ShopItemBase.instance()
+#		ShopItem.id = "ring"
+#		shopItemPos.add_child(ShopItem)
 
+	var ShopItem1 = ShopItemBase.instance()
+	ShopItem1.id = "ring"
+	ShopItem1.connect("item_selected", self, "_on_item_selected")
+	$ShopItems/ShopItem1Pos.add_child(ShopItem1)
+	var ShopItem2 = ShopItemBase.instance()
+	ShopItem2.connect("item_selected", self, "_on_item_selected")
+	ShopItem2.id = "sword"
+	$ShopItems/ShopItem2Pos.add_child(ShopItem2)
+	var ShopItem3 = ShopItemBase.instance()
+	ShopItem3.connect("item_selected", self, "_on_item_selected")
+	ShopItem3.id = "flute"
+	$ShopItems/ShopItem3Pos.add_child(ShopItem3)
+	
+	$UI/Currency.text = str(currency)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _on_item_selected(shop_item, item_id):
+	var item = ItemDb.get_item(item_id)
+	if currency >= item["Currency"]:
+		shop_item.disconnect("item_selected", self, "_on_item_selected")
+		shop_item.get_node("ItemName").text = "sold"
+		Deck.add_item(item_id)
+		currency -= item["Currency"]
+		$UI/Currency.text = str(currency)
+		emit_signal("update_currency", currency)
 
-
-func _on_Button_button_down():
-	var done = true
+func _on_Button_button_up():
+	self.queue_free()

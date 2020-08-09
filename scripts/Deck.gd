@@ -6,6 +6,10 @@ var textures = {}
 func _ready():
 	random.randomize()
 
+var items = [
+	
+]
+
 var deck = [
 	{"tileType": "earth",
 		"count": 7},
@@ -116,3 +120,6 @@ func print_tiles():
 		if tile.count != 0:
 			s.discard.append(tile)
 	print(s)
+
+func add_item(item_id):
+	items.append(item_id)

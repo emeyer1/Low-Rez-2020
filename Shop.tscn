@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Shop.gd" type="Script" id=1]
-[ext_resource path="res://assets/ui/tooltip.png" type="Texture" id=3]
+[ext_resource path="res://assets/font/Currency.tres" type="DynamicFont" id=2]
+[ext_resource path="res://assets/font/Shop.tres" type="DynamicFont" id=3]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 1 )
@@ -9,19 +10,49 @@ __meta__ = {
 "_edit_vertical_guides_": [ 40.0 ]
 }
 
-[node name="tooltip" type="Sprite" parent="."]
-position = Vector2( 20, 32 )
-scale = Vector2( 0.909091, 4 )
-texture = ExtResource( 3 )
-
-[node name="Label" type="Label" parent="."]
-margin_left = 1.0
-margin_top = 10.0
-margin_right = 41.0
-margin_bottom = 58.0
-text = "press
-space
-to go"
+[node name="UI" type="Control" parent="."]
+margin_right = 64.0
+margin_bottom = 64.0
+mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Currency" type="Label" parent="UI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 60.0
+margin_top = 3.0
+margin_bottom = -56.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.360784, 0.141176, 0.443137, 1 )
+custom_colors/font_outline_modulate = Color( 0.639216, 0.054902, 0.654902, 1 )
+text = "2"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="UI"]
+margin_left = 32.0
+margin_top = 53.0
+margin_right = 64.0
+margin_bottom = 64.0
+custom_fonts/font = ExtResource( 3 )
+text = "LEAVE"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ShopItems" type="Node2D" parent="."]
+position = Vector2( 32, 24 )
+
+[node name="ShopItem1Pos" type="Node2D" parent="ShopItems"]
+position = Vector2( -22, 0 )
+
+[node name="ShopItem2Pos" type="Node2D" parent="ShopItems"]
+position = Vector2( -1, 0 )
+
+[node name="ShopItem3Pos" type="Node2D" parent="ShopItems"]
+position = Vector2( 20, 0 )
+[connection signal="button_up" from="UI/Button" to="." method="_on_Button_button_up"]

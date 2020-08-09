@@ -23,6 +23,7 @@ config/icon="res://icon.png"
 
 MonsterDB="*res://databases/MonsterDB.gd"
 Deck="*res://scripts/Deck.gd"
+ItemDb="*res://databases/ItemDB.gd"
 
 [display]
 

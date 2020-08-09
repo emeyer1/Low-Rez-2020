@@ -30,7 +30,7 @@ func _ready():
 func _process(delta):
 	#Set the swap count remaining
 	$UI/swap_icon/Label.text = str($ViewportContainer/Viewport/TileGrid.moves_remaining)
-	print(len(monsterSpawnList))
+#	print(len(monsterSpawnList))
 
 	#Once turn ends, monster goes. Right now it just uses a random attack amount from the MonsterDB.
 	#Handle attacks as a dict that are then matched? Damage:3, Blocks: 5, Row:1, Heal:10 etc.
