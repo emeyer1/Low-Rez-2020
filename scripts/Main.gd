@@ -27,6 +27,8 @@ func _process(delta):
 
 	if state == "DAY":
 		#Spawn Merchant
+		$Background/MerchantBase.visible = true
+		$Background/Outside.modulate = "#ffff00"
 		#Spawn Shop
 		#Shop Scene
 		pass
@@ -35,6 +37,8 @@ func _process(delta):
 	
 	
 	if state == "NIGHT":
+		$Background/MerchantBase.visible = false
+		$Background/Outside.modulate = "#000000"
 		random.randomize()
 		#Spawn monster when space is open
 		if $MonsterSpawn.get_child_count()<1:
