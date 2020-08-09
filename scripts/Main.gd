@@ -44,6 +44,8 @@ func set_Day():
 	$Background/Outside.modulate = "#ffff00"
 	var Shop = ShopScreen.instance()
 	Shop.currency = IKcurrency
+	Shop.connect("shop_closed", self, "_on_shop_closed")
+	Shop.connect("update_currency", self, "_on_currency_updated")
 	$ViewportContainer/Viewport/TileGrid.set_mouse_input(Control.MOUSE_FILTER_IGNORE)
 	self.add_child(Shop)
 	$Background/MerchantBase.visible = false
@@ -58,6 +60,13 @@ func set_Night():
 	spawn_monster(monsterSpawnList[0])
 	monsterSpawnList.pop_front()
 
+func _on_shop_closed():
+	$ViewportContainer/Viewport/TileGrid.set_mouse_input(Control.MOUSE_FILTER_STOP)
+	$Background/MerchantBase.visible = true
+	
+func _on_currency_updated(currency):
+	IKcurrency = currency
+	$UI/Currency/Label.text = str(IKcurrency)
 	
 func initialize_innkeeper():
 	$UI/health_icon/InnkeeperHealth.text = str(IKhealth)
