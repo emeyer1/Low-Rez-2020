@@ -1,6 +1,7 @@
-extends Node2D
+extends Control
 
 signal update_currency(new_currency)
+signal shop_closed()
 onready var ShopItemBase = load("res://ShopItem.tscn")
 var currency = 9
 
@@ -26,14 +27,16 @@ func _ready():
 	$UI/Currency.text = str(currency)
 
 func _on_item_selected(shop_item, item_id):
+	print("a")
 	var item = ItemDb.get_item(item_id)
 	if currency >= item["Currency"]:
 		shop_item.disconnect("item_selected", self, "_on_item_selected")
-		shop_item.get_node("ItemName").text = "sold"
+		shop_item.get_node("Button/ItemName").text = "sold"
 		Deck.add_item(item_id)
 		currency -= item["Currency"]
 		$UI/Currency.text = str(currency)
 		emit_signal("update_currency", currency)
 
 func _on_Button_button_up():
+	emit_signal("shop_closed")
 	self.queue_free()

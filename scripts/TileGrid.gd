@@ -109,6 +109,11 @@ func activate_tiles():
 	print("activations: " + str(activations))
 	return activations
 
+func set_mouse_input(mouse_input_mode):
+	for x in range(0, nTiles.x):
+		for y in range(0, nTiles.y):
+			tiles[x][y].button.mouse_filter = mouse_input_mode
+
 func _on_Main_turn_start():
 	for x in range(0, nTiles.x):
 		for y in range(0, nTiles.y):

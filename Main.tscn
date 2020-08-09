@@ -44,6 +44,7 @@ position = Vector2( 20.7106, 31.6345 )
 z_index = 6
 frames = SubResource( 3 )
 animation = "Merchant Idle"
+frame = 1
 playing = true
 
 [node name="Outside" type="Sprite" parent="Background"]

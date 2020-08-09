@@ -42,8 +42,11 @@ func set_Day():
 	update_armor()
 	$Background/MerchantBase.visible = true #TODO: make it an animation entrance. 
 	$Background/Outside.modulate = "#ffff00"
-	#Spawn Shop
-	#Shop Scene
+	var Shop = ShopScreen.instance()
+	Shop.currency = IKcurrency
+	$ViewportContainer/Viewport/TileGrid.set_mouse_input(Control.MOUSE_FILTER_IGNORE)
+	self.add_child(Shop)
+	$Background/MerchantBase.visible = false
 
 func set_Night():
 	IKhealth_full = IKhealth

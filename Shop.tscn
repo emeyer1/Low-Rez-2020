@@ -4,16 +4,27 @@
 [ext_resource path="res://assets/font/Currency.tres" type="DynamicFont" id=2]
 [ext_resource path="res://assets/font/Shop.tres" type="DynamicFont" id=3]
 
-[node name="Node2D" type="Node2D"]
+[node name="Control" type="Control"]
+margin_right = 40.0
+margin_bottom = 40.0
 script = ExtResource( 1 )
 __meta__ = {
-"_edit_vertical_guides_": [ 40.0 ]
+"_edit_use_anchors_": false
 }
 
 [node name="UI" type="Control" parent="."]
 margin_right = 64.0
 margin_bottom = 64.0
 mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="UI"]
+margin_right = 64.0
+margin_bottom = 64.0
+mouse_filter = 2
+color = Color( 0.6, 0.509804, 0.380392, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -44,15 +55,41 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ShopItems" type="Node2D" parent="."]
-position = Vector2( 32, 24 )
+[node name="ShopItems" type="Control" parent="."]
+margin_right = 64.0
+margin_bottom = 64.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="ShopItem1Pos" type="Node2D" parent="ShopItems"]
-position = Vector2( -22, 0 )
+[node name="ShopItem1Pos" type="Control" parent="ShopItems"]
+margin_left = 1.0
+margin_top = 14.0
+margin_right = 20.0
+margin_bottom = 38.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="ShopItem2Pos" type="Node2D" parent="ShopItems"]
-position = Vector2( -1, 0 )
+[node name="ShopItem2Pos" type="Control" parent="ShopItems"]
+margin_left = 21.0
+margin_top = 14.0
+margin_right = 41.0
+margin_bottom = 38.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="ShopItem3Pos" type="Node2D" parent="ShopItems"]
-position = Vector2( 20, 0 )
+[node name="ShopItem3Pos" type="Control" parent="ShopItems"]
+margin_left = 42.0
+margin_top = 14.0
+margin_right = 62.0
+margin_bottom = 38.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="button_up" from="UI/Button" to="." method="_on_Button_button_up"]
