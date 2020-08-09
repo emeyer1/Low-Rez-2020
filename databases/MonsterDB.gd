@@ -13,6 +13,7 @@ var MONSTERS = {
 			},
 		"Health":10,
 		"Sprite":"res://assets/monsters/testMonster.png",
+		"Currency": 1
 		},
 
 	"orc":{
@@ -24,9 +25,10 @@ var MONSTERS = {
 			4:{"Move_Type":"Damage","Value": 2,	"Next_Move":0}
 			},
 		"Health":20,
-		"Sprite":"res://assets/monsters/orc.png"
+		"Sprite":"res://assets/monsters/orc.png",
+		"Currency": 1
 	},
-	"shade":{
+	"shade":{	
 		"AttackLoop":{
 			0:{"Move_Type":"Rest","Value": null,"Next_Move":1},
 			1:{"Move_Type":"Damage","Value": 7,"Next_Move":2},
@@ -34,7 +36,8 @@ var MONSTERS = {
 			3:{"Move_Type":"Damage","Value": 6,"Next_Move":0}
 			},
 		"Health":10,
-		"Sprite":"res://assets/monsters/shade.png"
+		"Sprite":"res://assets/monsters/shade.png",
+		"Currency": 1
 	},
 	"snake":{
 		"AttackLoop":{
@@ -44,7 +47,8 @@ var MONSTERS = {
 			3:{"Move_Type":"Damage","Value": 200,"Next_Move":0}
 			},
 		"Health":99,
-		"Sprite":"res://assets/monsters/snake.png"
+		"Sprite":"res://assets/monsters/snake.png",
+		"Currency": 1
 	},
 	"spirit":{
 		"AttackLoop":{
@@ -54,7 +58,8 @@ var MONSTERS = {
 			3:{"Move_Type":"Damage","Value": 3,"Next_Move":0}
 			},
 		"Health":15,
-		"Sprite":"res://assets/monsters/spirit2.png"
+		"Sprite":"res://assets/monsters/spirit2.png",
+		"Currency": 1
 	},
 	"spiritCouncil":{
 		"AttackLoop":{
@@ -64,14 +69,16 @@ var MONSTERS = {
 			3:{"Move_Type":"Damage","Value": 4,"Next_Move":0}
 			},
 		"Health":25,
-		"Sprite":"res://assets/monsters/spiritbuds.png"
+		"Sprite":"res://assets/monsters/spiritbuds.png",
+		"Currency": 1
 	},
 	"spiritMage":{
 		"AttackLoop":{
 			0:{"Move_Type":"Rest","Value": null,"Next_Move":0},
 			},
 		"Health":5,
-		"Sprite":"res://assets/monsters/spiritmage.png"
+		"Sprite":"res://assets/monsters/spiritmage.png",
+		"Currency": 1
 	},
 	"spiritBoss":{
 		"AttackLoop":{
@@ -81,7 +88,8 @@ var MONSTERS = {
 			3:{"Move_Type":"Damage","Value": 4,"Next_Move":0}
 			},
 		"Health":40,
-		"Sprite":"res://assets/monsters/spiritBoss.png"
+		"Sprite":"res://assets/monsters/spiritBoss.png",
+		"Currency": 10
 	},
 	
 	"error":{
@@ -90,6 +98,7 @@ var MONSTERS = {
 			},
 		"Health":99,
 		"Sprite":"res://assets/monsters/error_monsters.png",
+		"Currency": 0
 		}
 }
 

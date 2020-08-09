@@ -7,7 +7,7 @@ onready var tooltip = load("res://Tooltip.tscn")
 onready var attackSprite = $STATS/Attack/attack_icon
 onready var healthBar = $STATS/Health/TextureProgress
 
-signal monster_dead()
+signal monster_dead(currency)
 
 var random = RandomNumberGenerator.new()
 
@@ -25,6 +25,7 @@ var next_move_i
 var Health = 0
 var rage = 0
 var armor = 0
+var currency = 0
 
 #Tooltip
 var mouse_tt_hover = 0
@@ -41,6 +42,7 @@ func _ready():
 	$Sprite.texture = load(m["Sprite"])
 	Moves = m["AttackLoop"]
 	Health = m["Health"]
+	currency = m["Currency"]
 	healthBar.max_value = Health
 	healthBar.value = Health
 	set_label()
@@ -105,7 +107,7 @@ func update_health(amount):
 
 func maybe_dead():
 	if Health <= 0:
-		emit_signal("monster_dead")
+		emit_signal("monster_dead",currency)
 		queue_free()
 
 func attack_step(i):

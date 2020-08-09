@@ -11,10 +11,12 @@ var CurrentMonster
 
 #Innkeeper Data
 var IKhealth = 20
+var IKhealth_max = IKhealth
 var turn_count = 0
 var previous_turn = 0
 var damage = 0
 var armor = 0
+var IKcurrency = 2
 
 #States:
 var state = "NIGHT"
@@ -30,13 +32,14 @@ func _process(delta):
 	$UI/swap_icon/Label.text = str($ViewportContainer/Viewport/TileGrid.moves_remaining)
 
 
-
 	#Once turn ends, monster goes. Right now it just uses a random attack amount from the MonsterDB.
 	#Handle attacks as a dict that are then matched? Damage:3, Blocks: 5, Row:1, Heal:10 etc.
 
 
 func set_Day():
-	$Background/MerchantBase.visible = true
+	IKhealth = IKhealth_max
+	armor = 0
+	$Background/MerchantBase.visible = true #TODO: make it an animation entrance. 
 	$Background/Outside.modulate = "#ffff00"
 	#Spawn Shop
 	#Shop Scene
@@ -52,6 +55,7 @@ func set_Night():
 	
 func initialize_innkeeper():
 	$UI/health_icon/InnkeeperHealth.text = str(IKhealth)
+	$UI/Currency/Label.text = str(IKcurrency)
 	update_armor()
 
 func spawn_monster(value):
@@ -61,7 +65,9 @@ func spawn_monster(value):
 	$MonsterSpawn.add_child(Monster)
 	CurrentMonster = $MonsterSpawn.get_child(0)
 
-func monster_died():
+func monster_died(currency):
+	IKcurrency = min(currency+IKcurrency,99)
+	$UI/Currency/Label.text = str(IKcurrency)
 	if len(monsterSpawnList)>0:
 		#TODO: Get which monsters spawn and then determine a random new one up. Could do a random order to balance?
 		spawn_monster(monsterSpawnList[0])
