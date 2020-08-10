@@ -56,7 +56,9 @@ func set_Night():
 	$Background/Outside.modulate = "#000000"
 	
 	
-	monsterSpawnList = MonsterDB.get_level_list(power_level,"spirits")
+	monsterSpawnList = MonsterDB.get_level_list(power_level,"spirits").duplicate(true)
+	
+	#ERROR restart popping list pops the final. 
 	spawn_monster(monsterSpawnList[0])
 	monsterSpawnList.pop_front()
 
@@ -203,7 +205,8 @@ func monster_turn():
 		"Frost":
 			$ViewportContainer/Viewport/TileGrid.frost = true
 			$UI/swap_icon/Label.add_color_override("font_color", Color("1bdddd"))
-			
+		"Mirror":
+			update_IK_health(CurrentMonster.mirror_damage)
 	CurrentMonster.next_attack()
 	previous_turn = turn_count
 

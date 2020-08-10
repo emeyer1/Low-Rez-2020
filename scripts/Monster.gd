@@ -23,9 +23,13 @@ var next_move_i
 
 #Stats
 var Health = 0
-var rage = false
+
 var armor = 0
 var currency = 0
+
+#MoveVars
+var mirror_damage = 0
+var rage = false
 
 #Tooltip
 var mouse_tt_hover = 0
@@ -84,6 +88,7 @@ func set_label():
 	
 
 func update_health(amount):
+	mirror_damage = amount
 	Health = Health - amount
 	#$STATS/AnimationPlayer.play("TakeDamage")
 	maybe_dead()
