@@ -19,7 +19,7 @@ var turn_count = 0
 var previous_turn = 0
 var damage = 0
 var armor = 0
-var IKcurrency = 2
+var IKcurrency = 9
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -64,6 +64,7 @@ func _on_shop_closed():
 	$ViewportContainer/Viewport/TileGrid.set_mouse_input(Control.MOUSE_FILTER_STOP)
 	$Background/MerchantBase.visible = true
 	set_Night()
+	emit_signal("turn_start")
 	
 func _on_currency_updated(currency):
 	IKcurrency = currency

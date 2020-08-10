@@ -123,4 +123,7 @@ func _on_Main_turn_start():
 			tiles[x][y].tileType = Deck.draw_tile()
 			tiles[x][y].button.set_normal_texture(Deck.get_texture(tiles[x][y].tileType))
 	player_turn = true
-	moves_remaining = moves
+	if Deck.items.has("flute"): 
+		moves_remaining = moves + 1
+	else:
+		moves_remaining = moves

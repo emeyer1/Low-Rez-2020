@@ -69,7 +69,6 @@ func draw_tile_helper(tried):
 	return ret
 
 func reshuffle_discard():
-	print_tiles()
 	for discard_tile in discard:
 		var deck_tile = get_tile(deck, discard_tile.tileType)
 		deck_tile.count += discard_tile.count
@@ -123,6 +122,9 @@ func print_tiles():
 
 func add_item(item_id):
 	items.append(item_id)
+	print(items)
 
 func add_tile(tileType):
-	pass
+	get_tile(deck, tileType).count += 1
+	get_tile(deck, "empty").count -= 1
+	print_tiles()
