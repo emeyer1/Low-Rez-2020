@@ -19,8 +19,9 @@ var turn_count = 0
 var previous_turn = 0
 var damage = 0
 var armor = 0
-var ailment = null
 var IKcurrency = 9
+var ailment = null
+var currentAilment = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -148,6 +149,7 @@ func _on_TileGrid_turn_ended(activations):
 	emit_signal("turn_start")
 	
 	if ailment:
+		currentAilment = ailment
 		var i = 5
 		var array : Array = []
 		var TileOG = $ViewportContainer/Viewport/TileGrid.tiles
@@ -210,3 +212,8 @@ func clear_tile_shaders():
 	for tile in $ViewportContainer/Viewport/TileGrid.get_children():
 		if tile.material:
 			tile.material = null
+
+
+func _on_TileGrid_move_occured():
+	if currentAilment == "Shade":
+		clear_tile_shaders()

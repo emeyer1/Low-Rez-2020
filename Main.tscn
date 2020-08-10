@@ -44,7 +44,6 @@ position = Vector2( 20.7106, 31.6345 )
 z_index = 6
 frames = SubResource( 3 )
 animation = "Merchant Idle"
-frame = 1
 playing = true
 
 [node name="Outside" type="Sprite" parent="Background"]
@@ -162,4 +161,5 @@ __meta__ = {
 
 [node name="ShopPosition" type="Position2D" parent="."]
 [connection signal="turn_start" from="." to="ViewportContainer/Viewport/TileGrid" method="_on_Main_turn_start"]
+[connection signal="move_occured" from="ViewportContainer/Viewport/TileGrid" to="." method="_on_TileGrid_move_occured"]
 [connection signal="turn_ended" from="ViewportContainer/Viewport/TileGrid" to="." method="_on_TileGrid_turn_ended"]

@@ -1,7 +1,7 @@
 extends Control
 
 signal turn_ended(activations)
-
+signal move_occured()
 onready var Deck = get_node("/root/Deck")
 
 #ailment:
@@ -61,6 +61,7 @@ func on_button_clicked(tile):
 				set_tile_position(tiles[from_tile.x][from_tile.y], from_tile.x, from_tile.y)
 				from_tile = null
 				moves_remaining -= 1
+				emit_signal("move_occured")
 				if(moves_remaining == 0):
 					player_turn = false
 					var activations = activate_tiles()
@@ -128,8 +129,9 @@ func _on_Main_turn_start():
 	player_turn = true
 	if Deck.items.has("flute"): 
 		moves_remaining = moves + 1
-	elif frost:
-		moves_remaining = moves - 1
-		frost = false
 	else:
 		moves_remaining = moves
+	
+	if frost:
+		moves_remaining = moves_remaining - 1
+		frost = false

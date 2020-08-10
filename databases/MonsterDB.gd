@@ -101,7 +101,7 @@ var MONSTERS = {
 			2:{"Move_Type":"Damage","Value": 4,"Next_Move":3},
 			3:{"Move_Type":"Frost","Value": null,"Next_Move":0}
 			},
-		"Health":15,
+		"Health":20,
 		"Sprite":"res://assets/monsters/frostgiant.png",
 		"Currency": 2
 	},
@@ -119,10 +119,10 @@ var MONSTER_ATTACKS = {
 	"Damage":{"Sprite":"res://assets/ui/attack_icon.png","Tooltip":"Deals damage to you"},
 	"Block":{"Sprite":"res://assets/ui/block_attack_icon.png","Tooltip":"Adds armor on top of health"},
 	"Slime":{"Sprite":"res://assets/ui/splat_attack_icon.png","Tooltip":"Makes some blocks immovable for 1 turn"},
-	"Shade":{"Sprite":"res://assets/ui/shade_attack_icon.png","Tooltip":"Conceals some tiles next turn"},
+	"Shade":{"Sprite":"res://assets/ui/shade_attack_icon.png","Tooltip":"Conceals some tiles till you move"},
 	"Rest":{"Sprite":"res://assets/ui/rest_attack_icon.png","Tooltip":"It is bored of you"},
 	"Rage":{"Sprite":"res://assets/ui/rage_attack_icon.png","Tooltip":"Next attack is 2x"},
-	"Heal":{"Sprite":"res://assets/ui/heal_attack_icon.png","Tooltip":"Heals itself"},
+	"Heal":{"Sprite":"res://assets/ui/heal_attack_icon.png","Tooltip":"Gains health"},
 	"Frost":{"Sprite":"res://assets/ui/frost_attack_icon.png","Tooltip":"-1 moves next turn"},
 	"Error":{"Sprite":"res://assets/ui/error.png","Tooltip":"Tooltip not found"}
 }
@@ -130,12 +130,12 @@ var MONSTER_ATTACKS = {
 var LEVEL_LIST = {
 	"spirits":{
 		1:{
-			0:["frostGiant","spiritCouncil","spiritMage"]
+			0:["spirit","spiritCouncil","spiritMage"]
 			#1:["frostGiant","spirit","spirit","spirit"]
 			},
 		2:{
-			0:["spirit","spirit","spirit","spiritCouncil"],
-			1:["spiritCouncil","spirit","spiritCouncil","spirit"],
+			0:["frostGiant","frostGiant","spiritCouncil"]
+			#1:["frostGiant","spiritCouncil","spirit","spiritCouncil","spirit"],
 			},
 		3:{ #Highest power level = Boss
 			0:["spiritMage","spiritBoss"]
