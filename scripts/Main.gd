@@ -19,6 +19,7 @@ var turn_count = 0
 var previous_turn = 0
 var damage = 0
 var armor = 0
+var ailment = null
 var IKcurrency = 9
 
 # Called when the node enters the scene tree for the first time.
@@ -26,12 +27,10 @@ func _ready():
 	initialize_innkeeper()
 	set_Night()
 
-
 func _process(delta):
 	#Set the swap count remaining
 	$UI/swap_icon/Label.text = str($ViewportContainer/Viewport/TileGrid.moves_remaining)
 #	print(len(monsterSpawnList))
-
 	#Once turn ends, monster goes. Right now it just uses a random attack amount from the MonsterDB.
 	#Handle attacks as a dict that are then matched? Damage:3, Blocks: 5, Row:1, Heal:10 etc.
 
@@ -140,8 +139,43 @@ func _on_TileGrid_turn_ended(activations):
 	if CurrentMonster:
 		monster_turn()
 	
+	clear_tile_shaders()
+	
 	emit_signal("turn_start")
 	
+	if ailment:
+		var i = 5
+		var array : Array = []
+		var TileOG = $ViewportContainer/Viewport/TileGrid.tiles
+		var TilesVec = TileOG.duplicate(true)
+		TilesVec = TilesVec[0]+TilesVec[1]+TilesVec[2]
+
+
+		while i != 0:
+			random.randomize()
+			var randNum = random.randi_range(0,len(TilesVec)-1)
+			if TilesVec[randNum]["tileType"] != "item":
+				print(TilesVec[randNum]["tileType"])
+				array.append(TilesVec[randNum]["button"])
+				TilesVec.remove(randNum)
+				i -= 1
+
+		match ailment:
+			"Shade":
+				for node_name in array:
+					var c = $ViewportContainer/Viewport/TileGrid.get_children()[$ViewportContainer/Viewport/TileGrid.get_children().find(node_name)]
+					c.material = ShaderMaterial.new()
+					c.material.shader = load("res://assets/shaders/shade.shader")
+			"Slime":
+				for node_name in array:
+					var c = $ViewportContainer/Viewport/TileGrid.get_children()[$ViewportContainer/Viewport/TileGrid.get_children().find(node_name)]
+					c.material = ShaderMaterial.new()
+					c.material.shader = load("res://assets/shaders/slime.shader")
+		
+		
+		ailment = null
+	#HandDealt -> Ailment takes effect -> Animation of hand dealt
+
 
 
 func monster_turn():
@@ -150,6 +184,17 @@ func monster_turn():
 	match CurrentMonster.current_move_type:
 		"Damage":
 			update_IK_health(CurrentMonster.current_move_value)
-		
+		"Shade":
+			ailment = "Shade"
+		"Slime":
+			ailment = "Slime"
+			
+			
 	CurrentMonster.next_attack()
 	previous_turn = turn_count
+
+
+func clear_tile_shaders():
+	for tile in $ViewportContainer/Viewport/TileGrid.get_children():
+		if tile.material:
+			tile.material = null
