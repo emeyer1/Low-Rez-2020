@@ -75,6 +75,7 @@ func initialize_innkeeper():
 	update_armor()
 
 func spawn_monster(value):
+	$UI/swap_icon/Label.add_color_override("font_color", Color("fbf236"))
 	var Monster = MonsterBase.instance()
 	Monster.id = value
 	Monster.connect("monster_dead",self,"monster_died")
@@ -118,7 +119,7 @@ func maybe_IK_dead():
 		add_child(gameOver)
 
 func _on_TileGrid_turn_ended(activations):
-	
+	CurrentMonster = $MonsterSpawn.get_child(0)
 	#Handle tile type and activation:
 	for i in activations:
 		match i["tileType"]:
@@ -139,7 +140,8 @@ func _on_TileGrid_turn_ended(activations):
 	turn_count += 1
 	
 	if CurrentMonster:
-		monster_turn()
+		if CurrentMonster.Health > 0:
+			monster_turn()
 	
 	clear_tile_shaders()
 	
@@ -181,8 +183,10 @@ func _on_TileGrid_turn_ended(activations):
 
 
 func monster_turn():
+	$UI/swap_icon/Label.add_color_override("font_color", Color("fbf236"))
+	print(CurrentMonster)
 	CurrentMonster = $MonsterSpawn.get_child(0)
-		
+	print(CurrentMonster)
 	match CurrentMonster.current_move_type:
 		"Damage":
 			update_IK_health(CurrentMonster.current_move_value)
@@ -190,7 +194,13 @@ func monster_turn():
 			ailment = "Shade"
 		"Slime":
 			ailment = "Slime"
-			
+		"Rage":
+			CurrentMonster.rage = true	
+		"Heal":
+			CurrentMonster.update_health(-CurrentMonster.current_move_value)
+		"Frost":
+			$ViewportContainer/Viewport/TileGrid.frost = true
+			$UI/swap_icon/Label.add_color_override("font_color", Color("1bdddd"))
 			
 	CurrentMonster.next_attack()
 	previous_turn = turn_count

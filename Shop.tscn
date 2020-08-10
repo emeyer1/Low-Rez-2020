@@ -32,13 +32,14 @@ __meta__ = {
 [node name="Currency" type="Label" parent="UI"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 60.0
+margin_left = 53.0
 margin_top = 3.0
 margin_bottom = -56.0
 custom_fonts/font = ExtResource( 2 )
 custom_colors/font_color = Color( 0.360784, 0.141176, 0.443137, 1 )
 custom_colors/font_outline_modulate = Color( 0.639216, 0.054902, 0.654902, 1 )
-text = "2"
+text = "4"
+align = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }

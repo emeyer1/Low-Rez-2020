@@ -63,9 +63,9 @@ var MONSTERS = {
 	},
 	"spiritCouncil":{
 		"AttackLoop":{
-			0:{"Move_Type":"Shade","Value": 2,"Next_Move":1},
+			0:{"Move_Type":"Shade","Value": null,"Next_Move":1},
 			1:{"Move_Type":"Damage","Value": 4,"Next_Move":2},
-			2:{"Move_Type":"Shade","Value": 2,"Next_Move":3},
+			2:{"Move_Type":"Shade","Value": null,"Next_Move":3},
 			3:{"Move_Type":"Damage","Value": 4,"Next_Move":0}
 			},
 		"Health":25,
@@ -74,9 +74,12 @@ var MONSTERS = {
 	},
 	"spiritMage":{
 		"AttackLoop":{
-			0:{"Move_Type":"Slime","Value": null,"Next_Move":0},
+			0:{"Move_Type":"Shade","Value": null,"Next_Move":1},
+			1:{"Move_Type":"Damage","Value":3,"Next_Move":2},
+			2:{"Move_Type":"Shade","Value":null,"Next_Move":3},
+			3:{"Move_Type":"Heal","Value":5,"Next_Move":0},
 			},
-		"Health":5,
+		"Health":20,
 		"Sprite":"res://assets/monsters/spiritmage.png",
 		"Currency": 1
 	},
@@ -91,7 +94,17 @@ var MONSTERS = {
 		"Sprite":"res://assets/monsters/spiritBoss.png",
 		"Currency": 10
 	},
-	
+	"frostGiant":{
+		"AttackLoop":{
+			0:{"Move_Type":"Rage","Value": null,"Next_Move":1},
+			1:{"Move_Type":"Damage","Value": 5,"Next_Move":2},
+			2:{"Move_Type":"Damage","Value": 4,"Next_Move":3},
+			3:{"Move_Type":"Frost","Value": null,"Next_Move":0}
+			},
+		"Health":15,
+		"Sprite":"res://assets/monsters/frostgiant.png",
+		"Currency": 2
+	},
 	"error":{
 		"AttackLoop":{
 			0:{"Move_Type":"?","Value": null,"Next_Move":0}
@@ -106,17 +119,19 @@ var MONSTER_ATTACKS = {
 	"Damage":{"Sprite":"res://assets/ui/attack_icon.png","Tooltip":"Deals damage to you"},
 	"Block":{"Sprite":"res://assets/ui/block_attack_icon.png","Tooltip":"Adds armor on top of health"},
 	"Slime":{"Sprite":"res://assets/ui/splat_attack_icon.png","Tooltip":"Makes some blocks immovable for 1 turn"},
-	"Shade":{"Sprite":"res://assets/ui/rage_attack_icon.png","Tooltip":"Conceals some tiles next turn"},
+	"Shade":{"Sprite":"res://assets/ui/shade_attack_icon.png","Tooltip":"Conceals some tiles next turn"},
 	"Rest":{"Sprite":"res://assets/ui/rest_attack_icon.png","Tooltip":"It is bored of you"},
-	
+	"Rage":{"Sprite":"res://assets/ui/rage_attack_icon.png","Tooltip":"Next attack is 2x"},
+	"Heal":{"Sprite":"res://assets/ui/heal_attack_icon.png","Tooltip":"Heals itself"},
+	"Frost":{"Sprite":"res://assets/ui/frost_attack_icon.png","Tooltip":"-1 moves next turn"},
 	"Error":{"Sprite":"res://assets/ui/error.png","Tooltip":"Tooltip not found"}
 }
 
 var LEVEL_LIST = {
 	"spirits":{
 		1:{
-			0:["slime","spiritCouncil","spirit"],
-			1:["slime","spirit","spirit","spirit"]
+			0:["frostGiant","spiritCouncil","spiritMage"]
+			#1:["frostGiant","spirit","spirit","spirit"]
 			},
 		2:{
 			0:["spirit","spirit","spirit","spiritCouncil"],

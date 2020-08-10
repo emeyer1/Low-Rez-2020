@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/tiles/autoattack.png" type="Texture" id=1]
+[ext_resource path="res://assets/shaders/slime.shader" type="Shader" id=2]
+
+[sub_resource type="ShaderMaterial" id=1]
+render_priority = 1
+shader = ExtResource( 2 )
+shader_param/outline_width = 2.0
+shader_param/outline_color = Color( 0.156863, 0.470588, 0.145098, 1 )
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -0.374207
+margin_top = 3.8147e-06
+margin_right = -0.374207
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton" type="TextureButton" parent="."]
+material = SubResource( 1 )
+margin_left = 5.36143
+margin_top = 2.02243
+margin_right = 12.3614
+margin_bottom = 9.02243
+texture_normal = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

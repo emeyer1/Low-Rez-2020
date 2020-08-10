@@ -23,7 +23,7 @@ var next_move_i
 
 #Stats
 var Health = 0
-var rage = 0
+var rage = false
 var armor = 0
 var currency = 0
 
@@ -114,6 +114,10 @@ func attack_step(i):
 	#Move value
 	current_move_value = current_move["Value"]
 	if current_move_value:
+		if rage:
+			current_move_value = 2*current_move_value
+			$STATS/Attack/Label.add_color_override("font_color", Color("ff0000"))
+			rage = false
 		$STATS/Attack/Label.text = str(current_move_value)
 	else:
 		$STATS/Attack/Label.text = str("")
@@ -126,8 +130,9 @@ func attack_step(i):
 	
 
 func next_attack():
+	$STATS/Attack/Label.set("custom_colors/font_color",Color("ffffff"))
 	attack_step(next_move_i)
-
+	
 
 
 func _on_Control_mouse_entered():

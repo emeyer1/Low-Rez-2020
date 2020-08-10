@@ -12,11 +12,11 @@ var items = [
 
 var deck = [
 	{"tileType": "earth",
-		"count": 6},
+		"count": 4},
 	{"tileType": "fire",
-		"count": 6},
+		"count": 4},
 	{"tileType": "empty",
-		"count": 7},
+		"count": 11},
 	{"tileType": "autoAttack",
 		"count": 8}
 ]

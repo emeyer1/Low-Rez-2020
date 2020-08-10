@@ -4,6 +4,9 @@ signal turn_ended(activations)
 
 onready var Deck = get_node("/root/Deck")
 
+#ailment:
+var frost = false
+
 var nTiles: Vector2 = Vector2(3, 9)
 var size: int = 7
 var margin: int = 1
@@ -125,5 +128,8 @@ func _on_Main_turn_start():
 	player_turn = true
 	if Deck.items.has("flute"): 
 		moves_remaining = moves + 1
+	elif frost:
+		moves_remaining = moves - 1
+		frost = false
 	else:
 		moves_remaining = moves
