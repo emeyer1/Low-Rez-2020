@@ -123,3 +123,6 @@ func print_tiles():
 
 func add_item(item_id):
 	items.append(item_id)
+
+func add_tile(tileType):
+	pass

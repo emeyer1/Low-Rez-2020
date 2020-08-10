@@ -63,6 +63,7 @@ func set_Night():
 func _on_shop_closed():
 	$ViewportContainer/Viewport/TileGrid.set_mouse_input(Control.MOUSE_FILTER_STOP)
 	$Background/MerchantBase.visible = true
+	set_Night()
 	
 func _on_currency_updated(currency):
 	IKcurrency = currency
