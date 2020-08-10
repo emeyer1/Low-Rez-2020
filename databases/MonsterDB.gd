@@ -6,14 +6,12 @@ var random = RandomNumberGenerator.new()
 var MONSTERS = {
 	"slime":{
 		"AttackLoop":{
-			0:{"Move_Type":"Block","Value": null,"Next_Move":1},
-			1:{"Move_Type":"Damage","Value": 1,"Next_Move":2},
-			2:{"Move_Type":"Splat","Value": null,"Next_Move":3},
-			3:{"Move_Type":"Rage","Value": null,"Next_Move":4},
-			4:{"Move_Type":"Damage","Value": 2,"Next_Move":5},
-			5:{"Move_Type":"Splat","Value": null,"Next_Move":0}
+			0:{"Move_Type":"Slime","Value": null,"Next_Move":1},
+			1:{"Move_Type":"Damage","Value": 3,"Next_Move":2},
+			2:{"Move_Type":"Slime","Value": null,"Next_Move":3},
+			3:{"Move_Type":"Damage","Value": 4,"Next_Move":0},
 			},
-		"Health":10,
+		"Health":11,
 		"Sprite":"res://assets/monsters/testMonster.png",
 		"Currency": 1
 		},
@@ -54,9 +52,9 @@ var MONSTERS = {
 	},
 	"spirit":{
 		"AttackLoop":{
-			0:{"Move_Type":"Damage","Value": 1,"Next_Move":1},
+			0:{"Move_Type":"Shade","Value": null,"Next_Move":1},
 			1:{"Move_Type":"Damage","Value": 3,"Next_Move":2},
-			2:{"Move_Type":"Damage","Value": 1,"Next_Move":3},
+			2:{"Move_Type":"Shade","Value": null,"Next_Move":3},
 			3:{"Move_Type":"Damage","Value": 3,"Next_Move":0}
 			},
 		"Health":15,
@@ -65,9 +63,9 @@ var MONSTERS = {
 	},
 	"spiritCouncil":{
 		"AttackLoop":{
-			0:{"Move_Type":"Damage","Value": 2,"Next_Move":1},
+			0:{"Move_Type":"Shade","Value": 2,"Next_Move":1},
 			1:{"Move_Type":"Damage","Value": 4,"Next_Move":2},
-			2:{"Move_Type":"Damage","Value": 2,"Next_Move":3},
+			2:{"Move_Type":"Shade","Value": 2,"Next_Move":3},
 			3:{"Move_Type":"Damage","Value": 4,"Next_Move":0}
 			},
 		"Health":25,
@@ -76,7 +74,7 @@ var MONSTERS = {
 	},
 	"spiritMage":{
 		"AttackLoop":{
-			0:{"Move_Type":"Damage","Value": 0,"Next_Move":0},
+			0:{"Move_Type":"Slime","Value": null,"Next_Move":0},
 			},
 		"Health":5,
 		"Sprite":"res://assets/monsters/spiritmage.png",
@@ -84,7 +82,7 @@ var MONSTERS = {
 	},
 	"spiritBoss":{
 		"AttackLoop":{
-			0:{"Move_Type":"Damage","Value": 10,"Next_Move":1},
+			0:{"Move_Type":"Shade","Value": null,"Next_Move":1},
 			1:{"Move_Type":"Damage","Value": 4,"Next_Move":2},
 			2:{"Move_Type":"Damage","Value": 10,"Next_Move":3},
 			3:{"Move_Type":"Damage","Value": 4,"Next_Move":0}
@@ -107,8 +105,8 @@ var MONSTERS = {
 var MONSTER_ATTACKS = {
 	"Damage":{"Sprite":"res://assets/ui/attack_icon.png","Tooltip":"Deals damage to you"},
 	"Block":{"Sprite":"res://assets/ui/block_attack_icon.png","Tooltip":"Adds armor on top of health"},
-	"Splat":{"Sprite":"res://assets/ui/splat_attack_icon.png","Tooltip":"Makes some blocks immovable for 1 turn"},
-	"Rage":{"Sprite":"res://assets/ui/rage_attack_icon.png","Tooltip":"Increaes next atk by 2x"},
+	"Slime":{"Sprite":"res://assets/ui/splat_attack_icon.png","Tooltip":"Makes some blocks immovable for 1 turn"},
+	"Shade":{"Sprite":"res://assets/ui/rage_attack_icon.png","Tooltip":"Conceals some tiles next turn"},
 	"Rest":{"Sprite":"res://assets/ui/rest_attack_icon.png","Tooltip":"It is bored of you"},
 	
 	"Error":{"Sprite":"res://assets/ui/error.png","Tooltip":"Tooltip not found"}
@@ -117,8 +115,8 @@ var MONSTER_ATTACKS = {
 var LEVEL_LIST = {
 	"spirits":{
 		1:{
-			0:["spiritCouncil","spirit"],
-			1:["spirit","spirit","spirit"]
+			0:["slime","spiritCouncil","spirit"],
+			1:["slime","spirit","spirit","spirit"]
 			},
 		2:{
 			0:["spirit","spirit","spirit","spiritCouncil"],
