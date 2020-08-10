@@ -122,6 +122,8 @@ func _on_TileGrid_turn_ended(activations):
 	#Handle tile type and activation:
 	for i in activations:
 		match i["tileType"]:
+			"autoAttack":
+				damage += i["length"] * 1
 			"fire":
 				damage += i["length"] * 2
 			"earth":
