@@ -12,11 +12,13 @@ var items = [
 
 var deck = [
 	{"tileType": "earth",
-		"count": 7},
+		"count": 6},
 	{"tileType": "fire",
-		"count": 7},
+		"count": 6},
 	{"tileType": "empty",
-		"count": 13}
+		"count": 7},
+	{"tileType": "autoAttack",
+		"count": 8}
 ]
 
 var inplay = [
@@ -25,6 +27,8 @@ var inplay = [
 	{"tileType": "fire",
 		"count": 0},
 	{"tileType": "empty",
+		"count": 0},
+	{"tileType": "autoAttack",
 		"count": 0}
 ]
 
@@ -34,6 +38,8 @@ var discard = [
 	{"tileType": "fire",
 		"count": 0},
 	{"tileType": "empty",
+		"count": 0},
+	{"tileType": "autoAttack",
 		"count": 0}
 ]
 
@@ -95,6 +101,8 @@ func get_texture(tileType):
 				texture = load("res://assets/tiles/fireblock.png")
 			"empty":
 				texture = load("res://assets/tiles/block2.png")
+			"autoAttack":
+				texture = load("res://assets/tiles/autoattack.png")
 				
 		textures[tileType] = texture
 		return textures[tileType]
