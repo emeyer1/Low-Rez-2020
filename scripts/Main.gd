@@ -132,20 +132,30 @@ func _on_TileGrid_turn_ended(activations):
 	CurrentMonster = $MonsterSpawn.get_child(0)
 	#Handle tile type and activation:
 	for i in activations:
+		if i["tileType"] == "empty":
+			continue
+		
+		set_activated_tiles(i.activated_tiles)
+		yield(get_tree().create_timer(1.5), "timeout")
 		match i["tileType"]:
 			"autoAttack":
 				damage += i["length"] * 1
+				print("autoAttack for " + str(damage))
 			"fire":
 				damage += i["length"] * 2
+				print("fire for " + str(damage))
 			"earth":
 				var new_armor = i["length"] * 1
 				#INSERT: Animation for max armor
 				armor = min(new_armor + armor,9)
+				print("armor for " + str(new_armor))
 				
-	#User deals damage
-	$MonsterSpawn.get_child(0).update_health(max(damage-CurrentMonster.blockAmount,0))
-	damage = 0
-	update_armor()
+		#User deals damage
+		$MonsterSpawn.get_child(0).update_health(max(damage-CurrentMonster.blockAmount,0))
+		damage = 0
+		update_armor()
+		unset_activated_tiles(i.activated_tiles)
+		
 	previous_turn = turn_count
 	turn_count += 1
 	
@@ -189,7 +199,13 @@ func _on_TileGrid_turn_ended(activations):
 		ailment = null
 	#HandDealt -> Ailment takes effect -> Animation of hand dealt
 
+func set_activated_tiles(tiles):
+	for tile in tiles:
+		$ViewportContainer/Viewport/TileGrid.tiles[tile.x][tile.y].button.get_material().set_shader_param("isActivated", true)
 
+func unset_activated_tiles(tiles):
+	for tile in tiles:
+		$ViewportContainer/Viewport/TileGrid.tiles[tile.x][tile.y].button.get_material().set_shader_param("isActivated", false)
 
 func monster_turn():
 	$UI/swap_icon/Label.add_color_override("font_color", Color("fbf236"))

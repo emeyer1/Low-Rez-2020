@@ -89,32 +89,40 @@ func activate_tiles():
 	for y in range(0, nTiles.y):
 		var last_tile = null
 		var chain = 1
+		var activated_tiles = []
 		for x in range(0, nTiles.x):
 			if tiles[x][y].tileType == last_tile:
 				chain += 1
+				activated_tiles.append({"x": x, "y": y})
 			else:
 				if chain >= 3:
-					activations.append({"tileType": last_tile, "x" : x - chain, "y": y, "direction": "x", "length": chain})
+					activations.append({"tileType": last_tile, "x" : x - chain, "y": y, "direction": "x", "length": chain, "activated_tiles": activated_tiles})
 				last_tile = tiles[x][y].tileType
 				chain = 1
+				activated_tiles = []
+				activated_tiles.append({"x": x, "y": y})
 		if chain >= 3:
-			activations.append({"tileType": last_tile, "x" :  nTiles.x - chain, "y":y , "direction": "x", "length": chain})
+			activations.append({"tileType": last_tile, "x" :  nTiles.x - chain, "y":y , "direction": "x", "length": chain, "activated_tiles": activated_tiles})
 		last_tile = null
 	
 	#get y activations
 	for x in range(0, nTiles.x):
 		var last_tile = null
 		var chain = 1
+		var activated_tiles = []
 		for y in range(0, nTiles.y):
 			if tiles[x][y].tileType == last_tile:
 				chain += 1
+				activated_tiles.append({"x": x, "y": y})
 			else:
 				if chain >= 3:
-					activations.append({"tileType": last_tile, "x" : x, "y": y - chain, "direction": "y", "length": chain})
+					activations.append({"tileType": last_tile, "x" : x, "y": y - chain, "direction": "y", "length": chain, "activated_tiles": activated_tiles})
 				last_tile = tiles[x][y].tileType
 				chain = 1
+				activated_tiles = []
+				activated_tiles.append({"x": x, "y": y})
 		if chain >= 3:
-			activations.append({"tileType": last_tile, "x" : x, "y": nTiles.y - chain, "direction": "y", "length": chain})
+			activations.append({"tileType": last_tile, "x" : x, "y": nTiles.y - chain, "direction": "y", "length": chain, "activated_tiles": activated_tiles})
 		last_tile = null
 		
 	print("activations: " + str(activations))

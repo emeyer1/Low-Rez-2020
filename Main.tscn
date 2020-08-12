@@ -140,6 +140,20 @@ frames = SubResource( 29 )
 animation = "Night"
 frame = 6
 
+[node name="MerchantBase" type="AnimatedSprite" parent="Background"]
+position = Vector2( 20.7106, 31.6345 )
+z_index = 6
+frames = SubResource( 3 )
+animation = "Merchant Idle"
+frame = 1
+playing = true
+
+[node name="Outside" type="Sprite" parent="Background"]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 32, 32 )
+z_index = -100
+texture = ExtResource( 9 )
+
 [node name="MonsterSpawn" type="Position2D" parent="."]
 position = Vector2( 20.2365, 25.9305 )
 z_index = 1
