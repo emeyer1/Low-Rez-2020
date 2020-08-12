@@ -44,7 +44,8 @@ func _ready():
 	
 	#Initialize the monster
 	var m = monsterDB.get_monster(id)
-	$Sprite.texture = load(m["Sprite"])
+	$AnimatedSprite.play(m["Idle"])
+	#$Sprite.texture = load(m["Sprite"])
 	Moves = m["AttackLoop"]
 	Health = m["Health"]
 	currency = m["Currency"]
@@ -85,7 +86,7 @@ func _process(delta):
 func set_label():
 	#Health
 	$STATS/Health/Label.text = str(Health)
-	$STATS/AnimationPlayer.play("HealthHover")
+	#$STATS/AnimationPlayer.play("HealthHover")
 	
 
 func update_health(amount):

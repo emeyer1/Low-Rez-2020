@@ -26,7 +26,7 @@ var currentAilment = null
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	initialize_innkeeper()
-	set_Night()
+	set_Day()
 
 func _process(delta):
 	#Set the swap count remaining
@@ -37,24 +37,33 @@ func _process(delta):
 
 
 func set_Day():
+
 	IKhealth = IKhealth_full
 	armor = 0
 	update_armor()
-	$Background/MerchantBase.visible = true #TODO: make it an animation entrance. 
-	$Background/Outside.modulate = "#ffff00"
+	$Background/Tavern.play("Morning")
+	yield($Background/Tavern,"animation_finished")
+	
+	$Background/Tavern.play("MerchantEntrance")
+	yield($Background/Tavern,"animation_finished")
+
+
+
 	var Shop = ShopScreen.instance()
 	Shop.currency = IKcurrency
 	Shop.connect("shop_closed", self, "_on_shop_closed")
 	Shop.connect("update_currency", self, "_on_currency_updated")
 	$ViewportContainer/Viewport/TileGrid.set_mouse_input(Control.MOUSE_FILTER_IGNORE)
 	self.add_child(Shop)
-	$Background/MerchantBase.visible = false
 
 func set_Night():
-	IKhealth_full = IKhealth
-	$Background/MerchantBase.visible = false
-	$Background/Outside.modulate = "#000000"
 	
+	#Make Merchant Leaving animation
+	IKhealth_full = IKhealth
+	
+	
+	$Background/Tavern.play("Night")
+	yield($Background/Tavern,"animation_finished")
 	
 	monsterSpawnList = MonsterDB.get_level_list(power_level).duplicate(true)
 	
@@ -63,7 +72,6 @@ func set_Night():
 
 func _on_shop_closed():
 	$ViewportContainer/Viewport/TileGrid.set_mouse_input(Control.MOUSE_FILTER_STOP)
-	$Background/MerchantBase.visible = true
 	set_Night()
 	emit_signal("turn_start")
 	

@@ -58,6 +58,7 @@ var MONSTERS = {
 			},
 		"Health":15,
 		"Sprite":"res://assets/monsters/spirit2.png",
+		"Idle":"gremlin_Idle",
 		"Currency": 1
 	},
 	"spiritCouncil":{
@@ -69,6 +70,7 @@ var MONSTERS = {
 			},
 		"Health":25,
 		"Sprite":"res://assets/monsters/spiritbuds.png",
+		"Idle":"spiritCouncil_Idle",
 		"Currency": 1
 	},
 	"spiritMage":{
@@ -80,6 +82,7 @@ var MONSTERS = {
 			},
 		"Health":20,
 		"Sprite":"res://assets/monsters/spiritmage.png",
+		"Idle":"spiritMage_Idle",
 		"Currency": 1
 	},
 	"spiritBoss":{
@@ -91,6 +94,7 @@ var MONSTERS = {
 			},
 		"Health":40,
 		"Sprite":"res://assets/monsters/spiritBoss.png",
+		"Idle":"SpiritBoss_Idle",
 		"Currency": 10
 	},
 	"frostGiant":{
