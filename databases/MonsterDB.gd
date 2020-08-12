@@ -47,6 +47,7 @@ var MONSTERS = {
 			},
 		"Health":99,
 		"Sprite":"res://assets/monsters/snake.png",
+		"Idle":"snake_Idle",
 		"Currency": 1
 	},
 	"spirit":{

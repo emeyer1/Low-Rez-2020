@@ -26,7 +26,7 @@ var currentAilment = null
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	initialize_innkeeper()
-	set_Day()
+	set_Night()
 
 func _process(delta):
 	#Set the swap count remaining
@@ -41,9 +41,12 @@ func set_Day():
 	IKhealth = IKhealth_full
 	armor = 0
 	update_armor()
+	
+	#ANIMATION Morning
 	$Background/Tavern.play("Morning")
 	yield($Background/Tavern,"animation_finished")
 	
+	#ANIMATION Merchant Enter
 	$Background/Tavern.play("MerchantEntrance")
 	yield($Background/Tavern,"animation_finished")
 
@@ -61,7 +64,7 @@ func set_Night():
 	#Make Merchant Leaving animation
 	IKhealth_full = IKhealth
 	
-	
+	#ANIMATION Night
 	$Background/Tavern.play("Night")
 	yield($Background/Tavern,"animation_finished")
 	
@@ -241,3 +244,4 @@ func clear_tile_shader_params():
 func _on_TileGrid_move_occured():
 	if currentAilment == "Shade":
 		clear_tile_shader_params()
+
