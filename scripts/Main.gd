@@ -56,9 +56,8 @@ func set_Night():
 	$Background/Outside.modulate = "#000000"
 	
 	
-	monsterSpawnList = MonsterDB.get_level_list(power_level,"spirits").duplicate(true)
+	monsterSpawnList = MonsterDB.get_level_list(power_level).duplicate(true)
 	
-	#ERROR restart popping list pops the final. 
 	spawn_monster(monsterSpawnList[0])
 	monsterSpawnList.pop_front()
 
@@ -136,7 +135,7 @@ func _on_TileGrid_turn_ended(activations):
 				armor = min(new_armor + armor,9)
 				
 	#User deals damage
-	$MonsterSpawn.get_child(0).update_health(damage)
+	$MonsterSpawn.get_child(0).update_health(max(damage-CurrentMonster.blockAmount,0))
 	damage = 0
 	update_armor()
 	previous_turn = turn_count
@@ -207,6 +206,8 @@ func monster_turn():
 			$UI/swap_icon/Label.add_color_override("font_color", Color("1bdddd"))
 		"Mirror":
 			update_IK_health(CurrentMonster.mirror_damage)
+		"Block":
+			pass #handled in the mosnter script
 	CurrentMonster.next_attack()
 	previous_turn = turn_count
 
