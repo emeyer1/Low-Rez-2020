@@ -30,6 +30,7 @@ var currency = 0
 #MoveVars
 var mirror_damage = 0
 var rage = false
+var blockAmount = 0
 
 #Tooltip
 var mouse_tt_hover = 0
@@ -115,6 +116,7 @@ func maybe_dead():
 		emit_signal("monster_dead",currency)
 
 func attack_step(i):
+	blockAmount = 0
 	current_move = Moves[i]
 	#Move value
 	current_move_value = current_move["Value"]
@@ -130,7 +132,8 @@ func attack_step(i):
 	current_move_type = current_move["Move_Type"]
 	attackSprite.texture = load(monsterDB.get_attack(current_move_type)["Sprite"])
 	#print(monsterAttacks)
-
+	if current_move_type == "Block":
+		blockAmount = current_move_value
 	next_move_i = current_move["Next_Move"]
 	
 
