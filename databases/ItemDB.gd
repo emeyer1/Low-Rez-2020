@@ -7,28 +7,32 @@ var ITEMS = {
 		"Currency": 3,
 		"Sprite":"res://assets/items/1x1test.png",
 		"Tooltip":"+1 Def",
-		"Type": "item"
+		"Type": "item",
+		"Area": 1
 	},
 	"sword":{
 		"ItemName": "sword",
 		"Currency": 5,
 		"Sprite":"res://assets/items/1x3test.png",
 		"Tooltip":"+1 Atk",
-		"Type": "item"
+		"Type": "item",
+		"Area": 3
 	},
 	"flute":{
 		"ItemName": "flute",
 		"Currency": 9,
 		"Sprite":"res://assets/items/2x1test.png",
 		"Tooltip":"+1 mov",
-		"Type": "item"
+		"Type": "item",
+		"Area": 2
 	},
 	"error":{
 		"ItemName": "error",
 		"Currency": 10,
 		"Sprite":"res://assets/items/1x1test.png",
 		"Tooltip":"error",
-		"Type": "item"
+		"Type": "item",
+		"Area": 1
 	},	
 	"fire":{
 		"ItemName": "fire",

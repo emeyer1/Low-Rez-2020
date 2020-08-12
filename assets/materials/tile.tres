@@ -1,0 +1,18 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=2]
+
+[ext_resource path="res://assets/shaders/tile.shader" type="Shader" id=1]
+[ext_resource path="res://assets/tiles/slimed.png" type="Texture" id=2]
+[ext_resource path="res://assets/tiles/highlight.png" type="Texture" id=3]
+[ext_resource path="res://assets/tiles/shade.png" type="Texture" id=4]
+
+[resource]
+shader = ExtResource( 1 )
+shader_param/outline_color = Color( 0.133333, 0.176471, 0.533333, 1 )
+shader_param/selectSpeed = 10.0
+shader_param/isSelected = false
+shader_param/isSlimed = false
+shader_param/isShade = false
+shader_param/isActivated = false
+shader_param/outline_texture = ExtResource( 3 )
+shader_param/slimed_texture = ExtResource( 2 )
+shader_param/shade_texture = ExtResource( 4 )

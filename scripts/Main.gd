@@ -19,7 +19,7 @@ var turn_count = 0
 var previous_turn = 0
 var damage = 0
 var armor = 0
-var IKcurrency = 9
+var IKcurrency = 2
 var ailment = null
 var currentAilment = null
 
@@ -145,8 +145,8 @@ func _on_TileGrid_turn_ended(activations):
 	if CurrentMonster:
 		if CurrentMonster.Health > 0:
 			monster_turn()
-	
-	clear_tile_shaders()
+			
+	clear_tile_shader_params()
 	
 	emit_signal("turn_start")
 	
@@ -172,13 +172,11 @@ func _on_TileGrid_turn_ended(activations):
 			"Shade":
 				for node_name in array:
 					var c = $ViewportContainer/Viewport/TileGrid.get_children()[$ViewportContainer/Viewport/TileGrid.get_children().find(node_name)]
-					c.material = ShaderMaterial.new()
-					c.material.shader = load("res://assets/shaders/shade.shader")
+					c.material.set_shader_param("isShade", true)
 			"Slime":
 				for node_name in array:
 					var c = $ViewportContainer/Viewport/TileGrid.get_children()[$ViewportContainer/Viewport/TileGrid.get_children().find(node_name)]
-					c.material = ShaderMaterial.new()
-					c.material.shader = load("res://assets/shaders/slime.shader")
+					c.material.set_shader_param("isSlimed", true)
 		
 		
 		ailment = null
@@ -210,13 +208,11 @@ func monster_turn():
 	CurrentMonster.next_attack()
 	previous_turn = turn_count
 
-
-func clear_tile_shaders():
+func clear_tile_shader_params():
 	for tile in $ViewportContainer/Viewport/TileGrid.get_children():
-		if tile.material:
-			tile.material = null
-
+		tile.get_material().set_shader_param("isShade", false)
+		tile.get_material().set_shader_param("isSlimed", false)
 
 func _on_TileGrid_move_occured():
 	if currentAilment == "Shade":
-		clear_tile_shaders()
+		clear_tile_shader_params()

@@ -1,13 +1,26 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/tiles/autoattack.png" type="Texture" id=1]
-[ext_resource path="res://assets/shaders/slime.shader" type="Shader" id=2]
+[ext_resource path="res://assets/shaders/tile.shader" type="Shader" id=2]
+[ext_resource path="res://assets/tiles/highlight.png" type="Texture" id=3]
+[ext_resource path="res://assets/tiles/slimed.png" type="Texture" id=4]
+[ext_resource path="res://assets/tiles/shade.png" type="Texture" id=5]
+[ext_resource path="res://assets/tiles/earthblock.png" type="Texture" id=6]
+[ext_resource path="res://assets/tiles/block2.png" type="Texture" id=7]
+[ext_resource path="res://assets/tiles/fireblock.png" type="Texture" id=8]
 
 [sub_resource type="ShaderMaterial" id=1]
 render_priority = 1
 shader = ExtResource( 2 )
-shader_param/outline_width = 2.0
-shader_param/outline_color = Color( 0.156863, 0.470588, 0.145098, 1 )
+shader_param/outline_color = Color( 0.231373, 0.231373, 0.631373, 1 )
+shader_param/selectSpeed = 10.0
+shader_param/isSelected = false
+shader_param/isSlimed = false
+shader_param/isShade = false
+shader_param/isActivated = true
+shader_param/outline_texture = ExtResource( 3 )
+shader_param/slimed_texture = ExtResource( 4 )
+shader_param/shade_texture = ExtResource( 5 )
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -21,10 +34,323 @@ __meta__ = {
 
 [node name="TextureButton" type="TextureButton" parent="."]
 material = SubResource( 1 )
-margin_left = 5.36143
-margin_top = 2.02243
-margin_right = 12.3614
-margin_bottom = 9.02243
+margin_left = 42.3742
+margin_top = 0.999996
+margin_right = 49.3742
+margin_bottom = 8.0
+rect_pivot_offset = Vector2( -48, 2 )
+texture_normal = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton2" type="TextureButton" parent="."]
+material = SubResource( 1 )
+margin_left = 49.3742
+margin_top = 0.999996
+margin_right = 56.3742
+margin_bottom = 8.0
+rect_pivot_offset = Vector2( -55, 2 )
+texture_normal = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton3" type="TextureButton" parent="."]
+material = SubResource( 1 )
+margin_left = 56.3742
+margin_top = 0.999996
+margin_right = 63.3742
+margin_bottom = 8.0
+rect_pivot_offset = Vector2( -62, 2 )
+texture_normal = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton6" type="TextureButton" parent="."]
+material = SubResource( 1 )
+margin_left = 42.3742
+margin_top = 8.0
+margin_right = 49.3742
+margin_bottom = 15.0
+rect_pivot_offset = Vector2( -48, 2 )
+texture_normal = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton5" type="TextureButton" parent="."]
+material = SubResource( 1 )
+margin_left = 49.3742
+margin_top = 8.0
+margin_right = 56.3742
+margin_bottom = 15.0
+rect_pivot_offset = Vector2( -55, 2 )
+texture_normal = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton4" type="TextureButton" parent="."]
+material = SubResource( 1 )
+margin_left = 56.3742
+margin_top = 8.0
+margin_right = 63.3742
+margin_bottom = 15.0
+rect_pivot_offset = Vector2( -62, 2 )
+texture_normal = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton12" type="TextureButton" parent="."]
+material = SubResource( 1 )
+margin_left = 42.3742
+margin_top = 15.0
+margin_right = 49.3742
+margin_bottom = 22.0
+rect_pivot_offset = Vector2( -48, 2 )
+texture_normal = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton11" type="TextureButton" parent="."]
+material = SubResource( 1 )
+margin_left = 49.3742
+margin_top = 15.0
+margin_right = 56.3742
+margin_bottom = 22.0
+rect_pivot_offset = Vector2( -55, 2 )
+texture_normal = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton10" type="TextureButton" parent="."]
+material = SubResource( 1 )
+margin_left = 56.3742
+margin_top = 15.0
+margin_right = 63.3742
+margin_bottom = 22.0
+rect_pivot_offset = Vector2( -62, 2 )
+texture_normal = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton9" type="TextureButton" parent="."]
+material = SubResource( 1 )
+margin_left = 42.3742
+margin_top = 22.0
+margin_right = 49.3742
+margin_bottom = 29.0
+rect_pivot_offset = Vector2( -48, 2 )
+texture_normal = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton8" type="TextureButton" parent="."]
+material = SubResource( 1 )
+margin_left = 49.3742
+margin_top = 22.0
+margin_right = 56.3742
+margin_bottom = 29.0
+rect_pivot_offset = Vector2( -55, 2 )
+texture_normal = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton7" type="TextureButton" parent="."]
+material = SubResource( 1 )
+margin_left = 56.3742
+margin_top = 22.0
+margin_right = 63.3742
+margin_bottom = 29.0
+rect_pivot_offset = Vector2( -62, 2 )
+texture_normal = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton24" type="TextureButton" parent="."]
+material = SubResource( 1 )
+margin_left = 42.3742
+margin_top = 29.0
+margin_right = 49.3742
+margin_bottom = 36.0
+rect_pivot_offset = Vector2( -48, 2 )
+texture_normal = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton23" type="TextureButton" parent="."]
+material = SubResource( 1 )
+margin_left = 49.3742
+margin_top = 29.0
+margin_right = 56.3742
+margin_bottom = 36.0
+rect_pivot_offset = Vector2( -55, 2 )
+texture_normal = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton22" type="TextureButton" parent="."]
+material = SubResource( 1 )
+margin_left = 56.3742
+margin_top = 29.0
+margin_right = 63.3742
+margin_bottom = 36.0
+rect_pivot_offset = Vector2( -62, 2 )
+texture_normal = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton21" type="TextureButton" parent="."]
+material = SubResource( 1 )
+margin_left = 42.3742
+margin_top = 36.0
+margin_right = 49.3742
+margin_bottom = 43.0
+rect_pivot_offset = Vector2( -48, 2 )
+texture_normal = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton20" type="TextureButton" parent="."]
+material = SubResource( 1 )
+margin_left = 49.3742
+margin_top = 36.0
+margin_right = 56.3742
+margin_bottom = 43.0
+rect_pivot_offset = Vector2( -55, 2 )
+texture_normal = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton19" type="TextureButton" parent="."]
+material = SubResource( 1 )
+margin_left = 56.3742
+margin_top = 36.0
+margin_right = 63.3742
+margin_bottom = 43.0
+rect_pivot_offset = Vector2( -62, 2 )
+texture_normal = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton18" type="TextureButton" parent="."]
+material = SubResource( 1 )
+margin_left = 42.3742
+margin_top = 43.0
+margin_right = 49.3742
+margin_bottom = 50.0
+rect_pivot_offset = Vector2( -48, 2 )
+texture_normal = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton17" type="TextureButton" parent="."]
+material = SubResource( 1 )
+margin_left = 49.3742
+margin_top = 43.0
+margin_right = 56.3742
+margin_bottom = 50.0
+rect_pivot_offset = Vector2( -55, 2 )
+texture_normal = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton16" type="TextureButton" parent="."]
+material = SubResource( 1 )
+margin_left = 56.3742
+margin_top = 43.0
+margin_right = 63.3742
+margin_bottom = 50.0
+rect_pivot_offset = Vector2( -62, 2 )
+texture_normal = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton15" type="TextureButton" parent="."]
+material = SubResource( 1 )
+margin_left = 42.3742
+margin_top = 50.0
+margin_right = 49.3742
+margin_bottom = 57.0
+rect_pivot_offset = Vector2( -48, 2 )
+texture_normal = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton14" type="TextureButton" parent="."]
+material = SubResource( 1 )
+margin_left = 49.3742
+margin_top = 50.0
+margin_right = 56.3742
+margin_bottom = 57.0
+rect_pivot_offset = Vector2( -55, 2 )
+texture_normal = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton13" type="TextureButton" parent="."]
+material = SubResource( 1 )
+margin_left = 56.3742
+margin_top = 50.0
+margin_right = 63.3742
+margin_bottom = 57.0
+rect_pivot_offset = Vector2( -62, 2 )
+texture_normal = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton27" type="TextureButton" parent="."]
+material = SubResource( 1 )
+margin_left = 42.3742
+margin_top = 57.0
+margin_right = 49.3742
+margin_bottom = 64.0
+rect_pivot_offset = Vector2( -48, 2 )
+texture_normal = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton26" type="TextureButton" parent="."]
+material = SubResource( 1 )
+margin_left = 49.3742
+margin_top = 57.0
+margin_right = 56.3742
+margin_bottom = 64.0
+rect_pivot_offset = Vector2( -55, 2 )
+texture_normal = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton25" type="TextureButton" parent="."]
+material = SubResource( 1 )
+margin_left = 56.3742
+margin_top = 57.0
+margin_right = 63.3742
+margin_bottom = 64.0
+rect_pivot_offset = Vector2( -62, 2 )
 texture_normal = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false

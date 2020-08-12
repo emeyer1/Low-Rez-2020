@@ -4,6 +4,8 @@ signal turn_ended(activations)
 signal move_occured()
 onready var Deck = get_node("/root/Deck")
 
+const tile_material = preload("res://assets/materials/tile.tres")
+
 #ailment:
 var frost = false
 
@@ -28,6 +30,8 @@ func _ready():
 			set_tile_position(tiles[x][y], x, y)
 			tiles[x][y].button.set_size(Vector2(size, size))
 			tiles[x][y].button.connect("button_up", self, "on_button_clicked", [tiles[x][y]])
+			var mat = tile_material.duplicate()
+			tiles[x][y].button.set_material(mat)
 			add_child(tiles[x][y].button)
 
 func get_next_tile():
@@ -49,8 +53,10 @@ func on_button_clicked(tile):
 			if from_tile == null:
 				print("set position: " + str(position.x) + ", " + str(position.y))
 				from_tile = position
+				tile.button.get_material().set_shader_param("isSelected", true)
 			elif from_tile == position || !is_tile_in_swap_range(position, from_tile):
 				print("unset position: " + str(from_tile.x) + ", " + str(from_tile.y))
+				tiles[from_tile.x][from_tile.y].button.get_material().set_shader_param("isSelected", false)
 				from_tile = null
 			else:
 				print("swapped: [" + str(from_tile.x) + ", " + str(from_tile.y) + "] [" + str(position.x) + ", " + str(position.y) + "]")
@@ -59,6 +65,7 @@ func on_button_clicked(tile):
 				tiles[from_tile.x][from_tile.y] = temp_tile
 				set_tile_position(tiles[position.x][position.y], position.x, position.y)
 				set_tile_position(tiles[from_tile.x][from_tile.y], from_tile.x, from_tile.y)
+				tiles[position.x][position.y].button.get_material().set_shader_param("isSelected", false)
 				from_tile = null
 				moves_remaining -= 1
 				emit_signal("move_occured")

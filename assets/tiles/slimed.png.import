@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/fire2.png-782ce49ac7650e904671462784e7e075.stex"
+path="res://.import/slimed.png-396535099d498ea17006570aed54d68e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tiles/fire2.png"
-dest_files=[ "res://.import/fire2.png-782ce49ac7650e904671462784e7e075.stex" ]
+source_file="res://assets/tiles/slimed.png"
+dest_files=[ "res://.import/slimed.png-396535099d498ea17006570aed54d68e.stex" ]
 
 [params]
 

@@ -129,10 +129,9 @@ func print_tiles():
 	print(s)
 
 func add_item(item_id):
+#	get_tile(deck, "empty").count -= ItemDb.get_item(item_id)["Area"]
 	items.append(item_id)
-	print(items)
 
 func add_tile(tileType):
 	get_tile(deck, tileType).count += 1
 	get_tile(deck, "empty").count -= 1
-	print_tiles()
