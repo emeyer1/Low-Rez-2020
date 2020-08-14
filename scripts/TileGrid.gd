@@ -47,6 +47,8 @@ func on_button_clicked(tile):
 			var y = tiles[x].find(tile)
 			if y != -1:
 				position = Vector2(x, y)
+				if tile.button.material.get_shader_param("isSlimed"):
+					return
 		if position == null:
 			print("Error tile could not be found")
 		else:
