@@ -10,6 +10,8 @@ uniform bool isShade = false;
 uniform sampler2D shade_texture;
 uniform bool isActivated = false;
 uniform float activeAmount = 0f;
+uniform sampler2D noise_tex: hint_albedo;
+uniform float burnAmount : hint_range(0f, 1f) = 0f;
 
 float line (vec2 p1, vec2 p2, vec2 uv, float a, vec2 pixelSize)
 {
@@ -63,6 +65,10 @@ void fragment(){
 	}
 	else{
 		c = tile;
+	}
+	vec4 noise = texture(noise_tex, SCREEN_UV);
+	if(noise.r < burnAmount){
+		c.a = 0f;
 	}
 	COLOR = c;
 }

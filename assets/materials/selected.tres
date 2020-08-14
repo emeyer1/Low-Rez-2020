@@ -10,3 +10,5 @@ shader_param/isSelected = false
 shader_param/isSlimed = false
 shader_param/isShade = false
 shader_param/isActivated = false
+shader_param/activeAmount = 0.0
+shader_param/burnAmount = 0.0

@@ -136,13 +136,36 @@ func set_mouse_input(mouse_input_mode):
 			tiles[x][y].button.mouse_filter = mouse_input_mode
 
 func _on_Main_turn_start():
+	var tilePos = []
+	var tween = Tween.new()
+	add_child(tween)
 	for x in range(0, nTiles.x):
+		tilePos.append([])
 		for y in range(0, nTiles.y):
 			Deck.discard_tile(tiles[x][y].tileType)
+			tilePos[x].append(tiles[x][y].button.get_position())
+			tween.interpolate_property(
+				tiles[x][y].button.get_material(),
+				"shader_param/burnAmount",
+				0.0, 1.0, 1, Tween.TRANS_LINEAR, Tween.EASE_OUT
+			)
+	tween.start()
+	yield(tween, "tween_all_completed")
+	tween.remove_all()
 	for x in range(0, nTiles.x):
 		for y in range(0, nTiles.y):
 			tiles[x][y].tileType = Deck.draw_tile()
 			tiles[x][y].button.set_normal_texture(Deck.get_texture(tiles[x][y].tileType))
+			tiles[x][y].button.get_material().set_shader_param("burnAmount", 0)
+			var pos = tilePos[x][y]
+			tiles[x][y].button.set_position(Vector2(-10,-10))
+			tween.interpolate_method(
+				tiles[x][y].button, "set_position", Vector2(pos.x, -6), pos, .2,
+				Tween.TRANS_LINEAR, Tween.EASE_IN, x * .1 + (nTiles.y - y) * .3
+			)
+	tween.start()
+	yield(tween, "tween_all_completed")
+	tween.queue_free()
 	player_turn = true
 	if Deck.items.has("flute"): 
 		moves_remaining = moves + 1

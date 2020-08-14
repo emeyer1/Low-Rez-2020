@@ -1,9 +1,14 @@
-[gd_resource type="ShaderMaterial" load_steps=5 format=2]
+[gd_resource type="ShaderMaterial" load_steps=7 format=2]
 
 [ext_resource path="res://assets/shaders/tile.shader" type="Shader" id=1]
 [ext_resource path="res://assets/tiles/slimed.png" type="Texture" id=2]
 [ext_resource path="res://assets/tiles/highlight.png" type="Texture" id=3]
 [ext_resource path="res://assets/ui/shade_attack_icon.png" type="Texture" id=4]
+
+[sub_resource type="OpenSimplexNoise" id=1]
+
+[sub_resource type="NoiseTexture" id=2]
+noise = SubResource( 1 )
 
 [resource]
 shader = ExtResource( 1 )
@@ -14,6 +19,8 @@ shader_param/isSlimed = false
 shader_param/isShade = false
 shader_param/isActivated = false
 shader_param/activeAmount = 1.0
+shader_param/burnAmount = 0.0
 shader_param/outline_texture = ExtResource( 3 )
 shader_param/slimed_texture = ExtResource( 2 )
 shader_param/shade_texture = ExtResource( 4 )
+shader_param/noise_tex = SubResource( 2 )
