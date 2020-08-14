@@ -9,47 +9,43 @@ var MONSTERS = {
 			0:{"Move_Type":"Slime","Value": null,"Next_Move":1},
 			1:{"Move_Type":"Damage","Value": 3,"Next_Move":2},
 			2:{"Move_Type":"Slime","Value": null,"Next_Move":3},
-			3:{"Move_Type":"Damage","Value": 4,"Next_Move":0},
+			3:{"Move_Type":"Damage","Value": 4,"Next_Move":0}
 			},
 		"Health":11,
 		"Sprite":"res://assets/monsters/testMonster.png",
 		"Idle":"slime_Idle",
+		"Attack":null,
+		"Damaged":null,
 		"Currency": 1
 		},
-
-#	"orc":{
-#		"AttackLoop":{
-#			0:{"Move_Type":"Damage","Value": 5,"Next_Move":1},
-#			1:{"Move_Type":"Damage","Value": 2,"Next_Move":2},
-#			2:{"Move_Type":"Damage","Value": 3,"Next_Move":3},
-#			3:{"Move_Type":"Rage","Value": null,"Next_Move":4},
-#			4:{"Move_Type":"Damage","Value": 2,	"Next_Move":0}
-#			},
-#		"Health":20,
-#		"Sprite":"res://assets/monsters/orc.png",
-#		"Currency": 1
-#	},
-#	"shade":{	
-#		"AttackLoop":{
-#			0:{"Move_Type":"Rest","Value": null,"Next_Move":1},
-#			1:{"Move_Type":"Damage","Value": 7,"Next_Move":2},
-#			2:{"Move_Type":"Rest","Value": null,"Next_Move":3},
-#			3:{"Move_Type":"Damage","Value": 6,"Next_Move":0}
-#			},
-#		"Health":10,
-#		"Sprite":"res://assets/monsters/shade.png",
-#		"Currency": 1
-#	},
-	"snake":{
+	"slimeBuddies":{
 		"AttackLoop":{
-			0:{"Move_Type":"Block","Value": 2,"Next_Move":1},
-			1:{"Move_Type":"Mirror","Value": null,"Next_Move":2},
-			2:{"Move_Type":"Slime","Value": null,"Next_Move":0}
+			0:{"Move_Type":"Slime","Value": null,"Next_Move":1},
+			1:{"Move_Type":"Damage","Value": 3,"Next_Move":2},
+			2:{"Move_Type":"Block","Value": 3,"Next_Move":3},
+			3:{"Move_Type":"Slime","Value": null,"Next_Move":4},
+			4:{"Move_Type":"Heal","Value":5,"Next_Move":5},
+			5:{"Move_Type":"Damage","Value": 4,"Next_Move":0}
 			},
-		"Health":99,
-		"Sprite":"res://assets/monsters/snake.png",
-		"Idle":"snake_Idle",
-		"Currency": 1
+		"Health":20,
+		"Idle":"slimeBuddies_Idle",
+		"Attack":null,
+		"Damaged":null,
+		"Currency": 2
+	},
+	"slimeBoss":{
+		"AttackLoop":{
+			0:{"Move_Type":"Slime","Value": null,"Next_Move":1},
+			1:{"Move_Type":"Rage","Value": null,"Next_Move":2},
+			2:{"Move_Type":"Damage","Value": 5,"Next_Move":3},
+			3:{"Move_Type":"Slime","Value": null,"Next_Move":4},
+			4:{"Move_Type":"Damage","Value": 5,"Next_Move":0}
+			},
+		"Health":40,
+		"Idle":"slimeBoss_Idle",
+		"Attack":null,
+		"Damaged":null,
+		"Currency": 2
 	},
 	"spirit":{
 		"AttackLoop":{
@@ -59,8 +55,9 @@ var MONSTERS = {
 			3:{"Move_Type":"Damage","Value": 3,"Next_Move":0}
 			},
 		"Health":15,
-		"Sprite":"res://assets/monsters/spirit2.png",
 		"Idle":"spirit_Idle",
+		"Attack":null,
+		"Damaged":null,
 		"Currency": 1
 	},
 	"spiritCouncil":{
@@ -70,9 +67,10 @@ var MONSTERS = {
 			2:{"Move_Type":"Shade","Value": null,"Next_Move":3},
 			3:{"Move_Type":"Damage","Value": 4,"Next_Move":0}
 			},
-		"Health":25,
-		"Sprite":"res://assets/monsters/spiritbuds.png",
+		"Health":30,
 		"Idle":"spiritCouncil_Idle",
+		"Attack":null,
+		"Damaged":null,
 		"Currency": 1
 	},
 	"spiritMage":{
@@ -83,8 +81,9 @@ var MONSTERS = {
 			3:{"Move_Type":"Heal","Value":5,"Next_Move":0},
 			},
 		"Health":20,
-		"Sprite":"res://assets/monsters/spiritmage.png",
 		"Idle":"spiritMage_Idle",
+		"Attack":null,
+		"Damaged":null,
 		"Currency": 1
 	},
 	"spiritBoss":{
@@ -95,9 +94,23 @@ var MONSTERS = {
 			3:{"Move_Type":"Damage","Value": 4,"Next_Move":0}
 			},
 		"Health":40,
-		"Sprite":"res://assets/monsters/spiritBoss.png",
 		"Idle":"SpiritBoss_Idle",
+		"Attack":null,
+		"Damaged":null,
 		"Currency": 10
+	},
+	"snake":{
+		"AttackLoop":{
+			0:{"Move_Type":"Block","Value": 2,"Next_Move":1},
+			1:{"Move_Type":"Mirror","Value": null,"Next_Move":2},
+			2:{"Move_Type":"Slime","Value": null,"Next_Move":0}
+			},
+		"Health":99,
+		"Sprite":"res://assets/monsters/snake.png",
+		"Idle":"snake_Idle",
+		"Attack":null,
+		"Damaged":null,
+		"Currency": 1
 	},
 	"frostGiant":{
 		"AttackLoop":{
@@ -108,17 +121,23 @@ var MONSTERS = {
 			},
 		"Health":20,
 		"Sprite":"res://assets/monsters/frostgiant.png",
+		"Idle":null,
+		"Attack":null,
+		"Damaged":null,
 		"Currency": 2
 	},
 	"frostGuard":{
 		"AttackLoop":{
-			0:{"Move_Type":"Block","Value": 2,"Next_Move":1},
+			0:{"Move_Type":"Frost","Value": null,"Next_Move":1},
 			1:{"Move_Type":"Mirror","Value": null,"Next_Move":2},
 			2:{"Move_Type":"Block","Value": 5,"Next_Move":3},
 			3:{"Move_Type":"Mirror","Value": null,"Next_Move":0}
 			},
 		"Health":15,
 		"Sprite":"res://assets/monsters/frostgiant.png",
+		"Idle":null,
+		"Attack":null,
+		"Damaged":null,
 		"Currency": 2
 	},
 	"frostBoss":{
@@ -130,6 +149,28 @@ var MONSTERS = {
 			},
 		"Health":40,
 		"Sprite":"res://assets/monsters/frostgiant.png",
+		"Idle":null,
+		"Attack":null,
+		"Damaged":null,
+		"Currency": 20
+	},
+	"slumpoMasterOfAll":{
+		"AttackLoop":{
+			0:{"Move_Type":"Block","Value": 2,"Next_Move":1},
+			1:{"Move_Type":"Mirror","Value": null,"Next_Move":2},
+			2:{"Move_Type":"Rage","Value": null,"Next_Move":3},
+			3:{"Move_Type":"Damage","Value": 5,"Next_Move":4},
+			4:{"Move_Type":"Slime","Value": null,"Next_Move":5},
+			5:{"Move_Type":"Damage","Value": 5,"Next_Move":6},
+			6:{"Move_Type":"Shade","Value": null,"Next_Move":7},
+			7:{"Move_Type":"Damage","Value": 5,"Next_Move":8},
+			8:{"Move_Type":"Heal","Value": 10,"Next_Move":9},
+			9:{"Move_Type":"Damage","Value": 5,"Next_Move":0},
+			},
+		"Health":99,
+		"Idle":null,
+		"Attack":null,
+		"Damaged":null,
 		"Currency": 20
 	},
 	"error":{
@@ -151,7 +192,7 @@ var MONSTER_ATTACKS = {
 	"Rage":{"Sprite":"res://assets/ui/rage_attack_icon.png","Tooltip":"Next attack is 2x"},
 	"Heal":{"Sprite":"res://assets/ui/heal_attack_icon.png","Tooltip":"Gains health"},
 	"Frost":{"Sprite":"res://assets/ui/frost_attack_icon.png","Tooltip":"-1 moves next turn"},
-	"Mirror":{"Sprite":"res://assets/ui/mirror_attack_icon.png","Tooltip":"Reflects damage taken this turn"},
+	"Mirror":{"Sprite":"re	s://assets/ui/mirror_attack_icon.png","Tooltip":"Reflects damage taken this turn"},
 	"Error":{"Sprite":"res://assets/ui/error.png","Tooltip":"Tooltip not found"}
 }
 

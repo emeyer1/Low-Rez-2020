@@ -21,56 +21,56 @@ atlas = ExtResource( 12 )
 region = Rect2( 0, 0, 30, 30 )
 
 [sub_resource type="AtlasTexture" id=2]
-atlas = ExtResource( 13 )
+atlas = ExtResource( 11 )
 region = Rect2( 0, 0, 30, 30 )
 
 [sub_resource type="AtlasTexture" id=3]
-atlas = ExtResource( 9 )
+atlas = ExtResource( 13 )
 region = Rect2( 0, 0, 30, 30 )
 
 [sub_resource type="AtlasTexture" id=4]
-atlas = ExtResource( 9 )
-region = Rect2( 30, 0, 30, 30 )
-
-[sub_resource type="AtlasTexture" id=5]
-atlas = ExtResource( 14 )
-region = Rect2( 0, 0, 21, 32 )
-
-[sub_resource type="AtlasTexture" id=6]
-atlas = ExtResource( 14 )
-region = Rect2( 21, 0, 21, 32 )
-
-[sub_resource type="AtlasTexture" id=7]
-atlas = ExtResource( 14 )
-region = Rect2( 126, 0, 21, 32 )
-
-[sub_resource type="AtlasTexture" id=8]
-atlas = ExtResource( 14 )
-region = Rect2( 63, 0, 21, 32 )
-
-[sub_resource type="AtlasTexture" id=9]
-atlas = ExtResource( 14 )
-region = Rect2( 42, 0, 21, 32 )
-
-[sub_resource type="AtlasTexture" id=10]
-atlas = ExtResource( 14 )
-region = Rect2( 84, 0, 21, 32 )
-
-[sub_resource type="AtlasTexture" id=11]
-atlas = ExtResource( 14 )
-region = Rect2( 105, 0, 21, 32 )
-
-[sub_resource type="AtlasTexture" id=12]
-atlas = ExtResource( 14 )
-region = Rect2( 147, 0, 21, 32 )
-
-[sub_resource type="AtlasTexture" id=13]
 atlas = ExtResource( 10 )
 region = Rect2( 0, 0, 30, 30 )
 
-[sub_resource type="AtlasTexture" id=14]
-atlas = ExtResource( 11 )
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 9 )
 region = Rect2( 0, 0, 30, 30 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 9 )
+region = Rect2( 30, 0, 30, 30 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 14 )
+region = Rect2( 0, 0, 21, 32 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 14 )
+region = Rect2( 21, 0, 21, 32 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 14 )
+region = Rect2( 126, 0, 21, 32 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 14 )
+region = Rect2( 63, 0, 21, 32 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 14 )
+region = Rect2( 42, 0, 21, 32 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 14 )
+region = Rect2( 84, 0, 21, 32 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 14 )
+region = Rect2( 105, 0, 21, 32 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 14 )
+region = Rect2( 147, 0, 21, 32 )
 
 [sub_resource type="AtlasTexture" id=15]
 atlas = ExtResource( 15 )
@@ -93,27 +93,27 @@ animations = [ {
 }, {
 "frames": [ SubResource( 2 ) ],
 "loop": true,
+"name": "spiritMage_Idle",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 3 ) ],
+"loop": true,
 "name": "spiritCouncil_Idle",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 3 ), SubResource( 4 ) ],
-"loop": true,
-"name": "gremlin_Idle",
-"speed": 2.0
-}, {
-"frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ],
-"loop": true,
-"name": "snake_Idle",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 13 ) ],
+"frames": [ SubResource( 4 ) ],
 "loop": true,
 "name": "spirit_Idle",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 14 ) ],
+"frames": [ SubResource( 5 ), SubResource( 6 ) ],
 "loop": true,
-"name": "spiritMage_Idle",
+"name": "gremlin_Idle",
+"speed": 2.0
+}, {
+"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ) ],
+"loop": true,
+"name": "snake_Idle",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 15 ), SubResource( 16 ), SubResource( 15 ), SubResource( 17 ) ],
@@ -155,7 +155,7 @@ tracks/0/keys = {
 "values": [ "20", "69", "30", "42", "10", "3", "10", "5", "12", "17", "1" ]
 }
 
-[sub_resource type="Animation" id=22]
+[sub_resource type="Animation" id=21]
 resource_name = "Died"
 tracks/0/type = "value"
 tracks/0/path = NodePath("AnimatedSprite:visible")
@@ -170,8 +170,7 @@ tracks/0/keys = {
 "values": [ false, true, false, true, false ]
 }
 
-[sub_resource type="Animation" id=21]
-resource_name = "Entrance"
+[sub_resource type="Animation" id=22]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("AnimatedSprite:scale")
@@ -307,7 +306,7 @@ anims/HealthHover = SubResource( 19 )
 anims/TakeDamage = SubResource( 20 )
 
 [node name="SpriteAnPlayer" type="AnimationPlayer" parent="."]
-anims/Died = SubResource( 22 )
-anims/Entrance = SubResource( 21 )
+anims/Died = SubResource( 21 )
+anims/Entrance = SubResource( 22 )
 [connection signal="mouse_entered" from="STATS/Attack/Control" to="." method="_on_Control_mouse_entered"]
 [connection signal="mouse_exited" from="STATS/Attack/Control" to="." method="_on_Control_mouse_exited"]

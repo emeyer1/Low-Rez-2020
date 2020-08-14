@@ -1,10 +1,30 @@
-[gd_scene format=2]
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/font/Shop.tres" type="DynamicFont" id=1]
+[ext_resource path="res://assets/items/item_sold.png" type="Texture" id=2]
+[ext_resource path="res://ItemBase.gd" type="Script" id=3]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = -50.0
 margin_bottom = -50.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 7, 7 )
+
+[node name="Cost" type="Label" parent="."]
+margin_left = 4.0
+margin_top = 15.0
+margin_right = 12.0
+margin_bottom = 20.0
+custom_fonts/font = ExtResource( 1 )
+text = "00"
+align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -12,6 +32,14 @@ __meta__ = {
 [node name="TextureButton" type="TextureButton" parent="."]
 margin_right = 14.0
 margin_bottom = 14.0
+toggle_mode = true
+texture_disabled = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Tooltip" type="Node2D" parent="."]
+z_index = 4
+[connection signal="button_up" from="TextureButton" to="." method="_on_TextureButton_button_up"]
+[connection signal="mouse_entered" from="TextureButton" to="." method="_on_TextureButton_mouse_entered"]
+[connection signal="mouse_exited" from="TextureButton" to="." method="_on_TextureButton_mouse_exited"]

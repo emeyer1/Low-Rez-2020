@@ -6,44 +6,74 @@
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 4 )
-region = Rect2( 64, 0, 64, 64 )
+region = Rect2( 384, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 4 )
-region = Rect2( 320, 0, 64, 64 )
+region = Rect2( 0, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 4 )
-region = Rect2( 192, 0, 64, 64 )
+region = Rect2( 256, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 4 )
-region = Rect2( 320, 0, 64, 64 )
+region = Rect2( 128, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 4 )
-region = Rect2( 128, 0, 64, 64 )
+region = Rect2( 320, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 4 )
-region = Rect2( 384, 0, 64, 64 )
+region = Rect2( 192, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 4 )
-region = Rect2( 0, 0, 64, 64 )
+region = Rect2( 64, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 4 )
-region = Rect2( 256, 0, 64, 64 )
+region = Rect2( 320, 0, 64, 64 )
 
 [sub_resource type="SpriteFrames" id=9]
 animations = [ {
 "frames": [ SubResource( 1 ) ],
+"loop": true,
+"name": "Page2",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 2 ) ],
+"loop": false,
+"name": "StartShow",
+"speed": 10.0
+}, {
+"frames": [ SubResource( 3 ) ],
+"loop": true,
+"name": "ShowItem4",
+"speed": 10.0
+}, {
+"frames": [ SubResource( 4 ) ],
+"loop": false,
+"name": "ShowItem2",
+"speed": 10.0
+}, {
+"frames": [ SubResource( 5 ) ],
+"loop": true,
+"name": "EndShow",
+"speed": 10.0
+}, {
+"frames": [ SubResource( 6 ) ],
+"loop": false,
+"name": "ShowItem3",
+"speed": 10.0
+}, {
+"frames": [ SubResource( 7 ) ],
 "loop": false,
 "name": "ShowItem1",
 "speed": 10.0
 }, {
-"frames": [ SubResource( 2 ) ],
+"frames": [ SubResource( 8 ) ],
 "loop": true,
 "name": "Page1",
 "speed": 5.0
@@ -52,41 +82,11 @@ animations = [ {
 "loop": true,
 "name": "NA",
 "speed": 5.0
-}, {
-"frames": [ SubResource( 3 ) ],
-"loop": false,
-"name": "ShowItem3",
-"speed": 10.0
-}, {
-"frames": [ SubResource( 4 ) ],
-"loop": true,
-"name": "EndShow",
-"speed": 10.0
-}, {
-"frames": [ SubResource( 5 ) ],
-"loop": false,
-"name": "ShowItem2",
-"speed": 10.0
-}, {
-"frames": [ SubResource( 6 ) ],
-"loop": true,
-"name": "Page2",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 7 ) ],
-"loop": false,
-"name": "StartShow",
-"speed": 10.0
-}, {
-"frames": [ SubResource( 8 ) ],
-"loop": true,
-"name": "ShowItem4",
-"speed": 10.0
 } ]
 
 [node name="Control" type="Control"]
-margin_right = 40.0
-margin_bottom = 53.0
+margin_right = 64.0
+margin_bottom = 64.0
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -192,8 +192,9 @@ __meta__ = {
 }
 
 [node name="Items" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_right = 64.0
+margin_bottom = 64.0
+mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -203,23 +204,30 @@ margin_left = 6.0
 margin_top = 9.0
 margin_right = 20.0
 margin_bottom = 23.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Item2" type="Control" parent="Items"]
 margin_left = 23.0
 margin_top = 9.0
 margin_right = 37.0
 margin_bottom = 23.0
+mouse_filter = 2
 
 [node name="Item3" type="Control" parent="Items"]
 margin_left = 6.0
 margin_top = 32.0
 margin_right = 20.0
 margin_bottom = 46.0
+mouse_filter = 2
 
 [node name="Item4" type="Control" parent="Items"]
 margin_left = 23.0
 margin_top = 32.0
 margin_right = 37.0
 margin_bottom = 46.0
+mouse_filter = 2
 [connection signal="button_up" from="UI/Button" to="." method="_on_Button_button_up"]
 [connection signal="button_down" from="UI/ToPage2" to="." method="_on_ToPage2_button_down"]

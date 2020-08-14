@@ -3,8 +3,6 @@ extends Control
 signal item_selected(tile_item, item_id,rarity)
 
 
-		
-
 var id
 var tile
 var giving_vec = [0,0,0,0]

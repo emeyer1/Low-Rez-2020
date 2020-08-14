@@ -5,6 +5,7 @@ var random = RandomNumberGenerator.new()
 signal update_currency(new_currency)
 signal shop_closed()
 onready var ShopTileBase = load("res://ShopTile.tscn")
+onready var ShopItemBase = load("res://ItemBase.tscn")
 var currency = 9 #Need to get currency in base
 var page = 1
 var deck_counts = [0,0,0,0]
@@ -23,14 +24,30 @@ func _ready():
 		
 		random.randomize()
 		var tileItem = ShopTileBase.instance()
-		tileItem.id = random.randi_range(0,3)
+		#Add randomizer for common/rare?
 		tileItem.rarity = "common"
+			
+		tileItem.id = random.randi_range(0,len(ItemDb.SHOP_TILES[tileItem.rarity])-1)
 		tileItem.connect("item_selected",self,"_on_item_selected")
 		i.add_child(tileItem)
 		$UI/AnimatedSprite.play(str("ShowItem",j+1))
 		yield($UI/AnimatedSprite,"animation_finished")
 		j += 1
 
+	j = 0
+	for k in $Items.get_children():
+
+		random.randomize()
+		var Item = ShopItemBase.instance()
+		#Update ID fetcher
+		Item.id = "apple"
+		
+		
+		Item.connect("item_selected",self,"_on_not_tile_item_selected")
+		k.add_child(Item)
+		k.visible = false
+		j += 1
+	
 	
 	$UI/Currency.text = str(currency)
 	$UI/Currency.visible = true
@@ -55,6 +72,18 @@ func _on_item_selected(tile_item, item_id,rarity):
 			emit_signal("update_currency", currency)
 			deck_counts = update_deck_count()
 
+
+func _on_not_tile_item_selected(item,id):
+	var shop_item = ItemDb.get_item(id)
+	if currency >= shop_item["Cost"]:
+		item.get_node("TextureButton").disabled = true
+		item.disconnect("item_selected", self, "_on_not_tile_item_selected")
+		currency -= shop_item["Cost"]
+		$UI/Currency.text = str(currency)
+		emit_signal("update_currency", currency)
+		
+
+
 func _on_Button_button_up():
 	emit_signal("shop_closed")
 	self.queue_free()
@@ -65,12 +94,16 @@ func _on_ToPage2_button_down():
 		$UI/AnimatedSprite.play("Page2")
 		for i in $TileItems.get_children():
 			i.visible = false
+		for item in $Items.get_children():
+			item.visible = true
 
 		page = 2
 	elif page == 2:
 		$UI/AnimatedSprite.play("Page1")
 		for i in $TileItems.get_children():
 			i.visible = true
+		for item in $Items.get_children():
+			item.visible = false
 		page = 1
 
 
