@@ -27,15 +27,3 @@ func _on_Button_button_down():
 		Deck.discard_all()
 		Deck.reshuffle_discard()
 		mainMenu()
-
-
-func _on_Button2_button_down():
-	if !once:
-		once = true
-		restart()
-
-func restart():
-	Deck.discard_all()
-	Deck.reshuffle_discard()
-	get_tree().paused = false
-	get_tree().reload_current_scene()

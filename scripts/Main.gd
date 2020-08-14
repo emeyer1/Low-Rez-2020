@@ -32,7 +32,7 @@ var currentAilment = null
 func _ready():
 	update_stats()
 	initialize_innkeeper()
-	set_Tutorial()
+	set_Day()
 
 func _process(delta):
 	#Set the swap count remaining
@@ -52,21 +52,29 @@ func set_Tutorial():
 	
 	
 	#ANIMATION tutorial
-	$Background/Tavern.play("TutorialMorning")
-	$AudioStreamPlayer.set_stream(load("res://assets/sound/Tavern Music_Main Menu.wav"))
-	$AudioStreamPlayer.play()
-	yield($AudioStreamPlayer,"finished")
+	$Background/Tavern.play("Morning")
+	yield($Background/Tavern,"animation_finished")
+#	$AudioStreamPlayer.set_stream(load("res://assets/sound/Tavern Music_Main Menu.wav"))
+#	$AudioStreamPlayer.play()
+#	yield($AudioStreamPlayer,"finished")
+#	$AudioStreamPlayer.play()
+	
+	
 	
 	$Background/Tavern.play("MerchantEntrance")
+	
 	yield($Background/Tavern,"animation_finished")
 	#Play idle animation of merchant and yield until dialog is over.
+	$Background/Tavern.play("OopsNoMoney")
+	yield($Background/Tavern,"animation_finished")
 	 
+	$ViewportContainer.visible = true
 	var tutorial = TutorialScreen.instance()
 	tutorial.connect("tutorial_closed",self,"_on_tutorial_closed")
 	$ShopPosition.add_child(tutorial)
 	yield($ShopPosition.get_child(0),"tutorial_closed")
 	
-	$ViewportContainer.visible = true
+	
 	$ViewportContainer/Viewport/TileGrid.set_mouse_input(Control.MOUSE_FILTER_STOP)
 	
 	set_Night()
@@ -128,7 +136,7 @@ func _on_shop_closed():
 	emit_signal("turn_start")
 	
 func _on_currency_updated(currency):
-	IKcurrency = currency
+	IKcurrency = min(currency,99)
 	$UI/Currency/Label.text = str(IKcurrency)
 	update_stats()
 	

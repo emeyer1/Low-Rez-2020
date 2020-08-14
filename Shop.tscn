@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Shop.gd" type="Script" id=1]
 [ext_resource path="res://assets/font/Currency.tres" type="DynamicFont" id=2]
+[ext_resource path="res://assets/sound/page-flip-01a.wav" type="AudioStream" id=3]
 [ext_resource path="res://assets/background/shopBackground.png" type="Texture" id=4]
 
 [sub_resource type="AtlasTexture" id=1]
@@ -232,5 +233,8 @@ mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
 [connection signal="button_up" from="UI/Button" to="." method="_on_Button_button_up"]
 [connection signal="button_down" from="UI/ToPage2" to="." method="_on_ToPage2_button_down"]

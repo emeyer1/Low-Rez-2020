@@ -93,6 +93,7 @@ func _on_Button_button_up():
 
 func _on_ToPage2_button_down():
 	if page == 1:
+		$AudioStreamPlayer.play()
 		$UI/AnimatedSprite.play("Page2")
 		for i in $TileItems.get_children():
 			i.visible = false
@@ -101,6 +102,7 @@ func _on_ToPage2_button_down():
 
 		page = 2
 	elif page == 2:
+		$AudioStreamPlayer.play()
 		$UI/AnimatedSprite.play("Page1")
 		for i in $TileItems.get_children():
 			i.visible = true

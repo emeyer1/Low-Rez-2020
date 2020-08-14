@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://assets/font/Tooltip.tres" type="DynamicFont" id=1]
+[ext_resource path="res://assets/font/GameOver.tres" type="DynamicFont" id=1]
 [ext_resource path="res://scripts/GameOverScreen.gd" type="Script" id=2]
+[ext_resource path="res://assets/background/main_menu_button.png" type="Texture" id=3]
 
 [node name="GameOver" type="Node2D"]
 pause_mode = 2
@@ -9,39 +10,25 @@ z_index = 10
 script = ExtResource( 2 )
 
 [node name="Label" type="Label" parent="."]
-margin_left = 15.8975
-margin_top = 7.98713
-margin_right = 51.8975
-margin_bottom = 13.9871
+margin_left = 16.676
+margin_top = 5.56696
+margin_right = 54.676
+margin_bottom = 24.567
 custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "game over"
+text = "game 
+over"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button" type="Button" parent="."]
-margin_left = 10.5002
-margin_top = 17.6279
-margin_right = 55.5002
-margin_bottom = 37.6279
-custom_fonts/font = ExtResource( 1 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "main menu"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Button2" type="Button" parent="."]
-margin_left = 10.7694
-margin_top = 41.7693
-margin_right = 55.7694
-margin_bottom = 61.7693
-custom_fonts/font = ExtResource( 1 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "restart"
+[node name="Button" type="TextureButton" parent="."]
+margin_left = 15.162
+margin_top = 35.648
+margin_right = 49.162
+margin_bottom = 54.648
+texture_normal = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 [connection signal="button_down" from="Button" to="." method="_on_Button_button_down"]
-[connection signal="button_down" from="Button2" to="." method="_on_Button2_button_down"]
