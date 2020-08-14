@@ -24,7 +24,6 @@ func _ready():
 		iter += 1
 		
 	
-	print(giving_vec)
 	
 func _on_Button_button_up():
 	emit_signal("item_selected", self, id,rarity)

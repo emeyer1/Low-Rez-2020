@@ -4,10 +4,13 @@ extends Node
 
 var SHOP_TILES = {
 	"common":{
-		0:{"n":2,"Giving":["fire","fire"],"Getting":["empty","empty"],"Cost":5},
-		1:{"n":1,"Giving":["fire"],"Getting":["empty"],"Cost":4},
+		0:{"n":2,"Giving":["empty","fire"],"Getting":["earth","earth"],"Cost":5},
+		1:{"n":1,"Giving":["empty"],"Getting":["earth"],"Cost":4},
 		2:{"n":2,"Giving":["fire","fire"],"Getting":["earth","autoAttack"],"Cost":2},
-		3:{"n":1,"Giving":["fire"],"Getting":["earth"],"Cost":1}
+		3:{"n":1,"Giving":["fire"],"Getting":["earth"],"Cost":1},
+		4:{"n":1,"Giving":["empty"],"Getting":["fire"],"Cost":4},
+		5:{"n":1,"Giving":["empty"],"Getting":["autoAttack"],"Cost":2},
+		6:{"n":1,"Giving":["autoAttack","earth"],"Getting":["empty","fire"],"Cost":2},
 	},
 	"rare":{
 		0:{"n":1,"Giving":["fire"],"Getting":["earth"],"Cost":1}
