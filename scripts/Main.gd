@@ -40,6 +40,7 @@ func set_Day():
 
 	$ViewportContainer/Viewport/TileGrid.set_mouse_input(Control.MOUSE_FILTER_IGNORE)
 	IKhealth = IKhealth_full
+	$UI/health_icon/InnkeeperHealth.text = str(IKhealth)
 	armor = 0
 	update_armor()
 	
@@ -141,7 +142,7 @@ func _on_TileGrid_turn_ended(activations):
 		
 		set_activated_tiles(i.activated_tiles)
 		$ViewportContainer/Viewport/AttackTween.start()
-		yield(get_tree().create_timer(1.5), "timeout")
+		yield($ViewportContainer/Viewport/AttackTween, "tween_all_completed")
 		match i["tileType"]:
 			"autoAttack":
 				damage += i["length"] * 1
@@ -156,7 +157,8 @@ func _on_TileGrid_turn_ended(activations):
 				print("armor for " + str(new_armor))
 				
 		#User deals damage
-		dead = $MonsterSpawn.get_child(0).update_health(max(damage-CurrentMonster.blockAmount,0))
+		if(!dead):
+			dead = $MonsterSpawn.get_child(0).update_health(max(damage-CurrentMonster.blockAmount,0))
 		damage = 0
 		update_armor()
 		unset_activated_tiles(i.activated_tiles)
@@ -164,7 +166,7 @@ func _on_TileGrid_turn_ended(activations):
 	previous_turn = turn_count
 	turn_count += 1
 	
-	if CurrentMonster:
+	if !dead:
 		if CurrentMonster.Health > 0:
 			monster_turn()
 			
@@ -218,6 +220,8 @@ func set_activated_tiles(tiles):
 func unset_activated_tiles(tiles):
 	for tile in tiles:
 		$ViewportContainer/Viewport/TileGrid.tiles[tile.x][tile.y].button.get_material().set_shader_param("isActivated", false)
+		$ViewportContainer/Viewport/TileGrid.tiles[tile.x][tile.y].button.get_material().set_shader_param("activeAmount", 0)
+		$ViewportContainer/Viewport/AttackTween.remove_all()
 
 func monster_turn():
 	$UI/swap_icon/Label.add_color_override("font_color", Color("fbf236"))
