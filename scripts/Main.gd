@@ -19,7 +19,7 @@ var turn_count = 0
 var previous_turn = 0
 var damage = 0
 var armor = 0
-var IKcurrency = 2
+var IKcurrency = 20
 var ailment = null
 var currentAilment = null
 

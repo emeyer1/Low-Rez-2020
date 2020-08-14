@@ -4,9 +4,9 @@ extends Node
 
 var SHOP_TILES = {
 	"common":{
-		0:{"n":2,"Giving":["fire","earth"],"Getting":["empty","empty"],"Cost":5},
-		1:{"n":1,"Giving":["earth"],"Getting":["empty"],"Cost":4},
-		2:{"n":2,"Giving":["empty","fire"],"Getting":["earth","autoattack"],"Cost":2},
+		0:{"n":2,"Giving":["fire","fire"],"Getting":["empty","empty"],"Cost":5},
+		1:{"n":1,"Giving":["fire"],"Getting":["empty"],"Cost":4},
+		2:{"n":2,"Giving":["fire","fire"],"Getting":["earth","autoAttack"],"Cost":2},
 		3:{"n":1,"Giving":["fire"],"Getting":["earth"],"Cost":1}
 	},
 	"rare":{
@@ -69,7 +69,7 @@ var ITEMS = {
 var TILE_SPRITES = {
 	"fire":"res://assets/tiles/fireblock.png",
 	"earth": "res://assets/tiles/earthblock.png",
-	"autoattack": "res://assets/tiles/autoattack.png",
+	"autoAttack": "res://assets/tiles/autoattack.png",
 	"empty": "res://assets/tiles/block2.png",
 	"error": "res://assets/tiles/water.png"
 }

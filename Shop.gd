@@ -4,27 +4,29 @@ var random = RandomNumberGenerator.new()
 
 signal update_currency(new_currency)
 signal shop_closed()
-onready var ShopItemBase = load("res://ShopItem.tscn")
+onready var ShopTileBase = load("res://ShopTile.tscn")
 var currency = 9 #Need to get currency in base
 var page = 1
+var deck_counts = [0,0,0,0]
 
 func _ready():
-	
+	deck_counts = update_deck_count()
 	$UI/Currency.visible = false
 	
 	#ANIMATION Shop Spawn
 	$UI/AnimatedSprite.play("StartShow")
 	yield($UI/AnimatedSprite,"animation_finished")
 	
+	
 	var j = 0
 	for i in $TileItems.get_children():
+		
 		random.randomize()
-		var item = ShopItemBase.instance()
-		item.id = random.randi_range(0,3)
-		item.rarity = "common"
-
-		item.connect("item_selected",self,"_on_item_selected")
-		i.add_child(item)
+		var tileItem = ShopTileBase.instance()
+		tileItem.id = random.randi_range(0,3)
+		tileItem.rarity = "common"
+		tileItem.connect("item_selected",self,"_on_item_selected")
+		i.add_child(tileItem)
 		$UI/AnimatedSprite.play(str("ShowItem",j+1))
 		yield($UI/AnimatedSprite,"animation_finished")
 		j += 1
@@ -36,37 +38,22 @@ func _ready():
 	$UI/AnimatedSprite.play("EndShow")
 	yield($UI/AnimatedSprite,"animation_finished")
 	
-#	for shopItemPos in $ShopItems.get_children():
-#		var ShopItem = ShopItemBase.instance()
-#		ShopItem.id = "ring"
-#		shopItemPos.add_child(ShopItem)
-#	var ShopItem1 = ShopItemBase.instance()
-#	ShopItem1.id = "fire"
-#	ShopItem1.connect("item_selected", self, "_on_item_selected")
-#	$ShopItems/ShopItem1Pos.add_child(ShopItem1)
-#	var ShopItem2 = ShopItemBase.instance()
-#	ShopItem2.connect("item_selected", self, "_on_item_selected")
-#	ShopItem2.id = "earth"
-#	$ShopItems/ShopItem2Pos.add_child(ShopItem2)
-#	var ShopItem3 = ShopItemBase.instance()
-#	ShopItem3.connect("item_selected", self, "_on_item_selected")
-#	ShopItem3.id = "flute"
-#	$ShopItems/ShopItem3Pos.add_child(ShopItem3)
-	
 
-
-func _on_item_selected(shop_item, item_id,rarity):
-	var item = ItemDb.get_shop_tile(rarity,item_id)
-	if currency >= item["Cost"]:
-		#match item["Type"]:
-			#"item":
-		#shop_item.get_node("Button").disabled = true
-		#shop_item.disconnect("item_selected", self, "_on_item_selected")
-				#Deck.add_item(item_id)
-		#shop_item.disconnect("item_selected", self, "_on_item_selected")
-		currency -= item["Cost"]
-		$UI/Currency.text = str(currency)
-		emit_signal("update_currency", currency)
+func _on_item_selected(tile_item, item_id,rarity):
+	var tile = ItemDb.get_shop_tile(rarity,item_id)
+	if currency >= tile["Cost"]:
+		if compare_arrays(deck_counts, tile_item.giving_vec):
+			tile_item.get_node("Button").disabled = true
+			tile_item.disconnect("item_selected", self, "_on_item_selected")
+			for i in tile["Giving"]:
+				Deck.remove_tile(i)
+			for j in tile["Getting"]:
+				Deck.add_tile(j)
+			#shop_item.disconnect("item_selected", self, "_on_item_selected")
+			currency -= tile["Cost"]
+			$UI/Currency.text = str(currency)
+			emit_signal("update_currency", currency)
+			deck_counts = update_deck_count()
 
 func _on_Button_button_up():
 	emit_signal("shop_closed")
@@ -85,3 +72,18 @@ func _on_ToPage2_button_down():
 		for i in $TileItems.get_children():
 			i.visible = true
 		page = 1
+
+
+func update_deck_count():
+	var iter = 0
+	var deck_array = [0,0,0,0]
+	for i in Deck.deck:
+		deck_array[iter] = Deck.get_tile(Deck.inplay,i["tileType"]).count + Deck.get_tile(Deck.deck,i["tileType"]).count
+		iter += 1
+	return deck_array
+
+func compare_arrays(array1,array2):
+	for i in len(array1):
+		if array1[i] < array2[i]:
+			return false
+	return true
