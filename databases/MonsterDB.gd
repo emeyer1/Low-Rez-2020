@@ -71,7 +71,7 @@ var MONSTERS = {
 		"Idle":"spiritCouncil_Idle",
 		"Attack":null,
 		"Damaged":null,
-		"Currency": 1
+		"Currency": 2
 	},
 	"spiritMage":{
 		"AttackLoop":{
@@ -187,7 +187,7 @@ var MONSTER_ATTACKS = {
 	"Damage":{"Sprite":"res://assets/ui/attack_icon.png","Tooltip":"Deals damage to you"},
 	"Block":{"Sprite":"res://assets/ui/block_attack_icon.png","Tooltip":"Blocks an amount of incoming damage"},
 	"Slime":{"Sprite":"res://assets/ui/splat_attack_icon.png","Tooltip":"Makes some tiles immovable for 1 turn"},
-	"Shade":{"Sprite":"res://assets/ui/shade_attack_icon.png","Tooltip":"Conceals some tiles till you move"},
+	"Shade":{"Sprite":"res://assets/ui/shade_attack_icon.png","Tooltip":"Will conceals some tiles till you move"},
 	"Rest":{"Sprite":"res://assets/ui/rest_attack_icon.png","Tooltip":"It is bored of you"},
 	"Rage":{"Sprite":"res://assets/ui/rage_attack_icon.png","Tooltip":"Next attack is 2x"},
 	"Heal":{"Sprite":"res://assets/ui/heal_attack_icon.png","Tooltip":"Gains health"},

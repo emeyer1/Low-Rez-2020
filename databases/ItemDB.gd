@@ -24,7 +24,7 @@ var ITEMS = {
 	"apple":{
 		"ItemName": "apple",
 		"Cost": 5,
-		"Sprite":"res://assets/items/test_item.png",
+		"Sprite":"res://assets/items/apple.png",
 		"Tooltip":"+5 Health",
 		"Effect":[{"Health":5}]
 	},
@@ -46,9 +46,10 @@ var ITEMS = {
 		"ItemName": "sword",
 		"Cost": 10,
 		"Sprite":"res://assets/items/sword.png",
-		"Tooltip":"Basic Attack lineups +1 dmg",
+		"Tooltip":"Basic Attack lineups: +1 dmg",
 		"Effect":[{"AAdmg":1}]
 	}
+	#Item for like 3, higher chance of rare items in shop. 
 }
 
 var TILE_SPRITES = {

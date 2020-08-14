@@ -15,7 +15,7 @@ var hover_time = 0
 var tt_spawned = 0
 
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
 	item = ItemDb.get_item(id)
 	$Sprite.texture = load(item["Sprite"])
@@ -40,9 +40,6 @@ func _process(delta):
 			$Tooltip.get_child(0).queue_free()
 			tt_spawned = 0
 			hover_time = 0 	
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
 
 
 func _on_TextureButton_mouse_entered():

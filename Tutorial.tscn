@@ -1,0 +1,63 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Tutorial.gd" type="Script" id=1]
+[ext_resource path="res://assets/background/tutorial.png" type="Texture" id=2]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 2 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 2 )
+region = Rect2( 128, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 2 )
+region = Rect2( 192, 0, 64, 64 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"loop": true,
+"name": "Page1",
+"speed": 5.0
+} ]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 32, 32 )
+frames = SubResource( 5 )
+animation = "Page1"
+
+[node name="Next" type="TextureButton" parent="."]
+margin_left = 50.0
+margin_top = 50.0
+margin_right = 59.0
+margin_bottom = 59.0
+rect_pivot_offset = Vector2( -13, -2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Previous" type="TextureButton" parent="."]
+margin_left = 7.0
+margin_top = 50.0
+margin_right = 15.0
+margin_bottom = 59.0
+rect_pivot_offset = Vector2( -13, -2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="button_up" from="Next" to="." method="_on_Next_button_up"]
+[connection signal="button_up" from="Previous" to="." method="_on_Previous_button_up"]

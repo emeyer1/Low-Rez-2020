@@ -4,6 +4,7 @@ signal turn_start
 
 onready var MonsterBase = load("res://Monster.tscn")
 onready var ShopScreen = load("res://Shop.tscn")
+onready var TutorialScreen = load("res://Tutorial.tscn")
 
 
 var random = RandomNumberGenerator.new()
@@ -31,7 +32,7 @@ var currentAilment = null
 func _ready():
 	update_stats()
 	initialize_innkeeper()
-	set_Day()
+	set_Tutorial()
 
 func _process(delta):
 	#Set the swap count remaining
@@ -40,6 +41,38 @@ func _process(delta):
 	#Once turn ends, monster goes. Right now it just uses a random attack amount from the MonsterDB.
 	#Handle attacks as a dict that are then matched? Damage:3, Blocks: 5, Row:1, Heal:10 etc.
 
+func set_Tutorial():
+	$ViewportContainer/Viewport/TileGrid.set_mouse_input(Control.MOUSE_FILTER_IGNORE)
+	$ViewportContainer.visible = false
+	IKhealth = IKhealth_full
+	$UI/health_icon/InnkeeperHealth.text = str(IKhealth)
+	armor = max(armor_base,0)
+	update_armor()
+	
+	
+	
+	#ANIMATION tutorial
+	$Background/Tavern.play("TutorialMorning")
+	$AudioStreamPlayer.set_stream(load("res://assets/sound/Tavern Music_Main Menu.wav"))
+	$AudioStreamPlayer.play()
+	yield($AudioStreamPlayer,"finished")
+	
+	$Background/Tavern.play("MerchantEntrance")
+	yield($Background/Tavern,"animation_finished")
+	#Play idle animation of merchant and yield until dialog is over.
+	 
+	var tutorial = TutorialScreen.instance()
+	tutorial.connect("tutorial_closed",self,"_on_tutorial_closed")
+	$ShopPosition.add_child(tutorial)
+	yield($ShopPosition.get_child(0),"tutorial_closed")
+	
+	$ViewportContainer.visible = true
+	$ViewportContainer/Viewport/TileGrid.set_mouse_input(Control.MOUSE_FILTER_STOP)
+	
+	set_Night()
+	
+func _on_tutorial_closed():
+	pass
 
 func set_Day():
 
