@@ -1,8 +1,88 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Shop.gd" type="Script" id=1]
 [ext_resource path="res://assets/font/Currency.tres" type="DynamicFont" id=2]
-[ext_resource path="res://assets/font/Shop.tres" type="DynamicFont" id=3]
+[ext_resource path="res://assets/background/shopBackground.png" type="Texture" id=4]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 4 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 4 )
+region = Rect2( 320, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 4 )
+region = Rect2( 384, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 4 )
+region = Rect2( 128, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 4 )
+region = Rect2( 256, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 4 )
+region = Rect2( 192, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 4 )
+region = Rect2( 320, 0, 64, 64 )
+
+[sub_resource type="SpriteFrames" id=9]
+animations = [ {
+"frames": [ SubResource( 1 ) ],
+"loop": false,
+"name": "ShowItem1",
+"speed": 10.0
+}, {
+"frames": [ SubResource( 2 ) ],
+"loop": true,
+"name": "Page1",
+"speed": 5.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "NA",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 3 ) ],
+"loop": false,
+"name": "StartShow",
+"speed": 10.0
+}, {
+"frames": [ SubResource( 4 ) ],
+"loop": true,
+"name": "Page2",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 5 ) ],
+"loop": false,
+"name": "ShowItem2",
+"speed": 10.0
+}, {
+"frames": [ SubResource( 6 ) ],
+"loop": true,
+"name": "ShowItem4",
+"speed": 10.0
+}, {
+"frames": [ SubResource( 7 ) ],
+"loop": false,
+"name": "ShowItem3",
+"speed": 10.0
+}, {
+"frames": [ SubResource( 8 ) ],
+"loop": true,
+"name": "EndShow",
+"speed": 10.0
+} ]
 
 [node name="Control" type="Control"]
 margin_right = 40.0
@@ -20,11 +100,22 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ColorRect" type="ColorRect" parent="UI"]
-margin_right = 64.0
-margin_bottom = 64.0
-mouse_filter = 2
-color = Color( 0.6, 0.509804, 0.380392, 1 )
+[node name="Sprite" type="Sprite" parent="UI"]
+visible = false
+position = Vector2( 32, 32 )
+texture = ExtResource( 4 )
+hframes = 7
+frame = 5
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="UI"]
+position = Vector2( 32, 32 )
+frames = SubResource( 9 )
+animation = "EndShow"
+
+[node name="Button" type="TextureButton" parent="UI"]
+modulate = Color( 0.168627, 0.129412, 0.0705882, 1 )
+margin_right = 7.0
+margin_bottom = 7.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -32,31 +123,27 @@ __meta__ = {
 [node name="Currency" type="Label" parent="UI"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 53.0
-margin_top = 3.0
-margin_bottom = -56.0
+margin_top = 59.0
+margin_right = -50.0
 custom_fonts/font = ExtResource( 2 )
 custom_colors/font_color = Color( 0.360784, 0.141176, 0.443137, 1 )
 custom_colors/font_outline_modulate = Color( 0.639216, 0.054902, 0.654902, 1 )
-text = "4"
-align = 2
+text = "99"
+align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button" type="Button" parent="UI"]
-margin_left = 32.0
+[node name="ToPage2" type="TextureButton" parent="UI"]
+margin_left = 30.0
 margin_top = 53.0
-margin_right = 64.0
-margin_bottom = 64.0
-custom_fonts/font = ExtResource( 3 )
-text = "LEAVE"
-flat = true
+margin_right = 38.0
+margin_bottom = 62.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ShopItems" type="Control" parent="."]
+[node name="TileItems" type="Control" parent="."]
 margin_right = 64.0
 margin_bottom = 64.0
 mouse_filter = 2
@@ -64,33 +151,44 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ShopItem1Pos" type="Control" parent="ShopItems"]
-margin_left = 1.0
-margin_top = 14.0
-margin_right = 20.0
-margin_bottom = 38.0
+[node name="ShopTilePos1" type="Control" parent="TileItems"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 38.0
+margin_bottom = 16.0
 mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ShopItem2Pos" type="Control" parent="ShopItems"]
-margin_left = 21.0
-margin_top = 14.0
-margin_right = 41.0
-margin_bottom = 38.0
+[node name="ShopTilePos2" type="Control" parent="TileItems"]
+margin_left = 7.0
+margin_top = 19.0
+margin_right = 38.0
+margin_bottom = 28.0
 mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ShopItem3Pos" type="Control" parent="ShopItems"]
-margin_left = 42.0
-margin_top = 14.0
-margin_right = 62.0
-margin_bottom = 38.0
+[node name="ShopTilePos3" type="Control" parent="TileItems"]
+margin_left = 7.0
+margin_top = 31.0
+margin_right = 38.0
+margin_bottom = 40.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ShopTilePos4" type="Control" parent="TileItems"]
+margin_left = 7.0
+margin_top = 43.0
+margin_right = 38.0
+margin_bottom = 52.0
 mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 [connection signal="button_up" from="UI/Button" to="." method="_on_Button_button_up"]
+[connection signal="button_down" from="UI/ToPage2" to="." method="_on_ToPage2_button_down"]

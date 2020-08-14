@@ -39,7 +39,8 @@ var tt_spawned = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#initialize idle animation
+	#enter animation
+	$SpriteAnPlayer.play("Entrance")
 	
 	
 	#Initialize the monster
@@ -115,6 +116,10 @@ func update_health(amount):
 
 func maybe_dead():
 	if Health <= 0:
+		$AnimatedSprite.stop()
+		$STATS.visible = false
+		$SpriteAnPlayer.play("Died")
+		yield($SpriteAnPlayer,"animation_finished")
 		emit_signal("monster_dead",currency)
 		return true
 	return false

@@ -1,31 +1,34 @@
 extends Control
 
-signal item_selected(shop_item, item_id,rarity)
+signal item_selected(tile_item, item_id,rarity)
 
 
 		
 
 var id
 var tile
+var giving_vec = [0,0,0,0]
 export var type = "tile"
 export var rarity = "common"
 
 func _ready():
-	which_item(type,rarity)
+	get_tile(rarity,id)
 	
-
-	#$Button/Cost.text = str(item["Currency"])
-	#$Button.hint_tooltip = item["Tooltip"]
-	#print(len("RR"))
+	var iter = 0
+	for i in Deck.deck:
+		var count = 0
+		for j in tile["Giving"]:
+			if j == i["tileType"]:
+				count = count+1
+		giving_vec[iter] = count
+		iter += 1
+		
 	
-	
+	print(giving_vec)
 	
 func _on_Button_button_up():
 	emit_signal("item_selected", self, id,rarity)
-	
-func which_item(type,rarity):
-	if type == "tile":
-		get_tile(rarity,id)
+
 
 func get_tile(rarity,id):
 	match rarity:
@@ -35,6 +38,8 @@ func get_tile(rarity,id):
 			$shopTileFrame.modulate = "5b6ee1"
 	
 	tile = ItemDb.get_shop_tile(rarity,id)
+
+	
 	$Cost.text = str(tile["Cost"])
 	
 	match tile["n"]:

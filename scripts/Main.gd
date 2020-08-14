@@ -19,14 +19,14 @@ var turn_count = 0
 var previous_turn = 0
 var damage = 0
 var armor = 0
-var IKcurrency = 2
+var IKcurrency = 20
 var ailment = null
 var currentAilment = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	initialize_innkeeper()
-	set_Night()
+	set_Day()
 
 func _process(delta):
 	#Set the swap count remaining
@@ -44,14 +44,16 @@ func set_Day():
 	update_armor()
 	
 	#ANIMATION Morning
+	$ViewportContainer/Viewport/TileGrid.set_mouse_input(Control.MOUSE_FILTER_IGNORE)
 	$Background/Tavern.play("Morning")
 	yield($Background/Tavern,"animation_finished")
 	
 	#ANIMATION Merchant Enter
 	$Background/Tavern.play("MerchantEntrance")
 	yield($Background/Tavern,"animation_finished")
-
-
+	$ViewportContainer/Viewport/TileGrid.set_mouse_input(Control.MOUSE_FILTER_STOP)
+	
+	#Insert text here for merchant talking
 
 	var Shop = ShopScreen.instance()
 	Shop.currency = IKcurrency
@@ -64,9 +66,17 @@ func set_Night():
 	#Make Merchant Leaving animation
 	IKhealth_full = IKhealth
 	
+	#Merchant says shit
+	
+	#ANIMATION Merchant Leave
+	$ViewportContainer/Viewport/TileGrid.set_mouse_input(Control.MOUSE_FILTER_IGNORE)
+	$Background/Tavern.play("MerchantLeave")
+	yield($Background/Tavern,"animation_finished")
 	#ANIMATION Night
+	
 	$Background/Tavern.play("Night")
 	yield($Background/Tavern,"animation_finished")
+	$ViewportContainer/Viewport/TileGrid.set_mouse_input(Control.MOUSE_FILTER_STOP)
 	
 	monsterSpawnList = MonsterDB.get_level_list(power_level).duplicate(true)
 	

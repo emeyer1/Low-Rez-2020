@@ -13,6 +13,7 @@ var MONSTERS = {
 			},
 		"Health":11,
 		"Sprite":"res://assets/monsters/testMonster.png",
+		"Idle":"slime_Idle",
 		"Currency": 1
 		},
 
@@ -59,7 +60,7 @@ var MONSTERS = {
 			},
 		"Health":15,
 		"Sprite":"res://assets/monsters/spirit2.png",
-		"Idle":"gremlin_Idle",
+		"Idle":"spirit_Idle",
 		"Currency": 1
 	},
 	"spiritCouncil":{
@@ -156,7 +157,7 @@ var MONSTER_ATTACKS = {
 
 var LEVEL_LIST = {
 		1:{
-			0:["spirit","spiritCouncil","spirit"]
+			0:["slime","spirit","spiritCouncil","spirit"]
 			#1:["frostGiant","spirit","spirit","spirit"]
 			},
 		2:{

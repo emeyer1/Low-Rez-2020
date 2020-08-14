@@ -134,4 +134,6 @@ func add_item(item_id):
 
 func add_tile(tileType):
 	get_tile(deck, tileType).count += 1
-	get_tile(deck, "empty").count -= 1
+
+func remove_tile(tileType):
+	get_tile(deck,tileType).count -= 1
