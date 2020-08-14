@@ -40,7 +40,7 @@ func _ready():
 		random.randomize()
 		var Item = ShopItemBase.instance()
 		#Update ID fetcher
-		Item.id = ItemDb.ITEMS.keys()[random.randi_range(0,len(ItemDb.ITEMS)-1)]
+		Item.id = "apple"
 		
 		
 		Item.connect("item_selected",self,"_on_not_tile_item_selected")
@@ -78,8 +78,6 @@ func _on_not_tile_item_selected(item,id):
 	if currency >= shop_item["Cost"]:
 		item.get_node("TextureButton").disabled = true
 		item.disconnect("item_selected", self, "_on_not_tile_item_selected")
-		Deck.add_item(shop_item["Effect"])
-
 		currency -= shop_item["Cost"]
 		$UI/Currency.text = str(currency)
 		emit_signal("update_currency", currency)

@@ -94,7 +94,7 @@ var MONSTERS = {
 			3:{"Move_Type":"Damage","Value": 4,"Next_Move":0}
 			},
 		"Health":40,
-		"Idle":"spiritBoss_Idle",
+		"Idle":"SpiritBoss_Idle",
 		"Attack":null,
 		"Damaged":null,
 		"Currency": 10
@@ -105,7 +105,7 @@ var MONSTERS = {
 			1:{"Move_Type":"Mirror","Value": null,"Next_Move":2},
 			2:{"Move_Type":"Slime","Value": null,"Next_Move":0}
 			},
-		"Health":1,
+		"Health":99,
 		"Sprite":"res://assets/monsters/snake.png",
 		"Idle":"snake_Idle",
 		"Attack":null,
@@ -192,7 +192,7 @@ var MONSTER_ATTACKS = {
 	"Rage":{"Sprite":"res://assets/ui/rage_attack_icon.png","Tooltip":"Next attack is 2x"},
 	"Heal":{"Sprite":"res://assets/ui/heal_attack_icon.png","Tooltip":"Gains health"},
 	"Frost":{"Sprite":"res://assets/ui/frost_attack_icon.png","Tooltip":"-1 moves next turn"},
-	"Mirror":{"Sprite":"res://assets/ui/mirror_attack_icon.png","Tooltip":"Reflects damage taken this turn"},
+	"Mirror":{"Sprite":"re	s://assets/ui/mirror_attack_icon.png","Tooltip":"Reflects damage taken this turn"},
 	"Error":{"Sprite":"res://assets/ui/error.png","Tooltip":"Tooltip not found"}
 }
 

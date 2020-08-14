@@ -23,31 +23,9 @@ var SHOP_TILES = {
 var ITEMS = {
 	"apple":{
 		"ItemName": "apple",
-		"Cost": 5,
+		"Cost": 3,
 		"Sprite":"res://assets/items/test_item.png",
-		"Tooltip":"+5 Health",
-		"Effect":[{"Health":5}]
-	},
-	"flute":{
-		"ItemName": "flute",
-		"Cost": 10,
-		"Sprite":"res://assets/items/flute.png",
-		"Tooltip":"+1 Move, -5 Health",
-		"Effect":[{"Move":1},{"Health":-5}]
-	},
-	"shield":{
-		"ItemName": "shield",
-		"Cost": 15,
-		"Sprite":"res://assets/items/shield.png",
-		"Tooltip":"+1 Armor always, -5 Health",
-		"Effect":[{"Armor":1},{"Health":-5}]
-	},
-	"sword":{
-		"ItemName": "sword",
-		"Cost": 10,
-		"Sprite":"res://assets/items/sword.png",
-		"Tooltip":"Basic Attack lineups +1 dmg",
-		"Effect":[{"AAdmg":1}]
+		"Tooltip":"+1 Health",
 	}
 }
 

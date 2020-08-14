@@ -15,21 +15,16 @@ export var power_level = 1
 #Innkeeper Data
 var IKhealth = 20
 var IKhealth_full = IKhealth
-var IKhealth_base = IKhealth
-var moves_base = 2
 var turn_count = 0
 var previous_turn = 0
 var damage = 0
 var armor = 0
-var armor_base = 0
-var aadmg_base = 0
-var IKcurrency = 20
+var IKcurrency = 2
 var ailment = null
 var currentAilment = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	update_stats()
 	initialize_innkeeper()
 	set_Day()
 
@@ -46,7 +41,7 @@ func set_Day():
 	$ViewportContainer/Viewport/TileGrid.set_mouse_input(Control.MOUSE_FILTER_IGNORE)
 	IKhealth = IKhealth_full
 	$UI/health_icon/InnkeeperHealth.text = str(IKhealth)
-	armor = max(armor_base,0)
+	armor = 0
 	update_armor()
 	
 	#ANIMATION Morning
@@ -97,7 +92,6 @@ func _on_shop_closed():
 func _on_currency_updated(currency):
 	IKcurrency = currency
 	$UI/Currency/Label.text = str(IKcurrency)
-	update_stats()
 	
 func initialize_innkeeper():
 	$UI/health_icon/InnkeeperHealth.text = str(IKhealth)
@@ -129,7 +123,7 @@ func monster_died(currency):
 
 func update_IK_health(amount):
 	var leftover_dmg = max(amount - armor,0)
-	armor = max(armor-amount,0) + armor_base
+	armor = max(armor-amount,0)
 	update_armor()
 	IKhealth = IKhealth - leftover_dmg
 	$UI/health_icon/InnkeeperHealth.text = str(IKhealth)
@@ -162,7 +156,6 @@ func _on_TileGrid_turn_ended(activations):
 		match i["tileType"]:
 			"autoAttack":
 				damage += i["length"] * 1
-				damage += aadmg_base
 				print("autoAttack for " + str(damage))
 			"fire":
 				damage += i["length"] * 2
@@ -275,35 +268,3 @@ func _on_TileGrid_move_occured():
 	if currentAilment == "Shade":
 		clear_tile_shader_params()
 
-func update_stats():
-	var PlusHealth = 0
-	var PlusMoves = 0
-	var PlusArmor = 0
-	var PlusAAdmg = 0
-	for i in Deck.items:
-		for j in len(i):
-			match i[j].keys()[0]:
-				"Health":
-					PlusHealth += i[j].values()[0]
-				"Move":
-					PlusMoves += i[j].values()[0]
-				"Armor":
-					PlusArmor += i[j].values()[0]
-				"AAdmg":
-					PlusAAdmg += i[j].values()[0]
-	#Health
-	IKhealth = IKhealth_base + PlusHealth
-	#$UI/health_icon/InnkeeperHealth.text = str(IKhealth)	
-	update_IK_health(0)
-	
-	#moves
-	$ViewportContainer/Viewport/TileGrid.moves = moves_base + PlusMoves
-	$ViewportContainer/Viewport/TileGrid.moves_remaining = $ViewportContainer/Viewport/TileGrid.moves
-	
-	#Armor
-	armor_base = PlusArmor
-	armor = armor_base
-	update_armor()
-	
-	#aadmg
-	aadmg_base = PlusAAdmg
