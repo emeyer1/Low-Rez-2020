@@ -13,7 +13,7 @@ uniform bool isActivated = false;
 float line (vec2 p1, vec2 p2, vec2 uv, float a, vec2 pixelSize)
 {
     float r = 0.;
-    float one_px = 1f * pixelSize.x; 
+    float one_px = 1.5f * pixelSize.x; 
     float d = distance(p1, p2);
     float duv = distance(p1, uv);
     r = 1.-floor(1.-(a*one_px)+distance (mix(p1, p2, clamp(duv/d, 0., 1.)),  uv));
@@ -27,6 +27,9 @@ void fragment(){
 	
 	if(isShade && !isActivated){
 		tile = texture(shade_texture, UV);
+		if(tile.a == 0f){
+			tile = vec4(.2, .2, .2, 1f);
+		}
 	}
 	else{
 		tile = texture(TEXTURE, UV);
@@ -36,7 +39,7 @@ void fragment(){
 		vec2 p1 = vec2(0f, mod(TIME, 1.5) + .5);
 		vec2 p2 = vec2(mod(TIME, 1.5) + .5, 0f);
 		float line = clamp(line(p1, p2, SCREEN_UV, 1f, SCREEN_PIXEL_SIZE) , 0f, 1f);
-		c = tile + vec4(.2 * line, .2 * line ,.2 * line, 0f);
+		c = tile + vec4(.5 * line, .5 * line ,.5 * line, 0f);
 	}
 	else if(isSelected){
 		vec4 outline = texture(outline_texture, UV);

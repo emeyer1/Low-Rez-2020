@@ -3,7 +3,7 @@
 [ext_resource path="res://assets/shaders/tile.shader" type="Shader" id=1]
 [ext_resource path="res://assets/tiles/slimed.png" type="Texture" id=2]
 [ext_resource path="res://assets/tiles/highlight.png" type="Texture" id=3]
-[ext_resource path="res://assets/tiles/shade.png" type="Texture" id=4]
+[ext_resource path="res://assets/ui/shade_attack_icon.png" type="Texture" id=4]
 
 [resource]
 shader = ExtResource( 1 )

@@ -93,7 +93,7 @@ func update_health(amount):
 	mirror_damage = amount
 	Health = Health - amount
 	#$STATS/AnimationPlayer.play("TakeDamage")
-	maybe_dead()
+	var dead = maybe_dead()
 	
 	#KAIIIBA
 	#$STATS/Health/AudioStreamPlayer.set_stream(load("res://assets/sound/KAIIIII.wav"))
@@ -110,11 +110,14 @@ func update_health(amount):
 	#END_KAIIIBA
 	
 	$STATS/Health/TextureProgress.value = Health
+	return dead
 	
 
 func maybe_dead():
 	if Health <= 0:
 		emit_signal("monster_dead",currency)
+		return true
+	return false
 
 func attack_step(i):
 	blockAmount = 0

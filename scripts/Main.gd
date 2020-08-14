@@ -38,6 +38,7 @@ func _process(delta):
 
 func set_Day():
 
+	$ViewportContainer/Viewport/TileGrid.set_mouse_input(Control.MOUSE_FILTER_IGNORE)
 	IKhealth = IKhealth_full
 	armor = 0
 	update_armor()
@@ -56,7 +57,6 @@ func set_Day():
 	Shop.currency = IKcurrency
 	Shop.connect("shop_closed", self, "_on_shop_closed")
 	Shop.connect("update_currency", self, "_on_currency_updated")
-	$ViewportContainer/Viewport/TileGrid.set_mouse_input(Control.MOUSE_FILTER_IGNORE)
 	self.add_child(Shop)
 
 func set_Night():
@@ -74,8 +74,8 @@ func set_Night():
 	monsterSpawnList.pop_front()
 
 func _on_shop_closed():
-	$ViewportContainer/Viewport/TileGrid.set_mouse_input(Control.MOUSE_FILTER_STOP)
 	set_Night()
+	$ViewportContainer/Viewport/TileGrid.set_mouse_input(Control.MOUSE_FILTER_STOP)
 	emit_signal("turn_start")
 	
 func _on_currency_updated(currency):
@@ -133,9 +133,10 @@ func maybe_IK_dead():
 
 func _on_TileGrid_turn_ended(activations):
 	CurrentMonster = $MonsterSpawn.get_child(0)
+	var dead = false
 	#Handle tile type and activation:
 	for i in activations:
-		if i["tileType"] == "empty":
+		if i["tileType"] == "empty" || (dead && (i["tileType"] == "fire" || i["tileType"] == "autoAttack")):
 			continue
 		
 		set_activated_tiles(i.activated_tiles)
@@ -154,7 +155,7 @@ func _on_TileGrid_turn_ended(activations):
 				print("armor for " + str(new_armor))
 				
 		#User deals damage
-		$MonsterSpawn.get_child(0).update_health(max(damage-CurrentMonster.blockAmount,0))
+		dead = $MonsterSpawn.get_child(0).update_health(max(damage-CurrentMonster.blockAmount,0))
 		damage = 0
 		update_armor()
 		unset_activated_tiles(i.activated_tiles)
