@@ -18,6 +18,7 @@ shader_param/isSelected = false
 shader_param/isSlimed = false
 shader_param/isShade = false
 shader_param/isActivated = true
+shader_param/activeAmount = 0.675
 shader_param/outline_texture = ExtResource( 3 )
 shader_param/slimed_texture = ExtResource( 4 )
 shader_param/shade_texture = ExtResource( 5 )

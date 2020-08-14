@@ -140,6 +140,7 @@ func _on_TileGrid_turn_ended(activations):
 			continue
 		
 		set_activated_tiles(i.activated_tiles)
+		$ViewportContainer/Viewport/AttackTween.start()
 		yield(get_tree().create_timer(1.5), "timeout")
 		match i["tileType"]:
 			"autoAttack":
@@ -205,7 +206,14 @@ func _on_TileGrid_turn_ended(activations):
 
 func set_activated_tiles(tiles):
 	for tile in tiles:
-		$ViewportContainer/Viewport/TileGrid.tiles[tile.x][tile.y].button.get_material().set_shader_param("isActivated", true)
+		var mat = $ViewportContainer/Viewport/TileGrid.tiles[tile.x][tile.y].button.get_material();
+		mat.set_shader_param("isActivated", true)
+		$ViewportContainer/Viewport/AttackTween.interpolate_property(
+			mat,
+			"shader_param/activeAmount",
+			.6, 2, 1.5,
+			Tween.TRANS_LINEAR, Tween.EASE_OUT
+		)
 
 func unset_activated_tiles(tiles):
 	for tile in tiles:

@@ -9,6 +9,7 @@ uniform sampler2D slimed_texture;
 uniform bool isShade = false;
 uniform sampler2D shade_texture;
 uniform bool isActivated = false;
+uniform float activeAmount = 0f;
 
 float line (vec2 p1, vec2 p2, vec2 uv, float a, vec2 pixelSize)
 {
@@ -36,8 +37,8 @@ void fragment(){
 	}
 	
 	if(isActivated){
-		vec2 p1 = vec2(0f, mod(TIME, 1.5) + .5);
-		vec2 p2 = vec2(mod(TIME, 1.5) + .5, 0f);
+		vec2 p1 = vec2(0f, activeAmount);
+		vec2 p2 = vec2(activeAmount, 0f);
 		float line = clamp(line(p1, p2, SCREEN_UV, 1f, SCREEN_PIXEL_SIZE) , 0f, 1f);
 		c = tile + vec4(.5 * line, .5 * line ,.5 * line, 0f);
 	}
