@@ -99,19 +99,6 @@ var MONSTERS = {
 		"Damaged":null,
 		"Currency": 10
 	},
-	"snake":{
-		"AttackLoop":{
-			0:{"Move_Type":"Block","Value": 2,"Next_Move":1},
-			1:{"Move_Type":"Mirror","Value": null,"Next_Move":2},
-			2:{"Move_Type":"Slime","Value": null,"Next_Move":0}
-			},
-		"Health":1,
-		"Sprite":"res://assets/monsters/snake.png",
-		"Idle":"snake_Idle",
-		"Attack":null,
-		"Damaged":null,
-		"Currency": 1
-	},
 	"frostGiant":{
 		"AttackLoop":{
 			0:{"Move_Type":"Rage","Value": null,"Next_Move":1},
@@ -130,7 +117,7 @@ var MONSTERS = {
 		"AttackLoop":{
 			0:{"Move_Type":"Frost","Value": null,"Next_Move":1},
 			1:{"Move_Type":"Mirror","Value": null,"Next_Move":2},
-			2:{"Move_Type":"Block","Value": 5,"Next_Move":3},
+			2:{"Move_Type":"Block","Value": 1,"Next_Move":3},
 			3:{"Move_Type":"Mirror","Value": null,"Next_Move":0}
 			},
 		"Health":15,
@@ -154,21 +141,34 @@ var MONSTERS = {
 		"Damaged":null,
 		"Currency": 20
 	},
+	"snake":{
+		"AttackLoop":{
+			0:{"Move_Type":"Block","Value": 2,"Next_Move":1},
+			1:{"Move_Type":"Damage","Value": 10,"Next_Move":2},
+			2:{"Move_Type":"Block","Value": 1,"Next_Move":0}
+			},
+		"Health":40,
+		"Sprite":"res://assets/monsters/snake.png",
+		"Idle":"snake_Idle",
+		"Attack":null,
+		"Damaged":null,
+		"Currency": 1
+	},
 	"slumpoMasterOfAll":{
 		"AttackLoop":{
 			0:{"Move_Type":"Block","Value": 2,"Next_Move":1},
 			1:{"Move_Type":"Mirror","Value": null,"Next_Move":2},
 			2:{"Move_Type":"Rage","Value": null,"Next_Move":3},
-			3:{"Move_Type":"Damage","Value": 5,"Next_Move":4},
+			3:{"Move_Type":"Damage","Value": 10,"Next_Move":4},
 			4:{"Move_Type":"Slime","Value": null,"Next_Move":5},
-			5:{"Move_Type":"Damage","Value": 5,"Next_Move":6},
+			5:{"Move_Type":"Damage","Value": 10,"Next_Move":6},
 			6:{"Move_Type":"Shade","Value": null,"Next_Move":7},
-			7:{"Move_Type":"Damage","Value": 5,"Next_Move":8},
-			8:{"Move_Type":"Heal","Value": 10,"Next_Move":9},
-			9:{"Move_Type":"Damage","Value": 5,"Next_Move":0},
+			7:{"Move_Type":"Damage","Value": 10,"Next_Move":8},
+			8:{"Move_Type":"Heal","Value": 20,"Next_Move":9},
+			9:{"Move_Type":"Damage","Value": 10,"Next_Move":0},
 			},
 		"Health":99,
-		"Idle":null,
+		"Idle":"slump_Idle",
 		"Attack":null,
 		"Damaged":null,
 		"Currency": 20
@@ -198,13 +198,14 @@ var MONSTER_ATTACKS = {
 
 var LEVEL_LIST = {
 		1:{
-			0:["slime","spirit","spiritCouncil","spirit"]
-			#1:["frostGiant","spirit","spirit","spirit"]
+			0:["spirit","spiritCouncil","spirit"],
+			1:["spiritCouncil","spirit","spirit","spirit"]
 			},
 		2:{
 			0:["spiritCouncil","spirit","spiritCouncil","spirit"],
+			1:["spiritCouncil","spiritCouncil"]
 			},
-		3:{0:["spiritMage","spiritBoss"]},
+		3:{0:["spiritBoss"]},
 		
 		4:{0:["frostGiant","frostGuard","frostGuard"]
 			#1:[]
@@ -212,8 +213,11 @@ var LEVEL_LIST = {
 		5:{0:["frostGuard","frostGuard","frostGiant","frostGiant"]
 			#1:[]
 			},
-		6:{0:["frostGuard","frostBoss"]},
-		
+		6:{0:["frostBoss"]},
+		7:{0:[]},
+		8:{0:[]},
+		9:{0:[]},
+		10:{0:["snake","snake"]},
 		#TEST POWER LEVEL
 		0:{0:["snake"]}
 	}

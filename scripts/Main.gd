@@ -32,7 +32,7 @@ var currentAilment = null
 func _ready():
 	update_stats()
 	initialize_innkeeper()
-	set_Tutorial()
+	set_Night()
 
 func _process(delta):
 	#Set the swap count remaining
@@ -83,30 +83,40 @@ func _on_tutorial_closed():
 	pass
 
 func set_Day():
-
-	$ViewportContainer/Viewport/TileGrid.set_mouse_input(Control.MOUSE_FILTER_IGNORE)
-	IKhealth = IKhealth_full
-	$UI/health_icon/InnkeeperHealth.text = str(IKhealth)
-	armor = max(armor_base,0)
-	update_armor()
+	if power_level == 11:
+		#health doesn't reset from previous fight. Last fight is just against a snake.
+		$ViewportContainer/Viewport/TileGrid.set_mouse_input(Control.MOUSE_FILTER_IGNORE)
+		$Background/Tavern.play("TheFinalMorning")
+		yield($Background/Tavern,"animation_finished")
+		spawn_monster("slumpoMasterOfAll")
+		yield($MonsterSpawn.get_node("Monster/SpriteAnPlayer"),"animation_finished")
+		$Background/Tavern.frame = 0
+		$Background/Tavern.stop()
+		$ViewportContainer/Viewport/TileGrid.set_mouse_input(Control.MOUSE_FILTER_STOP)
+	else:
+		$ViewportContainer/Viewport/TileGrid.set_mouse_input(Control.MOUSE_FILTER_IGNORE)
+		IKhealth = IKhealth_full
+		$UI/health_icon/InnkeeperHealth.text = str(IKhealth)
+		armor = max(armor_base,0)
+		update_armor()
+		
+		#ANIMATION Morning
+		$ViewportContainer/Viewport/TileGrid.set_mouse_input(Control.MOUSE_FILTER_IGNORE)
+		$Background/Tavern.play("Morning")
+		yield($Background/Tavern,"animation_finished")
+		
+		#ANIMATION Merchant Enter
+		$Background/Tavern.play("MerchantEntrance")
+		yield($Background/Tavern,"animation_finished")
+		$ViewportContainer/Viewport/TileGrid.set_mouse_input(Control.MOUSE_FILTER_STOP)
+		
+		#Insert text here for merchant talking
 	
-	#ANIMATION Morning
-	$ViewportContainer/Viewport/TileGrid.set_mouse_input(Control.MOUSE_FILTER_IGNORE)
-	$Background/Tavern.play("Morning")
-	yield($Background/Tavern,"animation_finished")
-	
-	#ANIMATION Merchant Enter
-	$Background/Tavern.play("MerchantEntrance")
-	yield($Background/Tavern,"animation_finished")
-	$ViewportContainer/Viewport/TileGrid.set_mouse_input(Control.MOUSE_FILTER_STOP)
-	
-	#Insert text here for merchant talking
-
-	var Shop = ShopScreen.instance()
-	Shop.currency = IKcurrency
-	Shop.connect("shop_closed", self, "_on_shop_closed")
-	Shop.connect("update_currency", self, "_on_currency_updated")
-	self.add_child(Shop)
+		var Shop = ShopScreen.instance()
+		Shop.currency = IKcurrency
+		Shop.connect("shop_closed", self, "_on_shop_closed")
+		Shop.connect("update_currency", self, "_on_currency_updated")
+		self.add_child(Shop)
 
 func set_Night():
 
@@ -167,6 +177,8 @@ func monster_died(currency):
 		spawn_monster(monsterSpawnList[0])
 		monsterSpawnList.pop_front()
 		CurrentMonster = $MonsterSpawn.get_child(0)
+	if power_level == 11:
+		get_tree().change_scene("res://Thanks.tscn")
 	else:
 		CurrentMonster = null
 		power_level += 1

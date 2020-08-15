@@ -1,0 +1,24 @@
+[gd_scene format=2]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 64.0
+margin_bottom = 63.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_left = 9.0
+margin_top = 6.0
+margin_right = 57.0
+margin_bottom = 54.0
+text = "Thanks 
+for
+playing"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://assets/font/MonsterLife.tres" type="DynamicFont" id=1]
 [ext_resource path="res://scripts/Monster.gd" type="Script" id=2]
@@ -15,114 +15,136 @@
 [ext_resource path="res://assets/monsters/spiritbuds.png" type="Texture" id=13]
 [ext_resource path="res://assets/monsters/snake-sheet.png" type="Texture" id=14]
 [ext_resource path="res://assets/monsters/slime-sheet.png" type="Texture" id=15]
+[ext_resource path="res://assets/monsters/final_boss.png" type="Texture" id=16]
 
-[sub_resource type="AtlasTexture" id=1]
+[sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 12 )
 region = Rect2( 0, 0, 30, 30 )
 
-[sub_resource type="AtlasTexture" id=2]
+[sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 11 )
 region = Rect2( 0, 0, 30, 30 )
 
-[sub_resource type="AtlasTexture" id=3]
-atlas = ExtResource( 13 )
-region = Rect2( 0, 0, 30, 30 )
-
-[sub_resource type="AtlasTexture" id=4]
-atlas = ExtResource( 10 )
-region = Rect2( 0, 0, 30, 30 )
-
-[sub_resource type="AtlasTexture" id=5]
-atlas = ExtResource( 9 )
-region = Rect2( 0, 0, 30, 30 )
-
-[sub_resource type="AtlasTexture" id=6]
-atlas = ExtResource( 9 )
-region = Rect2( 30, 0, 30, 30 )
-
 [sub_resource type="AtlasTexture" id=7]
-atlas = ExtResource( 14 )
-region = Rect2( 0, 0, 21, 32 )
+atlas = ExtResource( 9 )
+region = Rect2( 0, 0, 30, 30 )
 
 [sub_resource type="AtlasTexture" id=8]
-atlas = ExtResource( 14 )
-region = Rect2( 21, 0, 21, 32 )
+atlas = ExtResource( 9 )
+region = Rect2( 30, 0, 30, 30 )
 
 [sub_resource type="AtlasTexture" id=9]
 atlas = ExtResource( 14 )
-region = Rect2( 126, 0, 21, 32 )
+region = Rect2( 0, 0, 21, 32 )
 
 [sub_resource type="AtlasTexture" id=10]
 atlas = ExtResource( 14 )
-region = Rect2( 63, 0, 21, 32 )
+region = Rect2( 21, 0, 21, 32 )
 
 [sub_resource type="AtlasTexture" id=11]
 atlas = ExtResource( 14 )
-region = Rect2( 42, 0, 21, 32 )
+region = Rect2( 126, 0, 21, 32 )
 
 [sub_resource type="AtlasTexture" id=12]
 atlas = ExtResource( 14 )
-region = Rect2( 84, 0, 21, 32 )
+region = Rect2( 63, 0, 21, 32 )
 
 [sub_resource type="AtlasTexture" id=13]
 atlas = ExtResource( 14 )
-region = Rect2( 105, 0, 21, 32 )
+region = Rect2( 42, 0, 21, 32 )
 
 [sub_resource type="AtlasTexture" id=14]
 atlas = ExtResource( 14 )
-region = Rect2( 147, 0, 21, 32 )
+region = Rect2( 84, 0, 21, 32 )
 
 [sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 14 )
+region = Rect2( 105, 0, 21, 32 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 14 )
+region = Rect2( 147, 0, 21, 32 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 13 )
+region = Rect2( 0, 0, 30, 30 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 10 )
+region = Rect2( 0, 0, 30, 30 )
+
+[sub_resource type="AtlasTexture" id=19]
 atlas = ExtResource( 15 )
 region = Rect2( 0, 0, 30, 30 )
 
-[sub_resource type="AtlasTexture" id=16]
+[sub_resource type="AtlasTexture" id=20]
 atlas = ExtResource( 15 )
 region = Rect2( 30, 0, 30, 30 )
 
-[sub_resource type="AtlasTexture" id=17]
+[sub_resource type="AtlasTexture" id=21]
 atlas = ExtResource( 15 )
 region = Rect2( 60, 0, 30, 30 )
 
-[sub_resource type="SpriteFrames" id=18]
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 16 )
+region = Rect2( 0, 0, 30, 30 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 16 )
+region = Rect2( 30, 0, 30, 30 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 16 )
+region = Rect2( 60, 0, 30, 30 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 16 )
+region = Rect2( 90, 0, 30, 30 )
+
+[sub_resource type="SpriteFrames" id=22]
 animations = [ {
-"frames": [ SubResource( 1 ) ],
+"frames": [ SubResource( 5 ) ],
 "loop": true,
 "name": "spiritBoss_Idle",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 2 ) ],
+"frames": [ SubResource( 6 ) ],
 "loop": true,
 "name": "spiritMage_Idle",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 3 ) ],
-"loop": true,
-"name": "spiritCouncil_Idle",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 4 ) ],
-"loop": true,
-"name": "spirit_Idle",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 5 ), SubResource( 6 ) ],
+"frames": [ SubResource( 7 ), SubResource( 8 ) ],
 "loop": true,
 "name": "gremlin_Idle",
 "speed": 2.0
 }, {
-"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ) ],
+"frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ) ],
 "loop": true,
 "name": "snake_Idle",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 15 ), SubResource( 16 ), SubResource( 15 ), SubResource( 17 ) ],
+"frames": [ SubResource( 17 ) ],
+"loop": true,
+"name": "spiritCouncil_Idle",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 18 ) ],
+"loop": true,
+"name": "spirit_Idle",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 19 ), SubResource( 20 ), SubResource( 19 ), SubResource( 21 ) ],
 "loop": true,
 "name": "slime_Idle",
 "speed": 5.0
+}, {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 1 ), SubResource( 3 ), SubResource( 4 ) ],
+"loop": true,
+"name": "slump_Idle",
+"speed": 5.0
 } ]
 
-[sub_resource type="Animation" id=19]
+[sub_resource type="Animation" id=23]
 length = 1.5
 loop = true
 tracks/0/type = "value"
@@ -138,7 +160,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, -1 ), Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=20]
+[sub_resource type="Animation" id=24]
 length = 0.5
 loop = true
 step = 0.05
@@ -155,8 +177,7 @@ tracks/0/keys = {
 "values": [ "20", "69", "30", "42", "10", "3", "10", "5", "12", "17", "1" ]
 }
 
-[sub_resource type="Animation" id=21]
-resource_name = "Died"
+[sub_resource type="Animation" id=25]
 tracks/0/type = "value"
 tracks/0/path = NodePath("AnimatedSprite:visible")
 tracks/0/interp = 1
@@ -170,7 +191,7 @@ tracks/0/keys = {
 "values": [ false, true, false, true, false ]
 }
 
-[sub_resource type="Animation" id=22]
+[sub_resource type="Animation" id=26]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("AnimatedSprite:scale")
@@ -230,8 +251,8 @@ texture = ExtResource( 8 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 visible = false
-frames = SubResource( 18 )
-animation = "slime_Idle"
+frames = SubResource( 22 )
+animation = "slump_Idle"
 
 [node name="STATS" type="Node2D" parent="."]
 visible = false
@@ -302,11 +323,11 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="STATS"]
-anims/HealthHover = SubResource( 19 )
-anims/TakeDamage = SubResource( 20 )
+anims/HealthHover = SubResource( 23 )
+anims/TakeDamage = SubResource( 24 )
 
 [node name="SpriteAnPlayer" type="AnimationPlayer" parent="."]
-anims/Died = SubResource( 21 )
-anims/Entrance = SubResource( 22 )
+anims/Died = SubResource( 25 )
+anims/Entrance = SubResource( 26 )
 [connection signal="mouse_entered" from="STATS/Attack/Control" to="." method="_on_Control_mouse_entered"]
 [connection signal="mouse_exited" from="STATS/Attack/Control" to="." method="_on_Control_mouse_exited"]
