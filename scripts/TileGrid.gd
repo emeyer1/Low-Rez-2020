@@ -172,7 +172,7 @@ func hide_tiles_burn():
 			tween.interpolate_property(
 				tiles[x][y].button.get_material(),
 				"shader_param/burnAmount",
-				0.0, 1.0, .6, Tween.TRANS_LINEAR, Tween.EASE_OUT
+				0.0, 1.0, .8, Tween.TRANS_LINEAR, Tween.EASE_OUT
 			)
 	tween.start()
 	yield(tween, "tween_all_completed")

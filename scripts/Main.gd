@@ -32,7 +32,7 @@ var currentAilment = null
 func _ready():
 	update_stats()
 	initialize_innkeeper()
-	set_Tutorial()
+	set_Night()
 
 func _process(delta):
 	#Set the swap count remaining
@@ -208,9 +208,13 @@ func _on_TileGrid_turn_ended(activations):
 			"autoAttack":
 				damage += i["length"] * 1
 				damage += aadmg_base
+				var attack_done = $AttackPlayer.play_attack(i["tileType"])
+				yield(attack_done, "completed")
 				print("autoAttack for " + str(damage))
 			"fire":
 				damage += i["length"] * 2
+				var attack_done = $AttackPlayer.play_attack(i["tileType"])
+				yield(attack_done, "completed")
 				print("fire for " + str(damage))
 			"earth":
 				var new_armor = i["length"] * 1
