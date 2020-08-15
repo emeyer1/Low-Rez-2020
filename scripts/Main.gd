@@ -201,7 +201,7 @@ func update_IK_health(amount):
 	armor = max(armor-amount,0) + armor_base
 	update_armor()
 	IKhealth = IKhealth - leftover_dmg
-	$UI/health_icon/InnkeeperHealth.text = str(IKhealth)
+	$UI/health_icon/InnkeeperHealth.text = str(max(0, IKhealth))
 	maybe_IK_dead()
 
 func update_armor():
@@ -243,6 +243,8 @@ func _on_TileGrid_turn_ended(activations):
 			"earth":
 				var new_armor = i["length"] * 1
 				#INSERT: Animation for max armor
+				var attack_done = $AttackPlayer.play_attack("block")
+				yield(attack_done, "completed")
 				armor = min(new_armor + armor,9)
 				print("armor for " + str(new_armor))
 				
@@ -321,26 +323,31 @@ func monster_turn():
 	yield(get_tree().create_timer(.5), "timeout")
 	match CurrentMonster.current_move_type:
 		"Damage":
-			update_IK_health(CurrentMonster.current_move_value)
 			yield($AttackPlayer.play_attack("monsterBasic"), "completed")
 			yield(shake_screen(5), "completed")
+			update_IK_health(CurrentMonster.current_move_value)
 		"Shade":
-			ailment = "Shade"
 			yield($AttackPlayer.play_attack("shade"), "completed")
+			ailment = "Shade"
 		"Slime":
-			ailment = "Slime"
 			yield($AttackPlayer.play_attack("slime"), "completed")
+			ailment = "Slime"
 		"Rage":
-			CurrentMonster.rage = true	
+			yield($AttackPlayer.play_attack("rage"), "completed")
+			CurrentMonster.rage = true
 		"Heal":
+			yield($AttackPlayer.play_attack("heal"), "completed")
 			CurrentMonster.update_health(-CurrentMonster.current_move_value)
 		"Frost":
+			yield($AttackPlayer.play_attack("frost"), "completed")
 			$ViewportContainer/Viewport/TileGrid.frost = true
 			$UI/swap_icon/Label.add_color_override("font_color", Color("1bdddd"))
 		"Mirror":
+			yield($AttackPlayer.play_attack("mirror"), "completed")
 			update_IK_health(CurrentMonster.mirror_damage)
 			
 		"Block":
+			yield($AttackPlayer.play_attack("block"), "completed")
 			pass #handled in the mosnter script
 	CurrentMonster.next_attack()
 	CurrentMonster.mirror_damage = 0
