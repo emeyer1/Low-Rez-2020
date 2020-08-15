@@ -2,7 +2,7 @@ extends Control
 
 signal item_selected(item,id)
 
-onready var tooltip = load("res://ToolTip.tscn")
+onready var tooltip = load("res://Tooltip.tscn")
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"

@@ -91,7 +91,7 @@ func set_label():
 	
 
 func update_health(amount):
-	mirror_damage = amount
+	mirror_damage += amount
 	Health = Health - amount
 	#$STATS/AnimationPlayer.play("TakeDamage")
 	var dead = maybe_dead()

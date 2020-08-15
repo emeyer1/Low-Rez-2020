@@ -126,7 +126,7 @@ var MONSTERS = {
 		"Idle":"frostMageElite_Idle",
 		"Attack":null,
 		"Damaged":null,
-		"Currency": 3
+		"Currency": 4
 	},
 	"frostBoss":{
 		"AttackLoop":{
@@ -199,28 +199,28 @@ var MONSTER_ATTACKS = {
 
 var LEVEL_LIST = {
 		1:{
-			0:["spirit","spirit","gremlin"],
-			1:["spiritCouncil","spirit","spirit"]
+			0:["spirit","spirit","gremlin"], #9 currency
+			1:["spiritCouncil","spirit","spirit"] #9 currency
 			},
 		2:{
-			0:["spiritCouncil","gremlin","spiritCouncil"],
-			1:["spiritCouncil","spiritCouncil","gremlin"]
+			0:["spiritCouncil","gremlin","spiritCouncil","spirit"], #10 currency
+			1:["spiritCouncil","spiritCouncil","gremlin","spirit"] #10 currency
 			},
-		3:{0:["spiritBoss"]},
+		3:{0:["spiritBoss"]}, #20 curency
 		
-		4:{0:["frostMage","frostMageElite","frostMage"]
+		4:{0:["frostMage","frostMageElite","frostMage"] #10 currency
 			#1:[]
 			},
-		5:{0:["frostElite","frostElite","frostMage"]
+		5:{0:["frostMageElite","frostMageElite","frostMage"] #11 currency
 			#1:[]
 			},
-		6:{0:["frostBoss"]},
-		7:{0:["slime","slime","slimeBuddies"]},
-		8:{0:["slimeBuddies","slime","slimeBuddies"]},
-		9:{0:["slimeBoss"]},
+		6:{0:["frostBoss"]}, #20 currency
+		7:{0:["slime","slime","slimeBuddies"]}, #10 currency
+		8:{0:["slimeBuddies","slime","slimeBuddies"]}, #11 curency
+		9:{0:["slimeBoss"]}, #20 currency
 		10:{0:["snake","snake"]},
 		#TEST POWER LEVEL:
-		0:{0:["frostBoss","spirit"]}
+		0:{0:["spiritBoss","spirit"]}
 	}
 
 func get_monster(id):

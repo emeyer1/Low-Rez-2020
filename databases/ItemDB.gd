@@ -11,10 +11,14 @@ var SHOP_TILES = {
 		4:{"n":1,"Giving":["empty"],"Getting":["fire"],"Cost":4},
 		5:{"n":1,"Giving":["empty"],"Getting":["autoAttack"],"Cost":2},
 		6:{"n":2,"Giving":["autoAttack","earth"],"Getting":["empty","fire"],"Cost":2},
-		7:{"n":1,"Giving":["earth"],"Getting":["fire"],"Cost":1},
+		7:{"n":1,"Giving":["earth"],"Getting":["fire"],"Cost":3},
 		8:{"n":2,"Giving":["empty","empty"],"Getting":["fire","fire"],"Cost":8},
 		9:{"n":2,"Giving":["fire","fire"],"Getting":["autoAttack","autoAttack"],"Cost":0},
 		10:{"n":2,"Giving":["empty","empty"],"Getting":["autoAttack","autoAttack"],"Cost":4},
+		11:{"n":1,"Giving":["autoAttack"],"Getting":["fire"],"Cost":2},
+		12:{"n":1,"Giving":["autoAttack"],"Getting":["fire"],"Cost":3},
+		13:{"n":1,"Giving":["autoAttack"],"Getting":["earth"],"Cost":1},
+		14:{"n":1,"Giving":["empty"],"Getting":["fire"],"Cost":3},
 	},
 	"rare":{
 		0:{"n":1,"Giving":["fire"],"Getting":["earth"],"Cost":1}
@@ -27,14 +31,14 @@ var SHOP_TILES = {
 var ITEMS = {
 	"apple":{
 		"ItemName": "apple",
-		"Cost": 5,
+		"Cost": 4,
 		"Sprite":"res://assets/items/apple.png",
 		"Tooltip":"+5 Health",
 		"Effect":[{"Health":5}]
 	},
 	"flute":{
 		"ItemName": "flute",
-		"Cost": 10,
+		"Cost": 9,
 		"Sprite":"res://assets/items/flute.png",
 		"Tooltip":"+1 Move, -5 Health",
 		"Effect":[{"Move":1},{"Health":-5}]
@@ -50,37 +54,30 @@ var ITEMS = {
 		"ItemName": "sword",
 		"Cost": 10,
 		"Sprite":"res://assets/items/sword.png",
-		"Tooltip":"Basic Attack lineups: +1 dmg",
+		"Tooltip":"Sword tile lineups: +1 dmg",
 		"Effect":[{"AAdmg":1}]
 	},
-	"temp1":{
-		"ItemName": "sword",
-		"Cost": 5,
-		"Sprite":"res://assets/items/temp.png",
-		"Tooltip":"+10 Health, -1 dmg Basic Attack lineups",
+	"feast":{
+		"ItemName": "feast",
+		"Cost": 6,
+		"Sprite":"res://assets/items/feast.png",
+		"Tooltip":"+10 Health, -1 dmg Sword tile lineups",
 		"Effect":[{"Health":10},{"AAdmg":-1}]
 	},
-	"temp2":{
+	"apple2":{
 		"ItemName": "sword",
-		"Cost": 11,
-		"Sprite":"res://assets/items/temp.png",
+		"Cost": 13,
+		"Sprite":"res://assets/items/apple2.png",
 		"Tooltip":"+10 Health",
 		"Effect":[{"Health":10}]
 	},
-	"temp3":{
-		"ItemName": "sword",
+	"book":{
+		"ItemName": "book",
 		"Cost": 15,
-		"Sprite":"res://assets/items/temp.png",
+		"Sprite":"res://assets/items/book.png",
 		"Tooltip":"+1 Move",
 		"Effect":[{"Move":1}]
-	},
-	"temp4":{
-		"ItemName": "sword",
-		"Cost": -10,
-		"Sprite":"res://assets/items/temp.png",
-		"Tooltip":"-5 Health, +10 Gold",
-		"Effect":[{"Health":-5}]
-	},
+	}
 }
 
 var TILE_SPRITES = {

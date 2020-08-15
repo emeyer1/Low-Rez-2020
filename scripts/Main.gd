@@ -339,9 +339,11 @@ func monster_turn():
 			$UI/swap_icon/Label.add_color_override("font_color", Color("1bdddd"))
 		"Mirror":
 			update_IK_health(CurrentMonster.mirror_damage)
+			
 		"Block":
 			pass #handled in the mosnter script
 	CurrentMonster.next_attack()
+	CurrentMonster.mirror_damage = 0
 	previous_turn = turn_count
 
 func clear_tile_shader_params():
