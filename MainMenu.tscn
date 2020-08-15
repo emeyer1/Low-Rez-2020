@@ -1,6 +1,46 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://MainMenu.gd" type="Script" id=1]
+[ext_resource path="res://assets/background/title.png" type="Texture" id=2]
+[ext_resource path="res://assets/background/titlecard.png" type="Texture" id=3]
+[ext_resource path="res://assets/background/start_button.png" type="Texture" id=4]
+[ext_resource path="res://assets/sound/title_theme.ogg" type="AudioStream" id=5]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 2 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 2 )
+region = Rect2( 128, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 2 )
+region = Rect2( 192, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 2 )
+region = Rect2( 256, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 2 )
+region = Rect2( 320, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 2 )
+region = Rect2( 384, 0, 64, 64 )
+
+[sub_resource type="SpriteFrames" id=8]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 1 ), SubResource( 1 ), SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ) ],
+"loop": true,
+"name": "default",
+"speed": 6.0
+} ]
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
@@ -12,13 +52,27 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button" type="Button" parent="."]
-margin_left = 7.87183
-margin_top = 23.7949
-margin_right = 55.8718
-margin_bottom = 43.7949
-text = "start"
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 32.0897, 32 )
+frames = SubResource( 8 )
+
+[node name="Button" type="TextureButton" parent="."]
+visible = false
+margin_left = 17.0897
+margin_top = 44.0
+margin_right = 49.0897
+margin_bottom = 57.0
+texture_normal = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="titlecard" type="Sprite" parent="."]
+visible = false
+position = Vector2( 32.0897, 17 )
+texture = ExtResource( 3 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+autoplay = true
 [connection signal="button_down" from="Button" to="." method="_on_Button_button_down"]
