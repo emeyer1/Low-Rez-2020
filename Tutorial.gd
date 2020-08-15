@@ -3,7 +3,6 @@ extends Control
 signal tutorial_closed()
 
 
-
 func _ready():
 	$AudioStreamPlayer.set_stream(load("res://assets/sound/page-flip-01a.wav"))
 	$Tutorial.visible = false

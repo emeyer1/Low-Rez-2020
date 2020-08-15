@@ -42,6 +42,7 @@ func _process(delta):
 	#Handle attacks as a dict that are then matched? Damage:3, Blocks: 5, Row:1, Heal:10 etc.
 
 func set_Tutorial():
+	$ViewportContainer/Viewport/TileGrid.hide_tiles()
 	$ViewportContainer/Viewport/TileGrid.set_mouse_input(Control.MOUSE_FILTER_IGNORE)
 	$ViewportContainer.visible = false
 	IKhealth = IKhealth_full
@@ -68,12 +69,12 @@ func set_Tutorial():
 	$Background/Tavern.play("OopsNoMoney")
 	yield($Background/Tavern,"animation_finished")
 	 
-	$ViewportContainer.visible = true
 	var tutorial = TutorialScreen.instance()
 	tutorial.connect("tutorial_closed",self,"_on_tutorial_closed")
 	$ShopPosition.add_child(tutorial)
 	yield($ShopPosition.get_child(0),"tutorial_closed")
-	
+	$ViewportContainer.visible = true
+	$ViewportContainer/Viewport/TileGrid.drop_in_tiles()
 	
 	$ViewportContainer/Viewport/TileGrid.set_mouse_input(Control.MOUSE_FILTER_STOP)
 	
@@ -229,7 +230,7 @@ func _on_TileGrid_turn_ended(activations):
 			monster_turn()
 			
 	clear_tile_shader_params()
-	
+	yield($ViewportContainer/Viewport/TileGrid.hide_tiles_burn(), "completed")
 	emit_signal("turn_start")
 	
 	if ailment:
