@@ -12,9 +12,10 @@ uniform bool isActivated = false;
 uniform float activeAmount = 0f;
 uniform sampler2D noise_tex: hint_albedo;
 uniform float burnAmount : hint_range(0f, 1f) = 0f;
+uniform vec4 burnOutline1: hint_color;
+uniform vec4 burnOutline2: hint_color;
 
-float line (vec2 p1, vec2 p2, vec2 uv, float a, vec2 pixelSize)
-{
+float line (vec2 p1, vec2 p2, vec2 uv, float a, vec2 pixelSize){
     float r = 0.;
     float one_px = 1.5f * pixelSize.x; 
     float d = distance(p1, p2);
@@ -68,7 +69,17 @@ void fragment(){
 	}
 	vec4 noise = texture(noise_tex, SCREEN_UV);
 	if(noise.r < burnAmount){
-		c.a = 0f;
+		float one_px = 1.5f * SCREEN_PIXEL_SIZE.x; 
+		bool noise_up = texture(noise_tex, vec2(SCREEN_UV.x + one_px ,SCREEN_UV.y)).r < burnAmount;
+		bool noise_left = texture(noise_tex, vec2(SCREEN_UV.x ,SCREEN_UV.y + one_px)).r < burnAmount;
+		bool noise_right = texture(noise_tex, vec2(SCREEN_UV.x + one_px ,SCREEN_UV.y  - one_px)).r < burnAmount;
+		bool noise_down = texture(noise_tex, vec2(SCREEN_UV.x - one_px ,SCREEN_UV.y)).r < burnAmount;
+		if((noise_up && !noise_down) || (noise_right && !noise_left) || (!noise_up && noise_down) || (!noise_right && noise_left)){
+			c = mix(burnOutline1, burnOutline2, noise.r/burnAmount);
+		}
+		else{
+			c.a = 0f;
+		}
 	}
 	COLOR = c;
 }

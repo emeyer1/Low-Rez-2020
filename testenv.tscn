@@ -9,12 +9,12 @@
 [ext_resource path="res://assets/tiles/block2.png" type="Texture" id=7]
 [ext_resource path="res://assets/tiles/fireblock.png" type="Texture" id=8]
 
-[sub_resource type="OpenSimplexNoise" id=2]
+[sub_resource type="OpenSimplexNoise" id=1]
 
-[sub_resource type="NoiseTexture" id=3]
-noise = SubResource( 2 )
+[sub_resource type="NoiseTexture" id=2]
+noise = SubResource( 1 )
 
-[sub_resource type="ShaderMaterial" id=1]
+[sub_resource type="ShaderMaterial" id=3]
 render_priority = 1
 shader = ExtResource( 2 )
 shader_param/outline_color = Color( 0.231373, 0.231373, 0.631373, 1 )
@@ -24,11 +24,13 @@ shader_param/isSlimed = false
 shader_param/isShade = false
 shader_param/isActivated = false
 shader_param/activeAmount = 0.675
-shader_param/burnAmount = 0.0
+shader_param/burnAmount = 0.662
+shader_param/burnOutline1 = Color( 0.792157, 0.105882, 0.105882, 1 )
+shader_param/burnOutline2 = Color( 0.811765, 0.584314, 0.101961, 1 )
 shader_param/outline_texture = ExtResource( 3 )
 shader_param/slimed_texture = ExtResource( 4 )
 shader_param/shade_texture = ExtResource( 5 )
-shader_param/noise_tex = SubResource( 3 )
+shader_param/noise_tex = SubResource( 2 )
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -41,7 +43,7 @@ __meta__ = {
 }
 
 [node name="TextureButton" type="TextureButton" parent="."]
-material = SubResource( 1 )
+material = SubResource( 3 )
 margin_left = 42.3742
 margin_top = 0.999996
 margin_right = 49.3742
@@ -53,7 +55,7 @@ __meta__ = {
 }
 
 [node name="TextureButton2" type="TextureButton" parent="."]
-material = SubResource( 1 )
+material = SubResource( 3 )
 margin_left = 49.3742
 margin_top = 0.999996
 margin_right = 56.3742
@@ -65,7 +67,7 @@ __meta__ = {
 }
 
 [node name="TextureButton3" type="TextureButton" parent="."]
-material = SubResource( 1 )
+material = SubResource( 3 )
 margin_left = 56.3742
 margin_top = 0.999996
 margin_right = 63.3742
@@ -77,7 +79,7 @@ __meta__ = {
 }
 
 [node name="TextureButton6" type="TextureButton" parent="."]
-material = SubResource( 1 )
+material = SubResource( 3 )
 margin_left = 42.3742
 margin_top = 8.0
 margin_right = 49.3742
@@ -89,7 +91,7 @@ __meta__ = {
 }
 
 [node name="TextureButton5" type="TextureButton" parent="."]
-material = SubResource( 1 )
+material = SubResource( 3 )
 margin_left = 49.3742
 margin_top = 8.0
 margin_right = 56.3742
@@ -101,7 +103,7 @@ __meta__ = {
 }
 
 [node name="TextureButton4" type="TextureButton" parent="."]
-material = SubResource( 1 )
+material = SubResource( 3 )
 margin_left = 56.3742
 margin_top = 8.0
 margin_right = 63.3742
@@ -113,7 +115,7 @@ __meta__ = {
 }
 
 [node name="TextureButton12" type="TextureButton" parent="."]
-material = SubResource( 1 )
+material = SubResource( 3 )
 margin_left = 42.3742
 margin_top = 15.0
 margin_right = 49.3742
@@ -125,7 +127,7 @@ __meta__ = {
 }
 
 [node name="TextureButton11" type="TextureButton" parent="."]
-material = SubResource( 1 )
+material = SubResource( 3 )
 margin_left = 49.3742
 margin_top = 15.0
 margin_right = 56.3742
@@ -137,7 +139,7 @@ __meta__ = {
 }
 
 [node name="TextureButton10" type="TextureButton" parent="."]
-material = SubResource( 1 )
+material = SubResource( 3 )
 margin_left = 56.3742
 margin_top = 15.0
 margin_right = 63.3742
@@ -149,7 +151,7 @@ __meta__ = {
 }
 
 [node name="TextureButton9" type="TextureButton" parent="."]
-material = SubResource( 1 )
+material = SubResource( 3 )
 margin_left = 42.3742
 margin_top = 22.0
 margin_right = 49.3742
@@ -161,7 +163,7 @@ __meta__ = {
 }
 
 [node name="TextureButton8" type="TextureButton" parent="."]
-material = SubResource( 1 )
+material = SubResource( 3 )
 margin_left = 49.3742
 margin_top = 22.0
 margin_right = 56.3742
@@ -173,7 +175,7 @@ __meta__ = {
 }
 
 [node name="TextureButton7" type="TextureButton" parent="."]
-material = SubResource( 1 )
+material = SubResource( 3 )
 margin_left = 56.3742
 margin_top = 22.0
 margin_right = 63.3742
@@ -185,7 +187,7 @@ __meta__ = {
 }
 
 [node name="TextureButton24" type="TextureButton" parent="."]
-material = SubResource( 1 )
+material = SubResource( 3 )
 margin_left = 42.3742
 margin_top = 29.0
 margin_right = 49.3742
@@ -197,7 +199,7 @@ __meta__ = {
 }
 
 [node name="TextureButton23" type="TextureButton" parent="."]
-material = SubResource( 1 )
+material = SubResource( 3 )
 margin_left = 49.3742
 margin_top = 29.0
 margin_right = 56.3742
@@ -209,7 +211,7 @@ __meta__ = {
 }
 
 [node name="TextureButton22" type="TextureButton" parent="."]
-material = SubResource( 1 )
+material = SubResource( 3 )
 margin_left = 56.3742
 margin_top = 29.0
 margin_right = 63.3742
@@ -221,7 +223,7 @@ __meta__ = {
 }
 
 [node name="TextureButton21" type="TextureButton" parent="."]
-material = SubResource( 1 )
+material = SubResource( 3 )
 margin_left = 42.3742
 margin_top = 36.0
 margin_right = 49.3742
@@ -233,7 +235,7 @@ __meta__ = {
 }
 
 [node name="TextureButton20" type="TextureButton" parent="."]
-material = SubResource( 1 )
+material = SubResource( 3 )
 margin_left = 49.3742
 margin_top = 36.0
 margin_right = 56.3742
@@ -245,7 +247,7 @@ __meta__ = {
 }
 
 [node name="TextureButton19" type="TextureButton" parent="."]
-material = SubResource( 1 )
+material = SubResource( 3 )
 margin_left = 56.3742
 margin_top = 36.0
 margin_right = 63.3742
@@ -257,7 +259,7 @@ __meta__ = {
 }
 
 [node name="TextureButton18" type="TextureButton" parent="."]
-material = SubResource( 1 )
+material = SubResource( 3 )
 margin_left = 42.3742
 margin_top = 43.0
 margin_right = 49.3742
@@ -269,7 +271,7 @@ __meta__ = {
 }
 
 [node name="TextureButton17" type="TextureButton" parent="."]
-material = SubResource( 1 )
+material = SubResource( 3 )
 margin_left = 49.3742
 margin_top = 43.0
 margin_right = 56.3742
@@ -281,7 +283,7 @@ __meta__ = {
 }
 
 [node name="TextureButton16" type="TextureButton" parent="."]
-material = SubResource( 1 )
+material = SubResource( 3 )
 margin_left = 56.3742
 margin_top = 43.0
 margin_right = 63.3742
@@ -293,7 +295,7 @@ __meta__ = {
 }
 
 [node name="TextureButton15" type="TextureButton" parent="."]
-material = SubResource( 1 )
+material = SubResource( 3 )
 margin_left = 42.3742
 margin_top = 50.0
 margin_right = 49.3742
@@ -305,7 +307,7 @@ __meta__ = {
 }
 
 [node name="TextureButton14" type="TextureButton" parent="."]
-material = SubResource( 1 )
+material = SubResource( 3 )
 margin_left = 49.3742
 margin_top = 50.0
 margin_right = 56.3742
@@ -317,7 +319,7 @@ __meta__ = {
 }
 
 [node name="TextureButton13" type="TextureButton" parent="."]
-material = SubResource( 1 )
+material = SubResource( 3 )
 margin_left = 56.3742
 margin_top = 50.0
 margin_right = 63.3742
@@ -329,7 +331,7 @@ __meta__ = {
 }
 
 [node name="TextureButton27" type="TextureButton" parent="."]
-material = SubResource( 1 )
+material = SubResource( 3 )
 margin_left = 42.3742
 margin_top = 57.0
 margin_right = 49.3742
@@ -341,7 +343,7 @@ __meta__ = {
 }
 
 [node name="TextureButton26" type="TextureButton" parent="."]
-material = SubResource( 1 )
+material = SubResource( 3 )
 margin_left = 49.3742
 margin_top = 57.0
 margin_right = 56.3742
@@ -353,7 +355,7 @@ __meta__ = {
 }
 
 [node name="TextureButton25" type="TextureButton" parent="."]
-material = SubResource( 1 )
+material = SubResource( 3 )
 margin_left = 56.3742
 margin_top = 57.0
 margin_right = 63.3742
