@@ -10,7 +10,11 @@ var SHOP_TILES = {
 		3:{"n":1,"Giving":["fire"],"Getting":["earth"],"Cost":1},
 		4:{"n":1,"Giving":["empty"],"Getting":["fire"],"Cost":4},
 		5:{"n":1,"Giving":["empty"],"Getting":["autoAttack"],"Cost":2},
-		6:{"n":1,"Giving":["autoAttack","earth"],"Getting":["empty","fire"],"Cost":2},
+		6:{"n":2,"Giving":["autoAttack","earth"],"Getting":["empty","fire"],"Cost":2},
+		7:{"n":1,"Giving":["earth"],"Getting":["fire"],"Cost":1},
+		8:{"n":2,"Giving":["empty","empty"],"Getting":["fire","fire"],"Cost":4},
+		9:{"n":2,"Giving":["fire","fire"],"Getting":["autoAttack","autoAttack"],"Cost":0},
+		10:{"n":2,"Giving":["empty","empty"],"Getting":["autoAttack","autoAttack"],"Cost":5},
 	},
 	"rare":{
 		0:{"n":1,"Giving":["fire"],"Getting":["earth"],"Cost":1}
@@ -48,8 +52,35 @@ var ITEMS = {
 		"Sprite":"res://assets/items/sword.png",
 		"Tooltip":"Basic Attack lineups: +1 dmg",
 		"Effect":[{"AAdmg":1}]
-	}
-	#Item for like 3, higher chance of rare items in shop. 
+	},
+	"temp1":{
+		"ItemName": "sword",
+		"Cost": 5,
+		"Sprite":"res://assets/items/temp.png",
+		"Tooltip":"+10 Health, -1 dmg Basic Attack lineups",
+		"Effect":[{"Health":10},{"AAdmg":-1}]
+	},
+	"temp2":{
+		"ItemName": "sword",
+		"Cost": 11,
+		"Sprite":"res://assets/items/temp.png",
+		"Tooltip":"+10 Health",
+		"Effect":[{"Health":10}]
+	},
+	"temp3":{
+		"ItemName": "sword",
+		"Cost": 15,
+		"Sprite":"res://assets/items/temp.png",
+		"Tooltip":"+1 Move",
+		"Effect":[{"Move":1}]
+	},
+	"temp4":{
+		"ItemName": "sword",
+		"Cost": -10,
+		"Sprite":"res://assets/items/temp.png",
+		"Tooltip":"-5 Health, +10 Gold",
+		"Effect":[{"Health":-5}]
+	},
 }
 
 var TILE_SPRITES = {

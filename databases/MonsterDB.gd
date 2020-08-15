@@ -15,7 +15,7 @@ var MONSTERS = {
 		"Idle":"spirit_Idle",
 		"Attack":null,
 		"Damaged":null,
-		"Currency": 1
+		"Currency": 3
 	},
 	"spiritCouncil":{
 		"AttackLoop":{
@@ -28,7 +28,7 @@ var MONSTERS = {
 		"Idle":"spiritCouncil_Idle",
 		"Attack":null,
 		"Damaged":null,
-		"Currency": 2
+		"Currency": 3
 	},
 	"gremlin":{
 		"AttackLoop":{
@@ -41,20 +41,21 @@ var MONSTERS = {
 		"Idle":"gremlin_Idle",
 		"Attack":null,
 		"Damaged":null,
-		"Currency": 1
+		"Currency": 3
 	},
 	"spiritBoss":{
 		"AttackLoop":{
 			0:{"Move_Type":"Shade","Value": null,"Next_Move":1},
 			1:{"Move_Type":"Mirror","Value": null,"Next_Move":2},
 			2:{"Move_Type":"Damage","Value": 10,"Next_Move":3},
-			3:{"Move_Type":"Damage","Value": 4,"Next_Move":0}
+			3:{"Move_Type":"Rage","Value": null,"Next_Move":4},
+			4:{"Move_Type":"Damage","Value": 7,"Next_Move":0}
 			},
 		"Health":40,
 		"Idle":"spiritBoss_Idle",
 		"Attack":null,
 		"Damaged":null,
-		"Currency": 10
+		"Currency": 20
 	},
 	"slime":{
 		"AttackLoop":{
@@ -63,12 +64,12 @@ var MONSTERS = {
 			2:{"Move_Type":"Slime","Value": null,"Next_Move":3},
 			3:{"Move_Type":"Damage","Value": 4,"Next_Move":0}
 			},
-		"Health":11,
+		"Health":30,
 		"Sprite":"res://assets/monsters/testMonster.png",
 		"Idle":"slime_Idle",
 		"Attack":null,
 		"Damaged":null,
-		"Currency": 1
+		"Currency": 3
 		},
 	"slimeBuddies":{
 		"AttackLoop":{
@@ -79,11 +80,11 @@ var MONSTERS = {
 			4:{"Move_Type":"Heal","Value":5,"Next_Move":5},
 			5:{"Move_Type":"Damage","Value": 4,"Next_Move":0}
 			},
-		"Health":20,
+		"Health":40,
 		"Idle":"slimeBuddies_Idle",
 		"Attack":null,
 		"Damaged":null,
-		"Currency": 2
+		"Currency": 4
 	},
 	"slimeBoss":{
 		"AttackLoop":{
@@ -93,11 +94,11 @@ var MONSTERS = {
 			3:{"Move_Type":"Slime","Value": null,"Next_Move":4},
 			4:{"Move_Type":"Damage","Value": 10,"Next_Move":0}
 			},
-		"Health":60,
+		"Health":80,
 		"Idle":"slimeBoss_Idle",
 		"Attack":null,
 		"Damaged":null,
-		"Currency": 2
+		"Currency": 20
 	},
 	"frostGiant":{
 		"AttackLoop":{
@@ -106,12 +107,12 @@ var MONSTERS = {
 			2:{"Move_Type":"Block","Value": 4,"Next_Move":3},
 			3:{"Move_Type":"Frost","Value": null,"Next_Move":0}
 			},
-		"Health":20,
+		"Health":30,
 		"Sprite":"res://assets/monsters/frostgiant.png",
-		"Idle":null,
+		"Idle":"frostBoss_Idle",
 		"Attack":null,
 		"Damaged":null,
-		"Currency": 2
+		"Currency": 3
 	},
 	"frostGuard":{
 		"AttackLoop":{
@@ -120,12 +121,12 @@ var MONSTERS = {
 			2:{"Move_Type":"Block","Value": 1,"Next_Move":3},
 			3:{"Move_Type":"Mirror","Value": null,"Next_Move":0}
 			},
-		"Health":15,
+		"Health":30,
 		"Sprite":"res://assets/monsters/frostgiant.png",
-		"Idle":null,
+		"Idle":"frostBoss_Idle",
 		"Attack":null,
 		"Damaged":null,
-		"Currency": 2
+		"Currency": 3
 	},
 	"frostBoss":{
 		"AttackLoop":{
@@ -134,9 +135,9 @@ var MONSTERS = {
 			2:{"Move_Type":"Rage","Value": null,"Next_Move":3},
 			3:{"Move_Type":"Damage","Value": 7,"Next_Move":0}
 			},
-		"Health":40,
+		"Health":60,
 		"Sprite":"res://assets/monsters/frostgiant.png",
-		"Idle":null,
+		"Idle":"frostBoss_Idle",
 		"Attack":null,
 		"Damaged":null,
 		"Currency": 20
@@ -147,12 +148,12 @@ var MONSTERS = {
 			1:{"Move_Type":"Damage","Value": 10,"Next_Move":2},
 			2:{"Move_Type":"Block","Value": 1,"Next_Move":0}
 			},
-		"Health":1,
+		"Health":40,
 		"Sprite":"res://assets/monsters/snake.png",
 		"Idle":"snake_Idle",
 		"Attack":null,
 		"Damaged":null,
-		"Currency": 1
+		"Currency": 0
 	},
 	"slumpoMasterOfAll":{
 		"AttackLoop":{
@@ -171,7 +172,7 @@ var MONSTERS = {
 		"Idle":"slump_Idle",
 		"Attack":null,
 		"Damaged":null,
-		"Currency": 20
+		"Currency": 0
 	},
 	"error":{
 		"AttackLoop":{
@@ -198,11 +199,11 @@ var MONSTER_ATTACKS = {
 
 var LEVEL_LIST = {
 		1:{
-			0:["spirit","spiritCouncil","spirit","gremlin"],
-			1:["spiritCouncil","spirit","spirit","spirit"]
+			0:["spirit","spirit","gremlin"],
+			1:["spiritCouncil","spirit","spirit"]
 			},
 		2:{
-			0:["spiritCouncil","spirit","spiritCouncil","spirit"],
+			0:["spiritCouncil","gremlin","spiritCouncil"],
 			1:["spiritCouncil","spiritCouncil","gremlin"]
 			},
 		3:{0:["spiritBoss"]},
@@ -210,7 +211,7 @@ var LEVEL_LIST = {
 		4:{0:["frostGiant","frostGuard","frostGuard"]
 			#1:[]
 			},
-		5:{0:["frostGuard","frostGuard","frostGiant","frostGiant"]
+		5:{0:["frostGuard","frostGuard","frostGiant"]
 			#1:[]
 			},
 		6:{0:["frostBoss"]},

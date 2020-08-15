@@ -11,7 +11,7 @@ var random = RandomNumberGenerator.new()
 #var monsterSpawnList = ["spiritCouncil","spirit","spiritCouncil","spiritMage","spiritBoss"]
 var monsterSpawnList = []
 var CurrentMonster
-export var power_level = 1
+var power_level = 1
 
 #Innkeeper Data
 var IKhealth = 20
@@ -24,7 +24,7 @@ var damage = 0
 var armor = 0
 var armor_base = 0
 var aadmg_base = 0
-var IKcurrency = 20
+var IKcurrency = 0
 var ailment = null
 var currentAilment = null
 
@@ -103,7 +103,6 @@ func set_Day():
 		update_armor()
 		
 		#ANIMATION Morning
-		$ViewportContainer/Viewport/TileGrid.set_mouse_input(Control.MOUSE_FILTER_IGNORE)
 		$Background/Tavern.play("Morning")
 		yield($Background/Tavern,"animation_finished")
 		

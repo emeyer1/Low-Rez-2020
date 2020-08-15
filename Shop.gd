@@ -72,7 +72,6 @@ func _on_item_selected(tile_item, item_id,rarity):
 			emit_signal("update_currency", currency)
 			deck_counts = update_deck_count()
 
-
 func _on_not_tile_item_selected(item,id):
 	var shop_item = ItemDb.get_item(id)
 	if currency >= shop_item["Cost"]:
