@@ -4,6 +4,58 @@ extends Node
 var random = RandomNumberGenerator.new()
 
 var MONSTERS = {
+	"spirit":{
+		"AttackLoop":{
+			0:{"Move_Type":"Shade","Value": null,"Next_Move":1},
+			1:{"Move_Type":"Damage","Value": 3,"Next_Move":2},
+			2:{"Move_Type":"Shade","Value": null,"Next_Move":3},
+			3:{"Move_Type":"Damage","Value": 3,"Next_Move":0}
+			},
+		"Health":15,
+		"Idle":"spirit_Idle",
+		"Attack":null,
+		"Damaged":null,
+		"Currency": 1
+	},
+	"spiritCouncil":{
+		"AttackLoop":{
+			0:{"Move_Type":"Shade","Value": null,"Next_Move":1},
+			1:{"Move_Type":"Damage","Value": 4,"Next_Move":2},
+			2:{"Move_Type":"Shade","Value": null,"Next_Move":3},
+			3:{"Move_Type":"Damage","Value": 4,"Next_Move":0}
+			},
+		"Health":30,
+		"Idle":"spiritCouncil_Idle",
+		"Attack":null,
+		"Damaged":null,
+		"Currency": 2
+	},
+	"gremlin":{
+		"AttackLoop":{
+			0:{"Move_Type":"Shade","Value": null,"Next_Move":1},
+			1:{"Move_Type":"Damage","Value":3,"Next_Move":2},
+			2:{"Move_Type":"Shade","Value":null,"Next_Move":3},
+			3:{"Move_Type":"Heal","Value":5,"Next_Move":0},
+			},
+		"Health":20,
+		"Idle":"gremlin_Idle",
+		"Attack":null,
+		"Damaged":null,
+		"Currency": 1
+	},
+	"spiritBoss":{
+		"AttackLoop":{
+			0:{"Move_Type":"Shade","Value": null,"Next_Move":1},
+			1:{"Move_Type":"Mirror","Value": null,"Next_Move":2},
+			2:{"Move_Type":"Damage","Value": 10,"Next_Move":3},
+			3:{"Move_Type":"Damage","Value": 4,"Next_Move":0}
+			},
+		"Health":40,
+		"Idle":"spiritBoss_Idle",
+		"Attack":null,
+		"Damaged":null,
+		"Currency": 10
+	},
 	"slime":{
 		"AttackLoop":{
 			0:{"Move_Type":"Slime","Value": null,"Next_Move":1},
@@ -37,80 +89,15 @@ var MONSTERS = {
 		"AttackLoop":{
 			0:{"Move_Type":"Slime","Value": null,"Next_Move":1},
 			1:{"Move_Type":"Rage","Value": null,"Next_Move":2},
-			2:{"Move_Type":"Damage","Value": 5,"Next_Move":3},
+			2:{"Move_Type":"Damage","Value": 10,"Next_Move":3},
 			3:{"Move_Type":"Slime","Value": null,"Next_Move":4},
-			4:{"Move_Type":"Damage","Value": 5,"Next_Move":0}
+			4:{"Move_Type":"Damage","Value": 10,"Next_Move":0}
 			},
-		"Health":40,
+		"Health":60,
 		"Idle":"slimeBoss_Idle",
 		"Attack":null,
 		"Damaged":null,
 		"Currency": 2
-	},
-	"spirit":{
-		"AttackLoop":{
-			0:{"Move_Type":"Shade","Value": null,"Next_Move":1},
-			1:{"Move_Type":"Damage","Value": 3,"Next_Move":2},
-			2:{"Move_Type":"Shade","Value": null,"Next_Move":3},
-			3:{"Move_Type":"Damage","Value": 3,"Next_Move":0}
-			},
-		"Health":15,
-		"Idle":"spirit_Idle",
-		"Attack":null,
-		"Damaged":null,
-		"Currency": 1
-	},
-	"spiritCouncil":{
-		"AttackLoop":{
-			0:{"Move_Type":"Shade","Value": null,"Next_Move":1},
-			1:{"Move_Type":"Damage","Value": 4,"Next_Move":2},
-			2:{"Move_Type":"Shade","Value": null,"Next_Move":3},
-			3:{"Move_Type":"Damage","Value": 4,"Next_Move":0}
-			},
-		"Health":30,
-		"Idle":"spiritCouncil_Idle",
-		"Attack":null,
-		"Damaged":null,
-		"Currency": 2
-	},
-	"spiritMage":{
-		"AttackLoop":{
-			0:{"Move_Type":"Shade","Value": null,"Next_Move":1},
-			1:{"Move_Type":"Damage","Value":3,"Next_Move":2},
-			2:{"Move_Type":"Shade","Value":null,"Next_Move":3},
-			3:{"Move_Type":"Heal","Value":5,"Next_Move":0},
-			},
-		"Health":20,
-		"Idle":"spiritMage_Idle",
-		"Attack":null,
-		"Damaged":null,
-		"Currency": 1
-	},
-	"spiritBoss":{
-		"AttackLoop":{
-			0:{"Move_Type":"Shade","Value": null,"Next_Move":1},
-			1:{"Move_Type":"Mirror","Value": null,"Next_Move":2},
-			2:{"Move_Type":"Damage","Value": 10,"Next_Move":3},
-			3:{"Move_Type":"Damage","Value": 4,"Next_Move":0}
-			},
-		"Health":40,
-		"Idle":"spiritBoss_Idle",
-		"Attack":null,
-		"Damaged":null,
-		"Currency": 10
-	},
-	"snake":{
-		"AttackLoop":{
-			0:{"Move_Type":"Block","Value": 2,"Next_Move":1},
-			1:{"Move_Type":"Mirror","Value": null,"Next_Move":2},
-			2:{"Move_Type":"Slime","Value": null,"Next_Move":0}
-			},
-		"Health":1,
-		"Sprite":"res://assets/monsters/snake.png",
-		"Idle":"snake_Idle",
-		"Attack":null,
-		"Damaged":null,
-		"Currency": 1
 	},
 	"frostGiant":{
 		"AttackLoop":{
@@ -130,7 +117,7 @@ var MONSTERS = {
 		"AttackLoop":{
 			0:{"Move_Type":"Frost","Value": null,"Next_Move":1},
 			1:{"Move_Type":"Mirror","Value": null,"Next_Move":2},
-			2:{"Move_Type":"Block","Value": 5,"Next_Move":3},
+			2:{"Move_Type":"Block","Value": 1,"Next_Move":3},
 			3:{"Move_Type":"Mirror","Value": null,"Next_Move":0}
 			},
 		"Health":15,
@@ -154,21 +141,34 @@ var MONSTERS = {
 		"Damaged":null,
 		"Currency": 20
 	},
+	"snake":{
+		"AttackLoop":{
+			0:{"Move_Type":"Block","Value": 2,"Next_Move":1},
+			1:{"Move_Type":"Damage","Value": 10,"Next_Move":2},
+			2:{"Move_Type":"Block","Value": 1,"Next_Move":0}
+			},
+		"Health":40,
+		"Sprite":"res://assets/monsters/snake.png",
+		"Idle":"snake_Idle",
+		"Attack":null,
+		"Damaged":null,
+		"Currency": 1
+	},
 	"slumpoMasterOfAll":{
 		"AttackLoop":{
 			0:{"Move_Type":"Block","Value": 2,"Next_Move":1},
 			1:{"Move_Type":"Mirror","Value": null,"Next_Move":2},
 			2:{"Move_Type":"Rage","Value": null,"Next_Move":3},
-			3:{"Move_Type":"Damage","Value": 5,"Next_Move":4},
+			3:{"Move_Type":"Damage","Value": 15,"Next_Move":4},
 			4:{"Move_Type":"Slime","Value": null,"Next_Move":5},
-			5:{"Move_Type":"Damage","Value": 5,"Next_Move":6},
+			5:{"Move_Type":"Damage","Value": 10,"Next_Move":6},
 			6:{"Move_Type":"Shade","Value": null,"Next_Move":7},
-			7:{"Move_Type":"Damage","Value": 5,"Next_Move":8},
-			8:{"Move_Type":"Heal","Value": 10,"Next_Move":9},
-			9:{"Move_Type":"Damage","Value": 5,"Next_Move":0},
+			7:{"Move_Type":"Damage","Value": 10,"Next_Move":8},
+			8:{"Move_Type":"Heal","Value": 20,"Next_Move":9},
+			9:{"Move_Type":"Damage","Value": 10,"Next_Move":0},
 			},
 		"Health":99,
-		"Idle":null,
+		"Idle":"slump_Idle",
 		"Attack":null,
 		"Damaged":null,
 		"Currency": 20
@@ -187,9 +187,9 @@ var MONSTER_ATTACKS = {
 	"Damage":{"Sprite":"res://assets/ui/attack_icon.png","Tooltip":"Deals damage to you"},
 	"Block":{"Sprite":"res://assets/ui/block_attack_icon.png","Tooltip":"Blocks an amount of incoming damage"},
 	"Slime":{"Sprite":"res://assets/ui/splat_attack_icon.png","Tooltip":"Makes some tiles immovable for 1 turn"},
-	"Shade":{"Sprite":"res://assets/ui/shade_attack_icon.png","Tooltip":"Will conceals some tiles till you move"},
+	"Shade":{"Sprite":"res://assets/ui/shade_attack_icon.png","Tooltip":"Will conceal some tiles till you move"},
 	"Rest":{"Sprite":"res://assets/ui/rest_attack_icon.png","Tooltip":"It is bored of you"},
-	"Rage":{"Sprite":"res://assets/ui/rage_attack_icon.png","Tooltip":"Next attack is 2x"},
+	"Rage":{"Sprite":"res://assets/ui/rage_attack_icon.png","Tooltip":"Next attack does 2x dmg"},
 	"Heal":{"Sprite":"res://assets/ui/heal_attack_icon.png","Tooltip":"Gains health"},
 	"Frost":{"Sprite":"res://assets/ui/frost_attack_icon.png","Tooltip":"-1 moves next turn"},
 	"Mirror":{"Sprite":"res://assets/ui/mirror_attack_icon.png","Tooltip":"Reflects damage taken this turn"},
@@ -198,13 +198,14 @@ var MONSTER_ATTACKS = {
 
 var LEVEL_LIST = {
 		1:{
-			0:["slime","spirit","spiritCouncil","spirit"]
-			#1:["frostGiant","spirit","spirit","spirit"]
+			0:["spirit","spiritCouncil","spirit"],
+			1:["spiritCouncil","spirit","spirit","spirit"]
 			},
 		2:{
 			0:["spiritCouncil","spirit","spiritCouncil","spirit"],
+			1:["spiritCouncil","spiritCouncil"]
 			},
-		3:{0:["spiritMage","spiritBoss"]},
+		3:{0:["spiritBoss"]},
 		
 		4:{0:["frostGiant","frostGuard","frostGuard"]
 			#1:[]
@@ -212,10 +213,13 @@ var LEVEL_LIST = {
 		5:{0:["frostGuard","frostGuard","frostGiant","frostGiant"]
 			#1:[]
 			},
-		6:{0:["frostGuard","frostBoss"]},
-		
+		6:{0:["frostBoss"]},
+		7:{0:["slime","slime","slimeBuddies"]},
+		8:{0:["slimeBuddies","slime","slimeBuddies"]},
+		9:{0:["slimeBoss"]},
+		10:{0:["snake","snake"]},
 		#TEST POWER LEVEL
-		0:{0:["snake"]}
+		0:{0:["gremlin","spirit"]}
 	}
 
 func get_monster(id):
