@@ -32,7 +32,7 @@ var currentAilment = null
 func _ready():
 	update_stats()
 	initialize_innkeeper()
-	set_Night()
+	set_Tutorial()
 
 func _process(delta):
 	#Set the swap count remaining
@@ -86,6 +86,8 @@ func set_Day():
 	if power_level == 11:
 		#health doesn't reset from previous fight. Last fight is just against a snake.
 		$ViewportContainer/Viewport/TileGrid.set_mouse_input(Control.MOUSE_FILTER_IGNORE)
+		$Background/Tavern.play("Morning")
+		yield($Background/Tavern,"animation_finished")
 		$Background/Tavern.play("TheFinalMorning")
 		yield($Background/Tavern,"animation_finished")
 		spawn_monster("slumpoMasterOfAll")
@@ -177,7 +179,7 @@ func monster_died(currency):
 		spawn_monster(monsterSpawnList[0])
 		monsterSpawnList.pop_front()
 		CurrentMonster = $MonsterSpawn.get_child(0)
-	if power_level == 11:
+	elif power_level == 11:
 		get_tree().change_scene("res://Thanks.tscn")
 	else:
 		CurrentMonster = null

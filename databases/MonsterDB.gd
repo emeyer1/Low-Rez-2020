@@ -147,7 +147,7 @@ var MONSTERS = {
 			1:{"Move_Type":"Damage","Value": 10,"Next_Move":2},
 			2:{"Move_Type":"Block","Value": 1,"Next_Move":0}
 			},
-		"Health":40,
+		"Health":1,
 		"Sprite":"res://assets/monsters/snake.png",
 		"Idle":"snake_Idle",
 		"Attack":null,
@@ -198,12 +198,12 @@ var MONSTER_ATTACKS = {
 
 var LEVEL_LIST = {
 		1:{
-			0:["spirit","spiritCouncil","spirit"],
+			0:["spirit","spiritCouncil","spirit","gremlin"],
 			1:["spiritCouncil","spirit","spirit","spirit"]
 			},
 		2:{
 			0:["spiritCouncil","spirit","spiritCouncil","spirit"],
-			1:["spiritCouncil","spiritCouncil"]
+			1:["spiritCouncil","spiritCouncil","gremlin"]
 			},
 		3:{0:["spiritBoss"]},
 		
@@ -218,7 +218,7 @@ var LEVEL_LIST = {
 		8:{0:["slimeBuddies","slime","slimeBuddies"]},
 		9:{0:["slimeBoss"]},
 		10:{0:["snake","snake"]},
-		#TEST POWER LEVEL
+		#TEST POWER LEVEL:
 		0:{0:["gremlin","spirit"]}
 	}
 
