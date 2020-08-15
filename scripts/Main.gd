@@ -227,6 +227,7 @@ func maybe_IK_dead():
 func _on_TileGrid_turn_ended(activations):
 	CurrentMonster = $MonsterSpawn.get_child(0)
 	var dead = false
+	var monsters_left = len(monsterSpawnList)
 	#Handle tile type and activation:
 	for i in activations:
 		if i["tileType"] == "empty" || (dead && (i["tileType"] == "fire" || i["tileType"] == "autoAttack")):
@@ -274,7 +275,7 @@ func _on_TileGrid_turn_ended(activations):
 	clear_tile_shader_params()
 	yield($ViewportContainer/Viewport/TileGrid.hide_tiles_burn(), "completed")
 	
-	if(len(monsterSpawnList) == 0 && dead):
+	if(monsters_left == 0 && dead):
 		emit_signal("shop_start")
 	else:
 		emit_signal("turn_start")
