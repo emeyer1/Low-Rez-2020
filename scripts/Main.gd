@@ -51,11 +51,10 @@ func set_Tutorial():
 	update_armor()
 	
 	
-	
 	#ANIMATION tutorial
 	$Background/Tavern.play("Morning")
 	yield($Background/Tavern,"animation_finished")
-#	$AudioStreamPlayer.set_stream(load("res://assets/sound/Tavern Music_Main Menu.wav"))
+#	
 #	$AudioStreamPlayer.play()
 #	yield($AudioStreamPlayer,"finished")
 #	$AudioStreamPlayer.play()
@@ -110,6 +109,7 @@ func set_Day():
 	self.add_child(Shop)
 
 func set_Night():
+
 	
 	#Make Merchant Leaving animation
 	IKhealth_full = IKhealth
@@ -121,6 +121,9 @@ func set_Night():
 	$Background/Tavern.play("MerchantLeave")
 	yield($Background/Tavern,"animation_finished")
 	#ANIMATION Night
+	
+	$AudioStreamPlayer.set_stream(load("res://assets/sound/BattleTheme.ogg"))
+	$AudioStreamPlayer.play()
 	
 	$Background/Tavern.play("Night")
 	yield($Background/Tavern,"animation_finished")

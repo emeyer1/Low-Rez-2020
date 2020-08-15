@@ -26,4 +26,6 @@ func _process(delta):
 		$AnimatedSprite.stop()
 
 func _on_Button_button_down():
+	$AnimationPlayer.play("NewScene")
+	yield($AnimationPlayer,"animation_finished")
 	get_tree().change_scene("res://Main.tscn")
