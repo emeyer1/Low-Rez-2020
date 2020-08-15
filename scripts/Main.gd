@@ -32,7 +32,7 @@ var currentAilment = null
 func _ready():
 	update_stats()
 	initialize_innkeeper()
-	set_Tutorial()
+	set_Day()
 
 func _process(delta):
 	#Set the swap count remaining
@@ -88,6 +88,7 @@ func set_Day():
 	if power_level == 11:
 		#health doesn't reset from previous fight. Last fight is just against a snake.
 		$ViewportContainer/Viewport/TileGrid.set_mouse_input(Control.MOUSE_FILTER_IGNORE)
+		$ViewportContainer/Viewport/TileGrid.disable_input()
 		$Background/Tavern.play("Morning")
 		yield($Background/Tavern,"animation_finished")
 		$Background/Tavern.play("TheFinalMorning")
@@ -97,8 +98,10 @@ func set_Day():
 		$Background/Tavern.frame = 0
 		$Background/Tavern.stop()
 		$ViewportContainer/Viewport/TileGrid.set_mouse_input(Control.MOUSE_FILTER_STOP)
+		$ViewportContainer/Viewport/TileGrid.enable_input()
 	else:
 		$ViewportContainer/Viewport/TileGrid.set_mouse_input(Control.MOUSE_FILTER_IGNORE)
+		$ViewportContainer/Viewport/TileGrid.disable_input()
 		IKhealth = IKhealth_full
 		$UI/health_icon/InnkeeperHealth.text = str(IKhealth)
 		armor = max(armor_base,0)
@@ -255,7 +258,7 @@ func _on_TileGrid_turn_ended(activations):
 	
 	if !dead:
 		if CurrentMonster.Health > 0:
-			monster_turn()
+			yield(monster_turn(), "completed")
 			
 	clear_tile_shader_params()
 	yield($ViewportContainer/Viewport/TileGrid.hide_tiles_burn(), "completed")
@@ -315,13 +318,18 @@ func monster_turn():
 	print(CurrentMonster)
 	CurrentMonster = $MonsterSpawn.get_child(0)
 	print(CurrentMonster)
+	yield(get_tree().create_timer(.5), "timeout")
 	match CurrentMonster.current_move_type:
 		"Damage":
 			update_IK_health(CurrentMonster.current_move_value)
+			yield($AttackPlayer.play_attack("monsterBasic"), "completed")
+			yield(shake_screen(5), "completed")
 		"Shade":
 			ailment = "Shade"
+			yield($AttackPlayer.play_attack("shade"), "completed")
 		"Slime":
 			ailment = "Slime"
+			yield($AttackPlayer.play_attack("slime"), "completed")
 		"Rage":
 			CurrentMonster.rage = true	
 		"Heal":
@@ -377,3 +385,22 @@ func update_stats():
 	
 	#aadmg
 	aadmg_base = PlusAAdmg
+
+func shake_screen(amplitude):
+	var tween = Tween.new()
+	add_child(tween)
+	amplitude *= random.randi_range(0, 1) * 2 - 1
+	tween.interpolate_method(
+		self, "_shake_screen_helper", Vector2(0, amplitude), Vector2(1, amplitude), 1,
+		Tween.TRANS_LINEAR, Tween.EASE_IN_OUT
+	)
+	tween.start()
+	yield(tween, "tween_all_completed")
+	tween.queue_free()
+	set_position(Vector2(0,0))
+	return true
+
+func _shake_screen_helper(v):
+	var x = v.y * sin(v.x * 50) * exp(-v.x * 10)
+	var y = v.y * sin(v.x * 45) * exp(-v.x * 10)
+	set_position(Vector2(x, y))

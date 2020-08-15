@@ -153,6 +153,7 @@ func _on_Main_turn_start():
 	if frost:
 		moves_remaining = moves_remaining - 1
 		frost = false
+	enable_input()
 
 func hide_tiles():
 	for x in range(0, nTiles.x):
@@ -195,3 +196,13 @@ func drop_in_tiles():
 	yield(tween, "tween_all_completed")
 	tween.queue_free()
 	return true
+
+func disable_input():
+	for x in range(0, nTiles.x):
+		for y in range(0, nTiles.y):
+				tiles[x][y].button.set_disabled(true)
+				
+func enable_input():
+	for x in range(0, nTiles.x):
+		for y in range(0, nTiles.y):
+				tiles[x][y].button.set_disabled(false)

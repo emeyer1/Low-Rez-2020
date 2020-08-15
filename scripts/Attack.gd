@@ -18,7 +18,12 @@ func play_attack(attack_type):
 			$AnimatedSprite.play("autoAttack")
 		"fire":
 			$AnimatedSprite.play("fire")
-			
+		"slime":
+			$AnimatedSprite.play("slime")
+		"shade":
+			$AnimatedSprite.play("shade")
+		"monsterBasic":
+			$AnimatedSprite.play("monsterBasic")
 	$AudioStreamPlayer.play(0)
 	yield($AnimatedSprite, "animation_finished")
 	visible = false
