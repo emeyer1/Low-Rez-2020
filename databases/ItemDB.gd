@@ -12,9 +12,9 @@ var SHOP_TILES = {
 		5:{"n":1,"Giving":["empty"],"Getting":["autoAttack"],"Cost":2},
 		6:{"n":2,"Giving":["autoAttack","earth"],"Getting":["empty","fire"],"Cost":2},
 		7:{"n":1,"Giving":["earth"],"Getting":["fire"],"Cost":1},
-		8:{"n":2,"Giving":["empty","empty"],"Getting":["fire","fire"],"Cost":4},
+		8:{"n":2,"Giving":["empty","empty"],"Getting":["fire","fire"],"Cost":8},
 		9:{"n":2,"Giving":["fire","fire"],"Getting":["autoAttack","autoAttack"],"Cost":0},
-		10:{"n":2,"Giving":["empty","empty"],"Getting":["autoAttack","autoAttack"],"Cost":5},
+		10:{"n":2,"Giving":["empty","empty"],"Getting":["autoAttack","autoAttack"],"Cost":4},
 	},
 	"rare":{
 		0:{"n":1,"Giving":["fire"],"Getting":["earth"],"Cost":1}

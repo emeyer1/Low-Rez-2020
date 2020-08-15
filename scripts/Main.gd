@@ -11,7 +11,7 @@ var random = RandomNumberGenerator.new()
 #var monsterSpawnList = ["spiritCouncil","spirit","spiritCouncil","spiritMage","spiritBoss"]
 var monsterSpawnList = []
 var CurrentMonster
-var power_level = 1
+export var power_level = 1
 
 #Innkeeper Data
 var IKhealth = 20
@@ -55,9 +55,8 @@ func set_Tutorial():
 	$Background/Tavern.play("Morning")
 	yield($Background/Tavern,"animation_finished")
 #	
-#	$AudioStreamPlayer.play()
-#	yield($AudioStreamPlayer,"finished")
-#	$AudioStreamPlayer.play()
+	$AudioStreamPlayer.set_stream(load("res://assets/sound/merchantTheme.ogg"))
+	$AudioStreamPlayer.play()
 	
 	
 	
@@ -83,6 +82,9 @@ func _on_tutorial_closed():
 	pass
 
 func set_Day():
+	$AnimationPlayer.play("SoundFade")
+	yield($AnimationPlayer,"animation_finished")
+	
 	if power_level == 11:
 		#health doesn't reset from previous fight. Last fight is just against a snake.
 		$ViewportContainer/Viewport/TileGrid.set_mouse_input(Control.MOUSE_FILTER_IGNORE)
@@ -106,6 +108,9 @@ func set_Day():
 		$Background/Tavern.play("Morning")
 		yield($Background/Tavern,"animation_finished")
 		
+		$AudioStreamPlayer.volume_db = -20
+		$AudioStreamPlayer.set_stream(load("res://assets/sound/merchantTheme.ogg"))
+		$AudioStreamPlayer.play()
 		#ANIMATION Merchant Enter
 		$Background/Tavern.play("MerchantEntrance")
 		yield($Background/Tavern,"animation_finished")
@@ -120,7 +125,8 @@ func set_Day():
 		self.add_child(Shop)
 
 func set_Night():
-
+	
+	$AnimationPlayer.play("SoundFade")
 	
 	#Make Merchant Leaving animation
 	IKhealth_full = IKhealth
@@ -133,7 +139,9 @@ func set_Night():
 	yield($Background/Tavern,"animation_finished")
 	#ANIMATION Night
 	
+	$AnimationPlayer.stop()
 	$AudioStreamPlayer.set_stream(load("res://assets/sound/BattleTheme.ogg"))
+	$AudioStreamPlayer.volume_db = -20
 	$AudioStreamPlayer.play()
 	
 	$Background/Tavern.play("Night")

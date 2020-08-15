@@ -100,30 +100,30 @@ var MONSTERS = {
 		"Damaged":null,
 		"Currency": 20
 	},
-	"frostGiant":{
+	"frostMage":{
 		"AttackLoop":{
 			0:{"Move_Type":"Rage","Value": null,"Next_Move":1},
 			1:{"Move_Type":"Damage","Value": 5,"Next_Move":2},
-			2:{"Move_Type":"Block","Value": 4,"Next_Move":3},
+			2:{"Move_Type":"Block","Value": 1,"Next_Move":3},
 			3:{"Move_Type":"Frost","Value": null,"Next_Move":0}
 			},
 		"Health":30,
 		"Sprite":"res://assets/monsters/frostgiant.png",
-		"Idle":"frostBoss_Idle",
+		"Idle":"frostMage_Idle",
 		"Attack":null,
 		"Damaged":null,
 		"Currency": 3
 	},
-	"frostGuard":{
+	"frostMageElite":{
 		"AttackLoop":{
 			0:{"Move_Type":"Frost","Value": null,"Next_Move":1},
 			1:{"Move_Type":"Mirror","Value": null,"Next_Move":2},
 			2:{"Move_Type":"Block","Value": 1,"Next_Move":3},
-			3:{"Move_Type":"Mirror","Value": null,"Next_Move":0}
+			3:{"Move_Type":"Mirror","Value": null,"Next_Move":4},
+			4:{"Move_Type":"Damage","Value": 10,"Next_Move":0}
 			},
-		"Health":30,
-		"Sprite":"res://assets/monsters/frostgiant.png",
-		"Idle":"frostBoss_Idle",
+		"Health":35,
+		"Idle":"frostMageElite_Idle",
 		"Attack":null,
 		"Damaged":null,
 		"Currency": 3
@@ -208,10 +208,10 @@ var LEVEL_LIST = {
 			},
 		3:{0:["spiritBoss"]},
 		
-		4:{0:["frostGiant","frostGuard","frostGuard"]
+		4:{0:["frostMage","frostMageElite","frostMage"]
 			#1:[]
 			},
-		5:{0:["frostGuard","frostGuard","frostGiant"]
+		5:{0:["frostElite","frostElite","frostMage"]
 			#1:[]
 			},
 		6:{0:["frostBoss"]},
@@ -220,7 +220,7 @@ var LEVEL_LIST = {
 		9:{0:["slimeBoss"]},
 		10:{0:["snake","snake"]},
 		#TEST POWER LEVEL:
-		0:{0:["gremlin","spirit"]}
+		0:{0:["frostBoss","spirit"]}
 	}
 
 func get_monster(id):
