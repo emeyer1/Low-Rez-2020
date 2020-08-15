@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/boring_tavern_theme.ogg-b403a573e02313c63077aa0b50e1af8d.oggstr"
+
+[deps]
+
+source_file="res://assets/sound/boring_tavern_theme.ogg"
+dest_files=[ "res://.import/boring_tavern_theme.ogg-b403a573e02313c63077aa0b50e1af8d.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
