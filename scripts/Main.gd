@@ -200,6 +200,8 @@ func update_IK_health(amount):
 	var leftover_dmg = max(amount - armor,0)
 	armor = max(armor-amount,0) + armor_base
 	update_armor()
+	if(leftover_dmg > 0):
+		yield(shake_screen(5), "completed")
 	IKhealth = IKhealth - leftover_dmg
 	$UI/health_icon/InnkeeperHealth.text = str(max(0, IKhealth))
 	maybe_IK_dead()
@@ -324,7 +326,6 @@ func monster_turn():
 	match CurrentMonster.current_move_type:
 		"Damage":
 			yield($AttackPlayer.play_attack("monsterBasic"), "completed")
-			yield(shake_screen(5), "completed")
 			update_IK_health(CurrentMonster.current_move_value)
 		"Shade":
 			yield($AttackPlayer.play_attack("shade"), "completed")
