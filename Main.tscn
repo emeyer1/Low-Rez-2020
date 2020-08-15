@@ -157,6 +157,7 @@ volume_db = -20.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/SoundFade = SubResource( 1 )
+[connection signal="shop_start" from="." to="ViewportContainer/Viewport/TileGrid" method="_on_Main_shop_start"]
 [connection signal="turn_start" from="." to="ViewportContainer/Viewport/TileGrid" method="_on_Main_turn_start"]
 [connection signal="move_occured" from="ViewportContainer/Viewport/TileGrid" to="." method="_on_TileGrid_move_occured"]
 [connection signal="turn_ended" from="ViewportContainer/Viewport/TileGrid" to="." method="_on_TileGrid_turn_ended"]

@@ -74,6 +74,30 @@ func draw_tile_helper(tried):
 		print("Error reshuffling cards")
 	return ret
 
+func draw_in_order():
+	return draw_in_order_helper(false)
+
+func draw_in_order_helper(tried):
+	var ret
+	var drew = false
+	for tile in deck:
+		if tile.count > 0:
+			drew = true
+			ret = tile.tileType
+			tile.count -= 1
+			for play_tile in inplay:
+				if play_tile.tileType == tile.tileType:
+					play_tile.count += 1
+					break
+			break
+	if(!drew):
+		if(tried):
+			print("error getting tiles")
+			return 
+		reshuffle_discard()
+		ret = draw_in_order_helper(true)
+	return ret
+
 func reshuffle_discard():
 	for discard_tile in discard:
 		var deck_tile = get_tile(deck, discard_tile.tileType)

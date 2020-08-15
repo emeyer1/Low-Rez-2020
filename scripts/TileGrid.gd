@@ -154,7 +154,28 @@ func _on_Main_turn_start():
 		moves_remaining = moves_remaining - 1
 		frost = false
 	enable_input()
-
+	
+func _on_Main_shop_start():
+	for x in range(0, nTiles.x):
+		for y in range(0, nTiles.y):
+			Deck.discard_tile(tiles[x][y].tileType)
+	for y in range(0, nTiles.y):
+		for x in range(0, nTiles.x):
+			tiles[x][y].tileType = Deck.draw_in_order()
+			tiles[x][y].button.set_normal_texture(Deck.get_texture(tiles[x][y].tileType))
+	yield(drop_in_tiles(), "completed")
+	
+func _on_currency_updated(currency):
+	for x in range(0, nTiles.x):
+		for y in range(0, nTiles.y):
+			Deck.discard_tile(tiles[x][y].tileType)
+	Deck.reshuffle_discard()
+	for y in range(0, nTiles.y):
+		for x in range(0, nTiles.x):
+			tiles[x][y].tileType = Deck.draw_in_order()
+			tiles[x][y].button.set_normal_texture(Deck.get_texture(tiles[x][y].tileType))
+	show_tiles()
+	
 func hide_tiles():
 	for x in range(0, nTiles.x):
 		for y in range(0, nTiles.y):
@@ -206,3 +227,4 @@ func enable_input():
 	for x in range(0, nTiles.x):
 		for y in range(0, nTiles.y):
 				tiles[x][y].button.set_disabled(false)
+

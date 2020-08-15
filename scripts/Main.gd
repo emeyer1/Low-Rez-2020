@@ -1,6 +1,7 @@
 extends Node2D
 
 signal turn_start
+signal shop_start
 
 onready var MonsterBase = load("res://Monster.tscn")
 onready var ShopScreen = load("res://Shop.tscn")
@@ -99,6 +100,8 @@ func set_Day():
 		$Background/Tavern.stop()
 		$ViewportContainer/Viewport/TileGrid.set_mouse_input(Control.MOUSE_FILTER_STOP)
 		$ViewportContainer/Viewport/TileGrid.enable_input()
+		yield($ViewportContainer/Viewport/TileGrid.hide_tiles_burn(), "completed")
+		emit_signal("turn_start")
 	else:
 		$ViewportContainer/Viewport/TileGrid.set_mouse_input(Control.MOUSE_FILTER_IGNORE)
 		$ViewportContainer/Viewport/TileGrid.disable_input()
@@ -125,6 +128,7 @@ func set_Day():
 		Shop.currency = IKcurrency
 		Shop.connect("shop_closed", self, "_on_shop_closed")
 		Shop.connect("update_currency", self, "_on_currency_updated")
+		Shop.connect("update_currency", $ViewportContainer/Viewport/TileGrid, "_on_currency_updated")
 		self.add_child(Shop)
 
 func set_Night():
@@ -157,6 +161,7 @@ func set_Night():
 	monsterSpawnList.pop_front()
 
 func _on_shop_closed():
+	yield($ViewportContainer/Viewport/TileGrid.hide_tiles_burn(), "completed")
 	set_Night()
 	$ViewportContainer/Viewport/TileGrid.set_mouse_input(Control.MOUSE_FILTER_STOP)
 	emit_signal("turn_start")
@@ -253,6 +258,8 @@ func _on_TileGrid_turn_ended(activations):
 		#User deals damage
 		if(!dead):
 			dead = $MonsterSpawn.get_child(0).update_health(max(damage-CurrentMonster.blockAmount,0))
+				
+			
 		damage = 0
 		update_armor()
 		unset_activated_tiles(i.activated_tiles)
@@ -263,10 +270,14 @@ func _on_TileGrid_turn_ended(activations):
 	if !dead:
 		if CurrentMonster.Health > 0:
 			yield(monster_turn(), "completed")
-			
+	
 	clear_tile_shader_params()
 	yield($ViewportContainer/Viewport/TileGrid.hide_tiles_burn(), "completed")
-	emit_signal("turn_start")
+	
+	if(len(monsterSpawnList) == 0 && dead):
+		emit_signal("shop_start")
+	else:
+		emit_signal("turn_start")
 	
 	if ailment:
 		currentAilment = ailment
