@@ -32,7 +32,7 @@ var currentAilment = null
 func _ready():
 	update_stats()
 	initialize_innkeeper()
-	set_Night()
+	set_Tutorial()
 
 func _process(delta):
 	#Set the swap count remaining
