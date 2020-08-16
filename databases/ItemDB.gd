@@ -19,6 +19,7 @@ var SHOP_TILES = {
 		12:{"n":1,"Giving":["autoAttack"],"Getting":["fire"],"Cost":3},
 		13:{"n":1,"Giving":["autoAttack"],"Getting":["earth"],"Cost":1},
 		14:{"n":1,"Giving":["empty"],"Getting":["fire"],"Cost":3},
+		15:{"n":2,"Giving":["empty","earth"],"Getting":["fire","autoAttack"],"Cost":5},
 	},
 	"rare":{
 		0:{"n":1,"Giving":["fire"],"Getting":["earth"],"Cost":1}

@@ -15,7 +15,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="testSwitchdem"
+config/name="Defend'INN"
 run/main_scene="res://MainMenu.tscn"
 config/icon="res://icon.png"
 
@@ -29,8 +29,8 @@ ItemDb="*res://databases/ItemDB.gd"
 
 window/size/width=64
 window/size/height=64
-window/size/test_width=640
-window/size/test_height=640
+window/size/test_width=1280
+window/size/test_height=1280
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
 

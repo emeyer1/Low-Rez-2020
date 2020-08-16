@@ -90,8 +90,15 @@ func set_Day():
 		#health doesn't reset from previous fight. Last fight is just against a snake.
 		$ViewportContainer/Viewport/TileGrid.set_mouse_input(Control.MOUSE_FILTER_IGNORE)
 		$ViewportContainer/Viewport/TileGrid.disable_input()
+		
+		$AudioStreamPlayer.stop()
+		$AudioStreamPlayer.volume_db = -20
+		$AudioStreamPlayer.set_stream(load("res://assets/sound/final_boss_theme.ogg"))
+		$AudioStreamPlayer.play()
+		
 		$Background/Tavern.play("Morning")
 		yield($Background/Tavern,"animation_finished")
+		
 		$Background/Tavern.play("TheFinalMorning")
 		yield($Background/Tavern,"animation_finished")
 		spawn_monster("slumpoMasterOfAll")
@@ -114,8 +121,9 @@ func set_Day():
 		$Background/Tavern.play("Morning")
 		yield($Background/Tavern,"animation_finished")
 		
-		$AudioStreamPlayer.volume_db = -20
+		
 		$AudioStreamPlayer.set_stream(load("res://assets/sound/merchantTheme.ogg"))
+		$AudioStreamPlayer.volume_db = -20
 		$AudioStreamPlayer.play()
 		#ANIMATION Merchant Enter
 		$Background/Tavern.play("MerchantEntrance")

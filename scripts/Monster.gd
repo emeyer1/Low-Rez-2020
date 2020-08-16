@@ -50,6 +50,7 @@ func _ready():
 	Moves = m["AttackLoop"]
 	Health = m["Health"]
 	currency = m["Currency"]
+	$DeathCurrency.text = str("+",currency)
 	healthBar.max_value = Health
 	healthBar.value = Health
 	set_label()
